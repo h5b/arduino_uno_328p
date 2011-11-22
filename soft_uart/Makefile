@@ -6,7 +6,7 @@ SRCS=$(PROG).c
 CLEANFILES=$(PROG).hex $(PROG).out
 
 $(PROG).hex: $(PROG).out
-	$(OBJCOPY) -j .text -O ihex $(PROG).out $(PROG).hex
+	$(OBJCOPY) -O ihex $(PROG).out $(PROG).hex
 
 $(PROG).out: $(SRCS) ../Makefile.inc
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I./ -o $(PROG).out $(SRCS)
