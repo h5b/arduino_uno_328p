@@ -70,10 +70,11 @@ uartPutString_P(const char *addr)
 int
 main(void)
 {
-	static const char infostring[] PROGMEM = "SOFT-UART Demo\r\n";
+	static const char infostring[] = "SOFT-UART Demo\r\n";
 
 	uartInit();
-	uartPutString_P(infostring);
+
+	uartPutString(infostring);
 
 	while (1) {
 		/* do nothing */
