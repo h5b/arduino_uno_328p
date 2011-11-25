@@ -8,12 +8,11 @@ toolchain.
 
 ### blink_led_hw
 An example to let the User LED (PB5) on the Arduino Uno blink once per second.  
-The needed delay is accomplished via compare match event of TIMER1.
+The needed delay is accomplished via an compare match event of TIMER1.
 
 ### blink_led_sw
 An example to let the User LED on the Arduino Uno blink once per second.  
-The needed delay is accomplished via a software delay  
-provided by <util/delay.h>.
+The needed delay is accomplished via a software delay.
 
 ### hw_uart
 Interrupt controlled UART example using circular buffers as described by  
