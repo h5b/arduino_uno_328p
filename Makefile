@@ -2,6 +2,7 @@ include Makefile.inc
 
 SUBDIRS = blink_led_hw \
 	  blink_led_sw \
+	  hw_uart \
 	  soft_uart
 
 all:
