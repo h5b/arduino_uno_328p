@@ -17,7 +17,8 @@ provided by <util/delay.h>.
 
 ### hw_uart
 Interrupt controlled UART example using circular buffers as described by  
-Atmel Application Note "AVR306: Using the AVR UART in C".
+Atmel Application Note "AVR306: Using the AVR UART in C".  
+See www.atmel.com/atmel/acrobat/doc1451.pdf
 
 ### sw_uart
 Polled UART example for basic input and output operation.  
