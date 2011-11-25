@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-PROG=softuart
+PROG=sw_uart
 SRCS=$(PROG).c
 
 CLEANFILES=$(PROG).hex $(PROG).out
