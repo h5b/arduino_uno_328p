@@ -1,16 +1,15 @@
-This is a playground of the development of examples targeted at the Arduino Uno (ATmega328P)  
-to be used with the avr-gcc toolchain.
+This is a playground of the development of examples targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno)  
+to be used with the AVR-GCC toolchain.
 
 ## Sources
 
 * __blink_led_hw__ shows an example in the veins of __blink_led_sw__ to let the User LED  
-  on the Arduino Uno blink once per second.  
-  Although using a timer-based delay which is accomplished via an compare match event  
-  of __TIMER1__.
+  on the Arduino Uno blink once per second. Although using a timer-based delay which is  
+  accomplished via an compare match event of __TIMER1__.
 
 * __blink_led_sw__ shows an example to let the User LED on the Arduino Uno blink once per  
-  second.  
-  The needed delay is accomplished via a software delay provided by `_delay_ms()` function.
+  second. The needed delay is accomplished via a software delay provided by `_delay_ms()`  
+  function.
 
 * __hw_uart__ shows an interrupt controlled UART example using circular buffers as described  
   by Atmel Application Note [AVR306: Using the AVR UART in C] (http://www.atmel.com/atmel/acrobat/doc1451.pdf)
