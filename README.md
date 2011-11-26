@@ -1,5 +1,3 @@
-# arduino_uno_328p
-
 This is a playground of the development of examples targeted at the Arduino Uno (ATmega328P)  
 to be used with the avr-gcc toolchain.
 
@@ -19,7 +17,9 @@ to be used with the avr-gcc toolchain.
 
 * __sw_uart__ shows an example of polled UART for basic input and output operation.  
 
-## Schematic
+## Schematics
+
+### Board
 
 <pre>
 +-----------------------------------------------------------------------+
@@ -45,4 +45,22 @@ to be used with the avr-gcc toolchain.
 |                 [ ] [ ] [ ] [ ] [ ] [ ]          [ ] [ ] [ ] [ ] [ ]  |
 |                 RST 3V3 5V          Vin          A0              A5   |
 +-----------------------------------------------------------------------+
+</pre>
+
+### Serial
+A simple and cheap way to hookup the serial of the Arduino Uno Board is to use a USB to Serial  
+cable like the Nokia CA-42. This cable is based on Prolific's PL-2303 chip and already  
+provides a TTL converter.
+
+<pre>
+GND TX  RX
+[ ] [ ] [ ]
+ |   |   |
+ |   |   |
+ |   |   |                       ,~~~~~~~~~~~~'
+ |   |   +------------------[whi]             |
+ |   +----------------------[grn]             |
+ +--------------------------[blu]             |
+                                 '------------'
+                                  Nokia CA-42
 </pre>
