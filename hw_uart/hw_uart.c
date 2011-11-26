@@ -83,14 +83,9 @@ uartReceiveByte(void)
 	unsigned char data;
 	unsigned char tmptail;
 
-	/*
-	 * XXX: TODO, this blocks if no data is available!
-	 *
-	 * wait until data is available
-	 */
-	while (rxHead == rxTail) {
-		;
-	}
+	/* just return if no data available */
+	if (rxHead == rxTail)
+		return (0);
 
 	/* calculate and save new buffer index */
 	tmptail = ((rxTail + 1) & BUFFER_MASK);
