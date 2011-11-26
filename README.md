@@ -1,8 +1,7 @@
 # arduino_uno_328p
 
-This is a playground of the development of examples targeted  
-at the Arduino Uno (ATmega328P) to be used with the avr-gcc  
-toolchain.
+This is a playground of the development of examples targeted at the Arduino Uno (ATmega328P)  
+to be used with the avr-gcc toolchain.
 
 ## Sources
 
