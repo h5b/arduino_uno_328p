@@ -22,9 +22,9 @@ to be used with the AVR-GCC toolchain.
 
 <pre>
 +-----------------------------------------------------------------------+
-|                 AREF                                           TX RX  |
+|                    GND                                         TX RX  |
 |                 [ ][ ][ ][ ][ ][ ][ ][ ]     [ ][ ][ ][ ][ ][ ][ ][ ] |
-|                    GND                D8     D7             D2        |
+|                AREF   PB5            PB0     PD7                  PD0 |
 |                                                                       |
 |                                                                       |
 |                                                                       |
@@ -42,7 +42,7 @@ to be used with the AVR-GCC toolchain.
 |                                                                       |
 |                             GND GND                                   |
 |                 [ ] [ ] [ ] [ ] [ ] [ ]          [ ] [ ] [ ] [ ] [ ]  |
-|                 RST 3V3 5V          Vin          A0              A5   |
+|                 RST 3V3 5V          Vin          PC0             PC5  |
 +-----------------------------------------------------------------------+
 </pre>
 
