@@ -16,6 +16,11 @@ to be used with the AVR-GCC toolchain.
 
 * __sw_uart__ shows an example of polled UART for basic input and output operation.  
 
+* __sw_i2c__ implements an example application of Software TWI (I2C) Master Mode  
+  using a Dallas Maxim DS1631 temperature sensor as slave device.
+  The measured temperature is sent to UART.  
+  For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)
+
 ## Schematics
 
 ### Board
