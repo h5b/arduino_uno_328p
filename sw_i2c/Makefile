@@ -3,8 +3,8 @@ include ../Makefile.inc
 PROG=main
 SRCS=$(PROG).c \
      ds1631.c \
-     uart.c \
-     i2c.c
+     i2c.c \
+     uart.c
 
 CLEANFILES=$(PROG).hex $(PROG).out
 
