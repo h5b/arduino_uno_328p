@@ -43,7 +43,7 @@ static volatile unsigned char rxBuffer[BUFFER_SIZE];
 
 void uartInit(void);
 void uartPutString(const char*);
-void uartPutString_P(const char *);
+void uartPutString_P(const char*);
 void uartTransmitByte(unsigned char);
 unsigned char uartReceiveByte(void);
 
