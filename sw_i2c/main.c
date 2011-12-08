@@ -20,8 +20,8 @@
 
 #include "board.h"
 #include "ds1631.h"
-#include "uart.h"
 #include "i2c.h"
+#include "uart.h"
 
 int
 main(void)

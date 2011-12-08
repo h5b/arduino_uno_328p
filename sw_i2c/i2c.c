@@ -15,15 +15,6 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*
- * Simplified interrupt controlled UART using circular buffers as described
- * by Atmel Application Note "AVR306: Using the AVR UART in C".
- */
-
 #include <avr/io.h>
-#include <avr/interrupt.h>
-#include <avr/pgmspace.h>
-
-#include <util/delay.h>
 
 #include "i2c.h"
