@@ -1,7 +1,8 @@
 include ../Makefile.inc
 
-PROG=hw_uart
-SRCS=$(PROG).c
+PROG=main
+SRCS=$(PROG).c \
+     hw_uart.c
 
 CLEANFILES=$(PROG).hex $(PROG).out
 

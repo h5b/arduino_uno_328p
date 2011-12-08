@@ -26,34 +26,8 @@
 
 #include <util/delay.h>
 
-/* User LED is located at PB5 (Arduino digital pin 13) */
-#define LED_BIT		(1 << PB5)
-
-/* Delay in milliseconds used to display the UART heartbeat */
-#define DELAY		500
-
-#define BAUDRATE	9600
-/* calculate the Baudrate Register Value based on F_CPU and BAUDRATE */
-#define UBRR_VAL ((F_CPU + BAUDRATE * 8L) / ((BAUDRATE * 16L) - 1))
-
-#define BUFFER_SIZE	32
-#define BUFFER_MASK	(BUFFER_SIZE - 1)
-
-static volatile unsigned char rxHead;
-static volatile unsigned char rxTail;
-static volatile unsigned char txHead;
-static volatile unsigned char txTail;
-
-/*
- * --- Head ---+     --- Tail ----+
- *             |                  |
- * +-----------v------- .. -------v-----+
- * | | | | | | | | | |  ..  | | | | | | |
- * +------------------- .. -------------+
- * 0                                    BUFFER_SIZE - 1
- */
-static volatile unsigned char txBuffer[BUFFER_SIZE];
-static volatile unsigned char rxBuffer[BUFFER_SIZE];
+#include "board.h"
+#include "hw_uart.h"
 
 void
 uartInit(void)
@@ -184,28 +158,4 @@ ISR(USART_TX_vect)
 {
 	/* toggle User LED */
 	PORTB ^= (LED_BIT);
-}
-
-int
-main(void)
-{
-	static const char infostring[] = "HW-UART Demo\r\n";
-
-	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
-	/* initialize UART */
-	uartInit();
-	/* global interrupt enable */
-	sei();
-
-	uartPutString(infostring);
-
-	while (1) {
-		/* output a heartbeat */
-		uartPutString(".. ");
-		_delay_ms(DELAY);
-	}
-
-	/* never reached */
-	return (0);
 }
