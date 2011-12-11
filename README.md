@@ -16,10 +16,11 @@ to be used with the AVR-GCC toolchain.
 
 * __sw_uart__ shows an example of polled UART for basic input and output operation.  
 
-* __sw_i2c__ implements an example application of Software TWI (I2C) Master Mode  
-  using a Dallas Maxim DS1631 temperature sensor as slave device.  
-  The measured temperature is sent to UART.  
-  For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)
+* __sw_i2c__ implements an example application of Software TWI (I2C) Master Mode using a  
+  Dallas Maxim __DS1631__ temperature sensor as slave device. The measured temperature  
+  is sent to UART. For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)
+  See __DS1631 Temperature Sensor__ under Schematics on how to hookup the DS1631 to  
+  the Arduino.
 
 ## Schematics
 
@@ -45,10 +46,24 @@ to be used with the AVR-GCC toolchain.
 |                                                              |[] []|  |
 |                                                              +-ISP-+  |
 |                                                                       |
-|                             GND GND                                   |
+|                             GND GND                          SDA SCL  |
 |                 [ ] [ ] [ ] [ ] [ ] [ ]          [ ] [ ] [ ] [ ] [ ]  |
 |                 RST 3V3 5V          Vin          PC0             PC5  |
 +-----------------------------------------------------------------------+
+</pre>
+
+### DS1631 Temperature Sensor
+<pre>
+   .--------------=4k7=-----------.
+   | .------------=4k7=---------. |
+   | |                          | |
+   | |    ,____  ____.          | |
+   | '-1--|SDA `' VCC|--8----------- 3V3
+   '---2--|SCL     A0|--7----.
+       3--|Tout    A1|--6----|
+       4--|GND     A2|--5----|
+          `~~~~~~~~~~'       |
+             DS1631         GND
 </pre>
 
 ### Serial
