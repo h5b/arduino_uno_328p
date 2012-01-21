@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011, 2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -17,5 +17,16 @@
 
 #ifndef _I2C_H_
 #define _I2C_H_
+
+/* Define and set I2C_CLOCK to 400kHz */
+#define I2C_CLOCK 400000UL
+
+void i2cInit(void);
+void i2cStop(void);
+
+unsigned char i2cReadACK(void);
+unsigned char i2cReadNAK(void);
+unsigned char i2cStart(unsigned char addr);
+unsigned char i2cWrite(unsigned char data);
 
 #endif /* _I2C_H_ */
