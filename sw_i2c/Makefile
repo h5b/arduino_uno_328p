@@ -4,7 +4,8 @@ PROG=main
 SRCS=$(PROG).c \
      ds1631.c \
      i2c.c \
-     uart.c
+     uart.c \
+     util.c
 
 CLEANFILES=$(PROG).hex $(PROG).out
 

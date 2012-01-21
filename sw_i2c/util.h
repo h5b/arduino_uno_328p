@@ -15,33 +15,9 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#ifndef _UTIL_H_
+#define _UTIL_H_
 
-#include "board.h"
-#include "ds1631.h"
-#include "i2c.h"
-#include "uart.h"
-#include "util.h"
+char* numtostring(char);
 
-int
-main(void)
-{
-	static const char infostring[] = "SW-I2C Demo - DS1631\r\n";
-
-	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
-	/* initialize UART */
-	uartInit();
-	/* global interrupt enable */
-	sei();
-
-	uartPutString(infostring);
-
-	while (1) {
-		/* Temperature Reading */
-	}
-
-	/* never reached */
-	return (0);
-}
+#endif /* _UTIL_H_ */
