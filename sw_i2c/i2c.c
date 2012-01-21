@@ -24,7 +24,7 @@ void
 i2cInit(void)
 {
 	/* set prescaler to 0 */
-	TWSR = 0; /* set prescaler to: 0 */
+	TWSR = 0;
 	/* initialize I2C bus clock to 400kHz (fast mode) */
 	TWBR = ((F_CPU / I2C_CLOCK) - 16) / 2;
 }
