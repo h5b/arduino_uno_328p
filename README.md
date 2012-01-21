@@ -52,29 +52,6 @@ to be used with the AVR-GCC toolchain.
 `-----------------------------------------------------------------------'
 </pre>
 
-### DS1631 Temperature Sensor
-<pre>
-   .--------------=4k7=-----------.
-   | .------------=4k7=---------. |
-   | |                          | |
-   | |    ,____  ____.          | |
-   | '-1--|SDA `' VCC|--8-------'-'--> 3V3
-   '---2--|SCL     A0|--7----.
-       3--|Tout    A1|--6----|
-       4--|GND     A2|--5----|
-          `----------'       |
-             DS1631         GND
-
-(Device Address is set to 0x90, see Control Byte)
-</pre>
-
-#### DS1631 - Control Byte
-<pre>
-._____________________________________.
-| 1 | 0 | 0 | 1 | A2 | A1 | A0 | R/_W |
-'-------------------------------------'
-</pre>
-
 ### Serial
 A simple and cheap way to hookup the serial of the Arduino Uno Board is to use a USB to Serial  
 cable like the Nokia CA-42. This cable is based on Prolific's PL-2303 chip and already  
