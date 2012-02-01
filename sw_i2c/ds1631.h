@@ -25,7 +25,7 @@
  * | .------------=4k7=---------. |
  * | |                          | |
  * | |    ,____  ____.          | |
- * | '-1--|SDA `' VCC|--8-------'-'--> 3V3
+ * | '-1--|SDA `' VCC|--8-------`-`--> 3V3
  * '---2--|SCL     A0|--7----.
  *     3--|Tout    A1|--6----|
  *     4--|GND     A2|--5----|
@@ -38,6 +38,7 @@
  * ,-------------------------------------.
  * | 1 | 0 | 0 | 1 | A2 | A1 | A0 | R/_W |
  * `-------------------------------------'
+ * 7                                     0
  */
 #define DS1631_READ_ADDR	0x91
 #define DS1631_WRITE_ADDR	0x90
@@ -45,14 +46,17 @@
 /*
  * DS1631 - Command Set
  */
+#define DS1631_ACCESS_CFG	0xAC /* Access the configuration register */
 #define DS1631_ACCESS_TH	0xA1 /* Access the high temperature register */
 #define DS1631_ACCESS_TL	0xA2 /* Access the low temperature register */
+
+#define DS1631_CONT_CONV	0xEE /* Continuous temperature conversion */
+#define DS1631_POR		0x54 /* Initiate a software Power-On-Reset */
+
 #define DS1631_READ_CNTR	0xA8 /* Read the counter register */
 #define DS1631_READ_SLOPE	0xA9 /* Read the slope register */
 #define DS1631_READ_TEMP	0xAA /* Read temperature register */
-#define DS1631_ACCESS_CFG	0xAC /* Access the configuration register */
-
-#define DS1631_CONT_CONV	0xEE /* Continuous temperature conversion */
+#define DS1631_START_CONV	0x51 /* Start temperature conversion */
 #define DS1631_STOP_CONV	0x22 /* Stop temperature conversion */
 
 /*
@@ -63,7 +67,7 @@
  * MSB |  S   | 2^6  | 2^5  | 2^4  | 2^3 | 2^2 | 2^1 | 2^0 |
  *     `---------------------------------------------------'
  *     ,---------------------------------------------------.
- * LSB | 2^-1 | 2^-2 | 2^-3 | 2^-4 | 0   | 0   | 0   | 0   |
+ * LSB | 2^-1 | 2^-2 | 2^-3 | 2^-4 |  0  |  0  |  0  |  0  |
  *     `---------------------------------------------------'
  *     7                                                   0
  */
