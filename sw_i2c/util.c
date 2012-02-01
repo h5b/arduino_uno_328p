@@ -17,11 +17,24 @@
 
 #include "util.h"
 
-/*
- * Convert number to string suitable for uartPutString
- */
-char*
-numtostring(char number)
+/* convert unsigned integer to string */
+void
+uitoa(char num, char* dst)
 {
-	/* XXX */
+	char c, *p = dst;
+
+	if ((c = num / 100)) {
+		num %= 100;
+		*p++ = '0' + c;
+	}
+
+	if ((c = num / 10)) {
+		num %= 10;
+		*p++ = '0' + c;
+	}
+
+	if (num)
+		*p++ = '0' + num;
+
+	*p = '\0';
 }
