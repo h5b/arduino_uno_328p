@@ -19,9 +19,9 @@
 
 /* convert unsigned integer to string */
 void
-uitoa(char num, char* dst)
+uitoa(char* dest, char num)
 {
-	char c, *p = dst;
+	char c, *p = dest;
 
 	if ((c = num / 100)) {
 		num %= 100;

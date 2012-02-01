@@ -18,6 +18,6 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-void uitoa(char, char*);
+void uitoa(char*, char);
 
 #endif /* _UTIL_H_ */
