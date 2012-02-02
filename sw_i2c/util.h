@@ -18,6 +18,8 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
+#define CHAR_BUFFER_SIZE	4
+
 void uitoa(char*, char);
 
 #endif /* _UTIL_H_ */

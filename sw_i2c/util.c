@@ -33,8 +33,7 @@ uitoa(char* dest, char num)
 		*p++ = '0' + c;
 	}
 
-	if (num)
-		*p++ = '0' + num;
+	*p++ = '0' + num;
 
 	*p = '\0';
 }
