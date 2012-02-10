@@ -40,8 +40,8 @@
  * `-------------------------------------'
  * 7                                     0
  */
-#define DS1631_READ_ADDR	0x91
-#define DS1631_WRITE_ADDR	0x90
+#define DS1631_RD_ADDR	0x91
+#define DS1631_WR_ADDR	0x90
 
 /*
  * DS1631 - Command Set
@@ -97,5 +97,7 @@
  * | -55          | 1100 1001 0000 0000  | 0xC900  |
  * `--------------'----------------------'---------'
  */
+
+void ds1631WriteConfig(unsigned char, unsigned char);
 
 #endif /* _DS1631_H_ */

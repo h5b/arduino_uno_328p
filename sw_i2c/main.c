@@ -33,8 +33,15 @@ main(void)
 	DDRB = LED_BIT;
 	/* initialize UART */
 	uartInit();
+	/* initialize I2C */
+	i2cInit();
 	/* global interrupt enable */
 	sei();
+
+	/* DS1631 - Set Continuous Temperature Conversion */
+	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
+	/* DS1631 - Request Temperature Reading */
+	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
 	uartPutString(infostring);
 

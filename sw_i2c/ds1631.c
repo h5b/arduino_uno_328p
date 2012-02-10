@@ -19,3 +19,11 @@
 
 #include "ds1631.h"
 #include "i2c.h"
+
+void
+ds1631WriteConfig(unsigned char addr, unsigned char data)
+{
+	i2cStart(addr);
+	i2cWrite(data);
+	i2cStop();
+}
