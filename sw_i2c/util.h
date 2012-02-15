@@ -20,6 +20,7 @@
 
 #define CHAR_BUFFER_SIZE	4
 
+void binrep(unsigned char);
 void uitoa(char*, char);
 
 #endif /* _UTIL_H_ */

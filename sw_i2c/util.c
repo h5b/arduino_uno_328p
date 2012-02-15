@@ -15,7 +15,19 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "uart.h"
 #include "util.h"
+
+/* output binary representation of integer to UART */
+void
+binrep(unsigned char val)
+{
+	int i = 0 ;
+
+	for (i = (sizeof(val)*8)-1; i >= 0; i--)
+		uartTransmitByte('0' + ((val >> i) & 1));
+	uartPutString(": ");
+}
 
 /* convert unsigned integer to string */
 void

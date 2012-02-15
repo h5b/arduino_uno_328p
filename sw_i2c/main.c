@@ -18,6 +18,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+#include <util/delay.h>
+
 #include "board.h"
 #include "ds1631.h"
 #include "i2c.h"
@@ -28,6 +30,8 @@ int
 main(void)
 {
 	static const char infostring[] = "SW-I2C Demo - DS1631\r\n";
+	unsigned char temperatureTH, temperatureTL;
+	char result[CHAR_BUFFER_SIZE];
 
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
@@ -47,6 +51,25 @@ main(void)
 
 	while (1) {
 		/* Temperature Reading */
+		i2cStart(DS1631_RD_ADDR);
+		temperatureTH = i2cReadNAK();
+		temperatureTL = i2cReadACK();
+		i2cStop();
+
+		/* output binary representation */
+		binrep(temperatureTH);
+		uartPutString("Temperature TH (MSB): ");
+
+		/* deal with negative temperature reading */
+		if (temperatureTH & 0x80) {
+			temperatureTH ^= 0xFF;
+			uartPutString(" -");
+		}
+
+		uitoa(result, temperatureTH);
+		uartPutString(result);
+		uartPutString(" °C\r\n");
+		_delay_ms(SECOND);
 	}
 
 	/* never reached */

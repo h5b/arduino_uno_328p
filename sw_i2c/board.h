@@ -26,4 +26,7 @@
 /* User LED is located at PB5 (Arduino digital pin 13) */
 #define LED_BIT		(1 << PB5)
 
+/* delay in milliseconds */
+#define SECOND		1000
+
 #endif /* _BOARD_H_ */
