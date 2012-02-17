@@ -26,6 +26,19 @@
 #include "uart.h"
 #include "util.h"
 
+#if 0
+/* output binary representation of integer to UART */
+void
+binrep(unsigned char val)
+{
+	int i = 0 ;
+
+	for (i = (sizeof(val)*8)-1; i >= 0; i--)
+		uartTransmitByte('0' + ((val >> i) & 1));
+	uartPutString(": ");
+}
+#endif
+
 int
 main(void)
 {
@@ -56,8 +69,11 @@ main(void)
 		temperatureTL = i2cReadACK();
 		i2cStop();
 
+#if 0
 		/* output binary representation */
 		binrep(temperatureTH);
+#endif
+
 		uartPutString("Temperature TH (MSB): ");
 
 		/* deal with negative temperature reading */
