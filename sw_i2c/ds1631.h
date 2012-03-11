@@ -53,7 +53,7 @@
 #define DS1631_CONT_CONV	0xEE /* Continuous temperature conversion */
 #define DS1631_POR		0x54 /* Initiate a software Power-On-Reset */
 
-#define DS1631_READ_CNTR	0xA8 /* Read the counter register */
+#define DS1631_READ_COUNT	0xA8 /* Read the counter register */
 #define DS1631_READ_SLOPE	0xA9 /* Read the slope register */
 #define DS1631_READ_TEMP	0xAA /* Read temperature register */
 #define DS1631_START_CONV	0x51 /* Start temperature conversion */
@@ -99,5 +99,6 @@
  */
 
 void ds1631WriteConfig(unsigned char, unsigned char);
+void ds1631GetTemperature(unsigned char, char *);
 
 #endif /* _DS1631_H_ */
