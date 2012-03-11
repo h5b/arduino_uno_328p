@@ -19,6 +19,7 @@
 
 #include "ds1631.h"
 #include "i2c.h"
+#include "util.h"
 
 void
 ds1631WriteConfig(unsigned char addr, unsigned char data)
@@ -26,4 +27,17 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 	i2cStart(addr);
 	i2cWrite(data);
 	i2cStop();
+}
+
+void
+ds1631GetTemperature(unsigned char addr, char *result)
+{
+	unsigned char temperatureTH, temperatureTL;
+
+	i2cStart(addr);
+	temperatureTH = i2cReadNAK();
+	temperatureTL = i2cReadACK();
+	i2cStop();
+
+	uitoa(result, temperatureTH);
 }
