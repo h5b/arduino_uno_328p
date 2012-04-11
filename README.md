@@ -11,6 +11,11 @@ to be used with the AVR-GCC toolchain.
   second. The needed delay is accomplished via a software delay provided by `_delay_ms()`  
   function.
 
+* __ds_1307__ implements an example application of the Dallas Maxim __DS1307__ realtime clock  
+  using the Software TWI (I2C) Master Mode.  
+  The clock information is sent to UART.  
+  For details regarding the DS1307 see [DS1307 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1307.pdf).
+
 * __hw_uart__ shows an interrupt controlled UART example using circular buffers as described  
   by Atmel Application Note [AVR306: Using the AVR UART in C] (http://www.atmel.com/atmel/acrobat/doc1451.pdf)
 
