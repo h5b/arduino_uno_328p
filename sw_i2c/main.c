@@ -42,7 +42,7 @@ binrep(unsigned char val)
 int
 main(void)
 {
-	static const char infostring[] = "SW-I2C Demo - DS1631\r\n";
+	const char p_infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
 	char result[CHAR_BUFFER_SIZE];
 
 	/* set User LED on Port B as output */
@@ -53,13 +53,10 @@ main(void)
 	i2cInit();
 	/* global interrupt enable */
 	sei();
+	/* initialize ds1631 */
+	ds1631Init();
 
-	/* DS1631 - Set Continuous Temperature Conversion */
-	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
-	/* DS1631 - Request Temperature Reading */
-	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
-
-	uartPutString(infostring);
+	uartPutString_P(infostring);
 
 	while (1) {
 

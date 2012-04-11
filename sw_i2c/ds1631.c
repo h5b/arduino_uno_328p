@@ -21,6 +21,12 @@
 #include "i2c.h"
 #include "util.h"
 
+void ds1631Init(void)
+{
+	/* DS1631 - Enable Continuous Temperature Conversion */
+	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
+}
+
 void
 ds1631WriteConfig(unsigned char addr, unsigned char data)
 {
@@ -32,6 +38,9 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 void
 ds1631GetTemperature(unsigned char addr, char *result)
 {
+	/* DS1631 - Request Temperature Reading */
+	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
+
 	unsigned char temperatureTH, temperatureTL;
 
 	i2cStart(addr);
@@ -40,4 +49,20 @@ ds1631GetTemperature(unsigned char addr, char *result)
 	i2cStop();
 
 	uitoa(result, temperatureTH);
+}
+
+unsigned char
+ds1631GetRegister(unsigned char cmd)
+{
+	unsigned char result;
+
+	i2cStart(DS1631_WR_ADDR);
+	i2cWrite(cmd);
+	i2cStop();
+
+	i2cStart(DS1631_RD_ADDR);
+	result = i2cReadNAK();
+	i2cStop();
+
+	return result;
 }

@@ -98,7 +98,9 @@
  * `--------------'----------------------'---------'
  */
 
-void ds1631WriteConfig(unsigned char, unsigned char);
+unsigned char ds1631GetRegister(unsigned char);
 void ds1631GetTemperature(unsigned char, char *);
+void ds1631Init(void);
+void ds1631WriteConfig(unsigned char, unsigned char);
 
 #endif /* _DS1631_H_ */
