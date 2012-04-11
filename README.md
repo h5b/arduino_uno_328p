@@ -12,8 +12,7 @@ to be used with the AVR-GCC toolchain.
   function.
 
 * __ds_1307__ implements an example application of the Dallas Maxim __DS1307__ realtime clock  
-  using the Software TWI (I2C) Master Mode.  
-  The clock information is sent to UART.  
+  using the Software TWI (I2C) Master Mode. The clock information is sent to UART.  
   For details regarding the DS1307 see [DS1307 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1307.pdf).
 
 * __hw_uart__ shows an interrupt controlled UART example using circular buffers as described  
