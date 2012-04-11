@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) 2012 Sebastian Trahm
+ * All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER IN
+ * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+ * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+#ifndef _DS1307_H_
+#define _DS1307_H_
+
+/*
+ * DS1307 - Circuitry
+ *
+ *     .--|[]|--.                      ^ 3V3
+ *     |  32K7  |                      |
+ *     | .------'                      |
+ *     | |    ,____  ____.             |
+ *     | '-1--|X1  `' VCC|--8----------'
+ *     '---2--|X2     SQW|--7--------------,---=220=--> 3V3
+ *         3--|Vbat   SCL|--6---=4k7=--,   |
+ *         4.-|GND    SDA|--5---=4k7=--|   |
+ *          | `----------'             |   '----->|---| GND
+ *          |                          |
+ *          '---| GND                  v 3V3
+ */
+
+
+#define DS1307_RD_ADDR		0xD0
+#define DS1307_WR_ADDR		0xD1
+#define DS1307_SRAM_ADDR	0x08
+#define DS1307_SRAM_SIZE	0x38	/* 56 bytes of NV SRAM */
+
+/*
+ * DS1307 - Control Register
+ * ,----------------------------------------.
+ * | OUT | 0 | 0 | SQWE | 0 | 0 | RS1 | RS0 |
+ * `----------------------------------------'
+ * 7                                        0
+ *
+ *
+ * SQW Output Rate in relation to Square-Wave Enable (SQWE)
+ * and Rate Select (RS0/RS1) settings
+ *
+ * RS0 | RS1 | SQWE | SQW Output
+ * ----+-----+ -----+-----------
+ *  0  |  0  |  1   |      1Hz
+ *  0  |  1  |  1   |  4k096Hz
+ *  1  |  0  |  1   |  8k192Hz
+ *  1  |  1  |  1   | 32k768Hz
+ */
+
+#endif /* _DS1307_H_ */
