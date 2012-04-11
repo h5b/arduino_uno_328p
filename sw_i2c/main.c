@@ -17,6 +17,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
 
 #include <util/delay.h>
 
@@ -42,7 +43,7 @@ binrep(unsigned char val)
 int
 main(void)
 {
-	const char p_infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
+	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
 	char result[CHAR_BUFFER_SIZE];
 
 	/* set User LED on Port B as output */
