@@ -36,10 +36,20 @@
  */
 
 
-#define DS1307_RD_ADDR		0xD1
-#define DS1307_WR_ADDR		0xD0
+#define DS1307_SEC		0x00
+#define DS1307_MIN		0x01
+#define DS1307_HOUR		0x02
+#define DS1307_DOW		0x03
+#define DS1307_DATE		0x04
+#define DS1307_MONTH		0x05
+#define DS1307_YEAR		0x06
+
+#define DS1307_CTL_ADDR		0x07
 #define DS1307_SRAM_ADDR	0x08
 #define DS1307_SRAM_SIZE	0x38	/* 56 bytes of NV SRAM */
+
+#define DS1307_RD_ADDR		0xD1
+#define DS1307_WR_ADDR		0xD0
 
 /*
  * DS1307 - Control Register
@@ -59,6 +69,7 @@
  *  1  |  0  |  1   |  8k192Hz
  *  1  |  1  |  1   | 32k768Hz
  */
+#define DS1307_SQWE		0x10
 
 /*
  * DS1307 - Register Map Struct
@@ -84,6 +95,7 @@ extern struct rtc_tm ds1307_tm;
 char bcd2dec(char);
 char dec2bcd(char);
 struct rtc_tm* ds1307GetTime(void);
+void ds1307Init(void);
 void ds1307SetTime(uint8_t, uint8_t, uint8_t);
 
 #endif /* _DS1307_H_ */

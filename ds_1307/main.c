@@ -49,6 +49,9 @@ main(void)
 	/* global interrupt enable */
 	sei();
 
+	/* Enable DS1307 and SQW Output */
+	ds1307Init();
+
 	/* Initialize DS1307 with System Time */
 	ds1307SetTime(SYS_HOUR, SYS_MINS, SYS_SECS);
 
