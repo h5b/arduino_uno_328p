@@ -19,3 +19,31 @@
 
 #include "ds1307.h"
 #include "i2c.h"
+
+struct rtc_tm ds1307_tm;
+
+char
+bcd2dec(char val)
+{
+	 return ((val/16 * 10) + (val % 16));
+}
+
+char
+dec2bcd(char val)
+{
+	return ((val/10 * 16) + (val % 10));
+}
+
+struct rtc_tm*
+ds1307GetTime(void)
+{
+	/* XXX */
+
+	 return &ds1307_tm;
+}
+
+void
+ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
+{
+	/* XXX */
+}

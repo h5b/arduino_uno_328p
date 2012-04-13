@@ -60,4 +60,30 @@
  *  1  |  1  |  1   | 32k768Hz
  */
 
+/*
+ * DS1307 - Register Map Struct
+ */
+struct rtc_tm {
+	/* 0x00 */
+	int sec;
+	int min;
+	int hour;
+	int mday;
+	int mon;
+	int year;
+	int wday;
+	/* XXX Add complete Register Map and Padding */
+	/* 0x07 */
+	char ctl;
+	/* 0x08 - 0x3F */
+	char sram[56];
+};
+
+extern struct rtc_tm ds1307_tm;
+
+char bcd2dec(char);
+char dec2bcd(char);
+struct rtc_tm* ds1307GetTime(void);
+void ds1307SetTime(uint8_t, uint8_t, uint8_t);
+
 #endif /* _DS1307_H_ */
