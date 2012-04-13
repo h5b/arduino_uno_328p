@@ -27,16 +27,17 @@
  *     | |    ,____  ____.             |
  *     | '-1--|X1  `' VCC|--8----------'
  *     '---2--|X2     SQW|--7--------------,---=220=--> 3V3
- *         3--|Vbat   SCL|--6---=4k7=--,   |
- *         4.-|GND    SDA|--5---=4k7=--|   |
- *          | `----------'             |   '----->|---| GND
- *          |                          |
- *          '---| GND                  v 3V3
+ *      ,--3--|Vbat   SCL|--6---=4k7=--,   |
+ *      |  4.-|GND    SDA|--5---=4k7=--|   |
+ *      |   | `----------'             |   '----->|---| GND
+ *      .___.                          |
+ *          |                          v 3V3
+ *          '---| GND
  */
 
 
-#define DS1307_RD_ADDR		0xD0
-#define DS1307_WR_ADDR		0xD1
+#define DS1307_RD_ADDR		0xD1
+#define DS1307_WR_ADDR		0xD0
 #define DS1307_SRAM_ADDR	0x08
 #define DS1307_SRAM_SIZE	0x38	/* 56 bytes of NV SRAM */
 
