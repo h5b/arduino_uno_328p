@@ -23,9 +23,9 @@ to be used with the AVR-GCC toolchain.
 * __sw_i2c__ implements an example application of Software TWI (I2C) Master Mode using a  
   Dallas Maxim __DS1631__ temperature sensor as slave device. The measured temperature  
   is sent to UART.  
-  For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf).
+  For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf).  
   Futhermore, [Interfacing to the DS1631 Digital Thermometer and Thermostat in a Microcontroller Environment]  
-  can be found in __Application Note 135__ (http://pdfserv.maxim-ic.com/en/an/app135.pdf)
+  can be found in __Application Note 135__ (http://pdfserv.maxim-ic.com/en/an/app135.pdf).  
 
 ## Schematics
 
