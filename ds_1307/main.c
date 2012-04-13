@@ -31,7 +31,10 @@
 /* Retrieve Hour, Minute and Seconds from System Time */
 #define SYS_HOUR (((__TIME__[0]-'0')*10) + (__TIME__[1]-'0'))
 #define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
-#define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0')
+#define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0'))
+
+/* Delay in Milliseconds */
+#define DELAY_MS	1000
 
 int
 main(void)
@@ -49,10 +52,19 @@ main(void)
 	/* global interrupt enable */
 	sei();
 
+	/* Initialize DS1307 with System Time */
+	ds1307SetTime(SYS_HOUR, SYS_MINS, SYS_SECS);
+
+	/* output Startup Message on UART */
 	uartPutString_P(infostring);
 
 	while (1) {
-		/* do nothing */
+		/* Read Current Time from DS1307 and output to UART */
+		rtc = ds1307GetTime();
+		sprintf(buffer, "RTC: [%02d:%02d:%02d]\r\n",
+		    rtc->hour, rtc->min, rtc->sec);
+		uartPutString(buffer);
+		_delay_ms(DELAY_MS);
 	}
 
 	/* never reached */
