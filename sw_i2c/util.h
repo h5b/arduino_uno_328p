@@ -18,7 +18,7 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-#define CHAR_BUFFER_SIZE	4
+#define CHAR_BUFFER_SIZE	32
 
 void uitoa(char*, char);
 

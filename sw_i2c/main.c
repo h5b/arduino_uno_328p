@@ -15,6 +15,8 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <stdio.h>
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
@@ -45,6 +47,8 @@ main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
 	char result[CHAR_BUFFER_SIZE];
+	char buffer[CHAR_BUFFER_SIZE];
+	unsigned char slope, count;
 
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
@@ -60,17 +64,18 @@ main(void)
 	uartPutString_P(infostring);
 
 	while (1) {
-
 #if 0
 		/* output binary representation */
 		binrep(temperatureTH);
 #endif
-
+		/* Get Slope and Counter Register Values */
+		count = ds1631GetRegister(DS1631_READ_COUNT);
+		slope = ds1631GetRegister(DS1631_READ_SLOPE);
 		/* Get Temperature Reading */
-		uartPutString("TEMP (MSB): [");
 		ds1631GetTemperature(DS1631_RD_ADDR, result);
-		uartPutString(result);
-		uartPutString(" °C]\r\n");
+		sprintf(buffer, "TEMP: [SLOPE: %d] [COUNT: %d] [TH: %s °C]\r\n",
+		    slope, count, result);
+		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}
 
