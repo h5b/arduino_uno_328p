@@ -15,6 +15,8 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <stdio.h>
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
@@ -23,17 +25,27 @@
 
 #include "board.h"
 #include "ds1307.h"
+#include "i2c.h"
 #include "uart.h"
+
+/* Retrieve Hour, Minute and Seconds from System Time */
+#define SYS_HOUR (((__TIME__[0]-'0')*10) + (__TIME__[1]-'0'))
+#define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
+#define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0')
 
 int
 main(void)
 {
 	static const char infostring[] PROGMEM = "RTC Demo - DS1307\r\n";
+	struct rtc_tm* rtc = NULL;
+	char buffer[16];
 
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
 	/* initialize UART */
 	uartInit();
+	/* initialize I2C */
+	i2cInit();
 	/* global interrupt enable */
 	sei();
 
