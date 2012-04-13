@@ -54,9 +54,9 @@ main(void)
 	i2cInit();
 	/* global interrupt enable */
 	sei();
-	/* initialize ds1631 */
+	/* initialize DS1631 */
 	ds1631Init();
-
+	/* output Startup Message on UART */
 	uartPutString_P(infostring);
 
 	while (1) {
@@ -67,10 +67,10 @@ main(void)
 #endif
 
 		/* Get Temperature Reading */
-		uartPutString("Temperature TH (MSB): ");
+		uartPutString("TEMP (MSB): [");
 		ds1631GetTemperature(DS1631_RD_ADDR, result);
 		uartPutString(result);
-		uartPutString(" °C\r\n");
+		uartPutString(" °C]\r\n");
 		_delay_ms(SECOND);
 	}
 
