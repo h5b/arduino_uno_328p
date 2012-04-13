@@ -37,7 +37,32 @@ dec2bcd(char val)
 struct rtc_tm*
 ds1307GetTime(void)
 {
-	/* XXX */
+	unsigned char data;
+
+	/* Request Start Address to be at 0x00 Address (Seconds) */
+	i2cStart(DS1307_WR_ADDR);
+	i2cWrite(0x00);
+	i2cStop();
+
+	/* Consecutive Read Seconds, Minutes, Hours,
+	 * Day of Month, Month, Year and Workday */
+	i2cStart(DS1307_RD_ADDR);
+	data = i2cReadACK();
+	/* 7th Bit is CLOCK HALT: ensure it is disabled */
+	ds1307_tm.sec  = bcd2dec(data & 0x7F);
+	data = i2cReadACK();
+	ds1307_tm.min  = bcd2dec(data);
+	data = i2cReadACK();
+	ds1307_tm.hour  = bcd2dec(data);
+	data = i2cReadACK();
+	ds1307_tm.mday  = bcd2dec(data);
+	data = i2cReadACK();
+	ds1307_tm.mon  = bcd2dec(data);
+	data = i2cReadACK();
+	ds1307_tm.year  = bcd2dec(data);
+	data = i2cReadNAK();
+	ds1307_tm.wday  = bcd2dec(data);
+	i2cStop();
 
 	 return &ds1307_tm;
 }
@@ -45,5 +70,10 @@ ds1307GetTime(void)
 void
 ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
 {
-	/* XXX */
+	i2cStart(DS1307_WR_ADDR);
+	i2cWrite(0x00);
+	i2cWrite(dec2bcd(secs));
+	i2cWrite(dec2bcd(mins));
+	i2cWrite(dec2bcd(hours));
+	i2cStop();
 }
