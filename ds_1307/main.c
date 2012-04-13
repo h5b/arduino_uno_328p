@@ -33,9 +33,6 @@
 #define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
 #define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0'))
 
-/* Delay in Milliseconds */
-#define DELAY_MS	1000
-
 int
 main(void)
 {
@@ -64,7 +61,7 @@ main(void)
 		sprintf(buffer, "RTC: [%02d:%02d:%02d]\r\n",
 		    rtc->hour, rtc->min, rtc->sec);
 		uartPutString(buffer);
-		_delay_ms(DELAY_MS);
+		_delay_ms(SECOND);
 	}
 
 	/* never reached */
