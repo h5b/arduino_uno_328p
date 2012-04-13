@@ -24,7 +24,7 @@ to be used with the AVR-GCC toolchain.
   Dallas Maxim __DS1631__ temperature sensor as slave device. The measured temperature  
   is sent to UART.  
   For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)  
-  Futhermore, [Interfacing to the DS1631 Digital Thermometer and Thermostat in a Microcontroller Environment]  
+  Futhermore, "Interfacing to the DS1631 Digital Thermometer and Thermostat in a Microcontroller Environment"  
   can be found in [Application Note 135] (http://pdfserv.maxim-ic.com/en/an/app135.pdf)  
 
 ## Schematics
