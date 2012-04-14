@@ -53,14 +53,14 @@ ds1631GetTemperature(unsigned char addr, char *result)
 	/* DS1631 - Request Temperature Reading */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
-	unsigned char temperatureTH, temperatureTL;
+	unsigned char temperatureMSB, temperatureLSB;
 
 	i2cStart(addr);
-	temperatureTH = i2cReadNAK();
-	temperatureTL = i2cReadACK();
+	temperatureMSB = i2cReadNAK();
+	temperatureLSB = i2cReadACK();
 	i2cStop();
 
-	uitoa(result, temperatureTH);
+	uitoa(result, temperatureMSB);
 }
 
 unsigned char

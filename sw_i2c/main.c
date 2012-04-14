@@ -64,10 +64,6 @@ main(void)
 	uartPutString_P(infostring);
 
 	while (1) {
-#if 0
-		/* output binary representation */
-		binrep(temperatureTH);
-#endif
 		/* Get Slope and Counter Register Values */
 		count = ds1631GetRegister(DS1631_READ_COUNT);
 		slope = ds1631GetRegister(DS1631_READ_SLOPE);
