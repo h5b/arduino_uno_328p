@@ -23,8 +23,20 @@
 
 void ds1631Init(void)
 {
-	/* DS1631 - Enable Continuous Temperature Conversion */
+	unsigned char cfgREG;
+
+	/* Read Config Register and Set 12 Bit Conversion */
+	cfgREG = ds1631GetRegister(DS1631_ACCESS_CFG);
+	cfgREG |= DS1631_RES_12BIT;
+	i2cStart(DS1631_WR_ADDR);
+	i2cWrite(DS1631_ACCESS_CFG);
+	i2cWrite(cfgREG);
+	i2cStop();
+
+	/* Enable Continuous Temperature Conversion */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
+	/* Start Temperature Conversion */
+	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_START_CONV);
 }
 
 void

@@ -46,6 +46,8 @@
 /*
  * DS1631 - Command Set
  */
+#define DS1631_RES_12BIT	0x0C /* 12 Bit Temperature Resolution */
+
 #define DS1631_ACCESS_CFG	0xAC /* Access the configuration register */
 #define DS1631_ACCESS_TH	0xA1 /* Access the high temperature register */
 #define DS1631_ACCESS_TL	0xA2 /* Access the low temperature register */
@@ -96,6 +98,38 @@
  * |--------------.----------------------.---------|
  * | -55          | 1100 1001 0000 0000  | 0xC900  |
  * `--------------'----------------------'---------'
+ */
+
+/*
+ * DS1631 - Configuration Register
+ *
+ *     ,---------------------------------------------------.
+ * MSB | DONE |  THF |  TLF |  NVB | R1  |  R0 | POL |1SHOT|
+ *     `---------------------------------------------------'
+ *     7                                                   0
+ *
+ *     DONE: Temperature Conversion Done
+ *      THF: Temperature High Flag
+ *      THL: Temperature Low Flag
+ *      NVB: Non Volatile Memory Busy Flag
+ *       R1: Resolution Bit 1
+ *       R0: Resolution Bit 0
+ *    1SHOT: Temperature Conversion Mode
+ *
+ *
+ * DS1631 - Temperature Resolution Configuration
+ *
+ * ,----------------------------------------------,
+ * | R1 | R0 | Resolution | Conversion Time (MAX) |
+ * |----+----+------------+-----------------------|
+ * | 0  | 0  |  9 Bit     |  93.75ms              |
+ * |----+----+------------+-----------------------|
+ * | 0  | 1  | 10 Bit     | 187.50ms              |
+ * |----+----+------------+-----------------------|
+ * | 1  | 0  | 11 Bit     | 375ms                 |
+ * |----+----+------------+-----------------------|
+ * | 1  | 1  | 12 Bit     | 750ms                 |
+ * `----'----'------------'-----------------------'
  */
 
 unsigned char ds1631GetRegister(unsigned char);
