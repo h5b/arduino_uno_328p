@@ -21,7 +21,7 @@
 #include <util/delay.h>
 
 #include "board.h"
-#include "hw_uart.h"
+#include "uart.h"
 
 /* Delay in milliseconds used to display the UART heartbeat */
 #define DELAY		500

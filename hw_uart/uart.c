@@ -27,7 +27,7 @@
 #include <util/delay.h>
 
 #include "board.h"
-#include "hw_uart.h"
+#include "uart.h"
 
 void
 uartInit(void)

@@ -2,7 +2,7 @@ include ../Makefile.inc
 
 PROG=main
 SRCS=$(PROG).c \
-     hw_uart.c
+     uart.c
 
 CLEANFILES=$(PROG).hex $(PROG).out
 

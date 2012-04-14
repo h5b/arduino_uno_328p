@@ -15,8 +15,8 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef _HW_UART_H_
-#define _HW_UART_H_
+#ifndef _UART_H_
+#define _UART_H_
 
 #define BAUDRATE	9600
 /* calculate the Baudrate Register Value based on F_CPU and BAUDRATE */
@@ -47,4 +47,4 @@ void uartPutString_P(const char*);
 void uartTransmitByte(unsigned char);
 unsigned char uartReceiveByte(void);
 
-#endif /* _HW_UART_H_ */
+#endif /* _UART_H_ */
