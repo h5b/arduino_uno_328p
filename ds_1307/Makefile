@@ -3,8 +3,8 @@ include ../Makefile.inc
 PROG=main
 SRCS=$(PROG).c \
      ds1307.c \
-     i2c.c \
-     uart.c
+     ../sw_i2c/i2c.c \
+     ../hw_uart/uart.c
 
 CLEANFILES=$(PROG).hex $(PROG).out $(CHECK_SUITE)
 

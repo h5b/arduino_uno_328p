@@ -25,8 +25,8 @@
 
 #include "board.h"
 #include "ds1307.h"
-#include "i2c.h"
-#include "uart.h"
+#include "../sw_i2c/i2c.h"
+#include "../hw_uart/uart.h"
 
 /* Retrieve Hour, Minute and Seconds from System Time */
 #define SYS_HOUR (((__TIME__[0]-'0')*10) + (__TIME__[1]-'0'))
