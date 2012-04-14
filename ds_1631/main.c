@@ -27,7 +27,8 @@
 #include "ds1631.h"
 #include "../sw_i2c/i2c.h"
 #include "../hw_uart/uart.h"
-#include "util.h"
+
+#define CHAR_BUFFER_SIZE	32
 
 #if 0
 /* output binary representation of integer to UART */

@@ -19,7 +19,7 @@
 
 #include "ds1631.h"
 #include "../sw_i2c/i2c.h"
-#include "util.h"
+#include "../util/util.h"
 
 void ds1631Init(void)
 {

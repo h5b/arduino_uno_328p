@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,11 +15,39 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef _UTIL_H_
-#define _UTIL_H_
+#include "util.h"
 
-#define CHAR_BUFFER_SIZE	32
+/* Convert binary coded decimal to decimal */
+char
+bcd2dec(char val)
+{
+	 return ((val/16 * 10) + (val % 16));
+}
 
-void uitoa(char*, char);
+/* Convert decimal to binary coded decimal */
+char
+dec2bcd(char val)
+{
+	return ((val/10 * 16) + (val % 10));
+}
 
-#endif /* _UTIL_H_ */
+/* Convert unsigned integer to string */
+void
+uitoa(char* dest, char num)
+{
+	char c, *p = dest;
+
+	if ((c = num / 100)) {
+		num %= 100;
+		*p++ = '0' + c;
+	}
+
+	if ((c = num / 10)) {
+		num %= 10;
+		*p++ = '0' + c;
+	}
+
+	*p++ = '0' + num;
+
+	*p = '\0';
+}

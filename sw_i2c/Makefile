@@ -3,11 +3,7 @@ include ../Makefile.inc
 PROG=main
 SRCS=$(PROG).c \
      i2c.c \
-     util.c
-
-CHECK_SUITE=util_testrunner
-CHECK_SRCS=$(CHECK_SUITE).c \
-	   util.c
+     ../util/util.c
 
 CLEANFILES=$(PROG).hex $(PROG).out $(CHECK_SUITE)
 
@@ -19,13 +15,6 @@ $(PROG).out: $(SRCS) ../Makefile.inc
 
 burn: $(PROG).hex
 	$(AVR_DUDE) $(AVR_FLAGS) -e -U flash:w:$(PROG).hex
-
-check: $(CHECK_SUITE)
-	@echo ">> running unit tests <<"
-	./$(CHECK_SUITE);
-
-$(CHECK_SUITE): $(CHECK_SRCS)
-	$(CHECK_CC) $(CHECK_SRCS) $(CHECK_LIBS) -o $@
 
 clean:
 	rm -f $(CLEANFILES)

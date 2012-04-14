@@ -25,7 +25,7 @@
 
 #include "board.h"
 #include "i2c.h"
-#include "util.h"
+#include "../util/util.h"
 
 int
 main(void)

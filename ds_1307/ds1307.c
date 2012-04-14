@@ -19,20 +19,9 @@
 
 #include "ds1307.h"
 #include "../sw_i2c/i2c.h"
+#include "../util/util.h"
 
 struct rtc_tm ds1307_tm;
-
-char
-bcd2dec(char val)
-{
-	 return ((val/16 * 10) + (val % 16));
-}
-
-char
-dec2bcd(char val)
-{
-	return ((val/10 * 16) + (val % 10));
-}
 
 struct rtc_tm*
 ds1307GetTime(void)

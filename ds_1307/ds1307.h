@@ -92,8 +92,6 @@ struct rtc_tm {
 
 extern struct rtc_tm ds1307_tm;
 
-char bcd2dec(char);
-char dec2bcd(char);
 struct rtc_tm* ds1307GetTime(void);
 void ds1307Init(void);
 void ds1307SetTime(uint8_t, uint8_t, uint8_t);

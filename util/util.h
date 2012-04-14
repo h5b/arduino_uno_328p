@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -18,8 +18,10 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-#define CHAR_BUFFER_SIZE	32
+#define BUFFER_SIZE	16
 
+char bcd2dec(char);
+char dec2bcd(char);
 void uitoa(char*, char);
 
 #endif /* _UTIL_H_ */

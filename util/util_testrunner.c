@@ -6,7 +6,7 @@
 START_TEST(tc_uitoa)
 {
 	unsigned int i = 0;
-	char result[CHAR_BUFFER_SIZE];
+	char result[BUFFER_SIZE];
 
 	/* Set of test data */
 	const unsigned int intValues [] = {3, 8, 10, 19, 20, 31, 40};
