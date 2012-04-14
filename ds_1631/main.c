@@ -24,21 +24,55 @@
 #include <util/delay.h>
 
 #include "board.h"
-#include "i2c.h"
+#include "ds1631.h"
+#include "../sw_i2c/i2c.h"
+#include "../hw_uart/uart.h"
 #include "util.h"
+
+#if 0
+/* output binary representation of integer to UART */
+void
+binrep(unsigned char val)
+{
+	int i = 0 ;
+
+	for (i = (sizeof(val)*8)-1; i >= 0; i--)
+		uartTransmitByte('0' + ((val >> i) & 1));
+	uartPutString(": ");
+}
+#endif
 
 int
 main(void)
 {
+	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
+	char result[CHAR_BUFFER_SIZE];
+	char buffer[CHAR_BUFFER_SIZE];
+	unsigned char slope, count;
+
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
+	/* initialize UART */
+	uartInit();
 	/* initialize I2C */
 	i2cInit();
 	/* global interrupt enable */
 	sei();
+	/* initialize DS1631 */
+	ds1631Init();
+	/* output Startup Message on UART */
+	uartPutString_P(infostring);
 
 	while (1) {
-		/* do nothing */
+		/* Get Slope and Counter Register Values */
+		count = ds1631GetRegister(DS1631_READ_COUNT);
+		slope = ds1631GetRegister(DS1631_READ_SLOPE);
+		/* Get Temperature Reading */
+		ds1631GetTemperature(DS1631_RD_ADDR, result);
+		sprintf(buffer, "TEMP: [SLOPE: %d] [COUNT: %d] [TH: %s °C]\r\n",
+		    slope, count, result);
+		uartPutString(buffer);
+		_delay_ms(SECOND);
 	}
 
 	/* never reached */

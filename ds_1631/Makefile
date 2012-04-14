@@ -2,7 +2,9 @@ include ../Makefile.inc
 
 PROG=main
 SRCS=$(PROG).c \
-     i2c.c \
+     ds1631.c \
+     ../sw_i2c/i2c.c \
+     ../hw_uart/uart.c \
      util.c
 
 CHECK_SUITE=util_testrunner

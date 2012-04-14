@@ -15,32 +15,25 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <stdio.h>
-
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <avr/pgmspace.h>
-
-#include <util/delay.h>
-
-#include "board.h"
-#include "i2c.h"
 #include "util.h"
 
-int
-main(void)
+/* convert unsigned integer to string */
+void
+uitoa(char* dest, char num)
 {
-	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
-	/* initialize I2C */
-	i2cInit();
-	/* global interrupt enable */
-	sei();
+	char c, *p = dest;
 
-	while (1) {
-		/* do nothing */
+	if ((c = num / 100)) {
+		num %= 100;
+		*p++ = '0' + c;
 	}
 
-	/* never reached */
-	return (0);
+	if ((c = num / 10)) {
+		num %= 10;
+		*p++ = '0' + c;
+	}
+
+	*p++ = '0' + num;
+
+	*p = '\0';
 }

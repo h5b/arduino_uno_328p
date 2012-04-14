@@ -15,32 +15,11 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <stdio.h>
+#ifndef _UTIL_H_
+#define _UTIL_H_
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <avr/pgmspace.h>
+#define CHAR_BUFFER_SIZE	32
 
-#include <util/delay.h>
+void uitoa(char*, char);
 
-#include "board.h"
-#include "i2c.h"
-#include "util.h"
-
-int
-main(void)
-{
-	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
-	/* initialize I2C */
-	i2cInit();
-	/* global interrupt enable */
-	sei();
-
-	while (1) {
-		/* do nothing */
-	}
-
-	/* never reached */
-	return (0);
-}
+#endif /* _UTIL_H_ */

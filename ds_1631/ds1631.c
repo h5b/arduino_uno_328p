@@ -18,7 +18,7 @@
 #include <avr/io.h>
 
 #include "ds1631.h"
-#include "i2c.h"
+#include "../sw_i2c/i2c.h"
 #include "util.h"
 
 void ds1631Init(void)
