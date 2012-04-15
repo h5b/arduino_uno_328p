@@ -82,7 +82,7 @@
  * 0x02 | X  |----+----+----|       HOURS       |
  *      |    | 24 |10HR| HR |                   |
  *      |----'----'----'----+----,--------------|
- * 0x03 | X  | X  | X  | X  | X  |  DAY         |
+ * 0x03 | X  | X  | X  | X  | X  |  DAY OF WEEK |
  *      |----'----'----'----+----'--------------|
  * 0x04 | X  | X  | 10 DATE |       DATE        |
  *      |----'----'----'----+-------------------|
@@ -106,8 +106,8 @@ struct rtc_tm {
 	int ampm : 1;
 	int hourpad : 1;
 	/* 0x03 */
-	int wday : 3;
-	int wpad : 5;
+	int dow : 3;
+	int dowpad : 5;
 	/* 0x04 */
 	int day : 6;
 	int daypad : 2;
