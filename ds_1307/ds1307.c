@@ -38,11 +38,11 @@ ds1307GetTime(void)
 	i2cStart(DS1307_RD_ADDR);
 	data = i2cReadACK();
 	/* 7th Bit is CLOCK HALT: ensure it is disabled */
-	ds1307_tm.sec  = bcd2dec(data & 0x7F);
+	ds1307_tm.sec = bcd2dec(data & 0x7F);
 	data = i2cReadACK();
-	ds1307_tm.min  = bcd2dec(data);
+	ds1307_tm.min = bcd2dec(data);
 	data = i2cReadNAK();
-	ds1307_tm.hour  = bcd2dec(data);
+	ds1307_tm.hour = bcd2dec(data);
 	/* XXX Read the Rest of the Date/Time Information */
 	i2cStop();
 
