@@ -35,7 +35,6 @@
  *          '---| GND
  */
 
-
 #define DS1307_SEC		0x00
 #define DS1307_MIN		0x01
 #define DS1307_HOUR		0x02
@@ -76,14 +75,26 @@
  */
 struct rtc_tm {
 	/* 0x00 */
-	int sec;
-	int min;
-	int hour;
-	int mday;
-	int mon;
+	int sec : 7;
+	int ch : 1;
+	/* 0x01 */
+	int min : 7;
+	int minpad : 1;
+	/* 0x02 */
+	int hour : 6;
+	int ampm : 1;
+	int hourpad : 1;
+	/* 0x03 */
+	int wday : 3;
+	int wpad : 5;
+	/* 0x04 */
+	int day : 6;
+	int daypad : 2;
+	/* 0x05 */
+	int month : 5;
+	int monthpad : 3;
+	/* 0x06 */
 	int year;
-	int wday;
-	/* XXX Add complete Register Map and Padding */
 	/* 0x07 */
 	char ctl;
 	/* 0x08 - 0x3F */
