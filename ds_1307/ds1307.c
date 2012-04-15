@@ -41,16 +41,9 @@ ds1307GetTime(void)
 	ds1307_tm.sec  = bcd2dec(data & 0x7F);
 	data = i2cReadACK();
 	ds1307_tm.min  = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.hour  = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.mday  = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.mon  = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.year  = bcd2dec(data);
 	data = i2cReadNAK();
-	ds1307_tm.wday  = bcd2dec(data);
+	ds1307_tm.hour  = bcd2dec(data);
+	/* XXX Read the Rest of the Date/Time Information */
 	i2cStop();
 
 	 return &ds1307_tm;
