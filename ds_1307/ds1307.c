@@ -30,7 +30,7 @@ ds1307GetTime(void)
 
 	/* Request Start Address to be 0x00 (DS1307_SEC) */
 	i2cStart(DS1307_WR_ADDR);
-	i2cWrite(DS1307_SEC);
+	i2cWrite(DS1307_SEC_ADDR);
 	i2cStop();
 
 	/* Consecutive Read Seconds, Minutes, Hours,
@@ -64,7 +64,7 @@ ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
 {
 	/* Request Start Address to be 0x00 (DS1307_SEC) */
 	i2cStart(DS1307_WR_ADDR);
-	i2cWrite(DS1307_SEC);
+	i2cWrite(DS1307_SEC_ADDR);
 	i2cWrite(dec2bcd(secs));
 	i2cWrite(dec2bcd(mins));
 	i2cWrite(dec2bcd(hours));

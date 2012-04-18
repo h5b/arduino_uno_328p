@@ -55,8 +55,8 @@ main(void)
 	DDRB = LED_BIT;
 	/* initialize UART */
 	uartInit();
-	/* initialize I2C */
-	i2cInit();
+	/* initialize I2C Bus to Fast Mode (400Khz). */
+	i2cInit(I2C_FAST_MODE);
 	/* global interrupt enable */
 	sei();
 	/* initialize DS1631 */

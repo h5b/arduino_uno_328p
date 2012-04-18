@@ -44,8 +44,13 @@ main(void)
 	DDRB = LED_BIT;
 	/* initialize UART */
 	uartInit();
-	/* initialize I2C */
-	i2cInit();
+	/*
+	 * Initialize I2C Bus to Standard Mode.
+	 * According to the datasheet the DS1307 operates in
+	 * the standard mode (100kHz) only.
+	 * See section "I2C DATA BUS" on page 10 
+	 */
+	i2cInit(I2C_STD_MODE);
 	/* global interrupt enable */
 	sei();
 

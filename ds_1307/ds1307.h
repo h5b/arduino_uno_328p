@@ -35,13 +35,13 @@
  *          '---| GND
  */
 
-#define DS1307_SEC		0x00
-#define DS1307_MIN		0x01
-#define DS1307_HOUR		0x02
-#define DS1307_DOW		0x03
-#define DS1307_DATE		0x04
-#define DS1307_MONTH		0x05
-#define DS1307_YEAR		0x06
+#define DS1307_SEC_ADDR		0x00
+#define DS1307_MIN_ADDR		0x01
+#define DS1307_HOUR_ADDR	0x02
+#define DS1307_DOW_ADDR		0x03
+#define DS1307_DAY_ADDR		0x04
+#define DS1307_MONTH_ADDR	0x05
+#define DS1307_YEAR_ADDR	0x06
 
 #define DS1307_CTL_ADDR		0x07
 #define DS1307_SRAM_ADDR	0x08
