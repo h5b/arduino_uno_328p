@@ -28,7 +28,7 @@ ds1307GetTime(void)
 {
 	unsigned char data;
 
-	/* Request Start Address to be 0x00 (DS1307_SEC) */
+	/* Request Start Address to be 0x00 (SECONDS) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cStop();
@@ -51,7 +51,7 @@ ds1307GetTime(void)
 
 void ds1307Init(void)
 {
-	/* Request Start Address to be 0x07 (DS1307_CTL_ADDR)
+	/* Request Start Address to be 0x07 (CONTROL Register)
 	 * and Enable SQW Output */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_CTL_ADDR);
@@ -62,7 +62,7 @@ void ds1307Init(void)
 void
 ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
 {
-	/* Request Start Address to be 0x00 (DS1307_SEC) */
+	/* Request Start Address to be 0x00 (SECONDS) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cWrite(dec2bcd(secs));
