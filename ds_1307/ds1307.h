@@ -44,7 +44,9 @@
 #define DS1307_YEAR_ADDR	0x06
 
 #define DS1307_CTL_ADDR		0x07
-#define DS1307_SRAM_ADDR	0x08	/* 56 bytes of NV SRAM */
+#define DS1307_SRAM_ADDR	0x08
+
+/* 56 bytes of NV SRAM */
 #define DS1307_SRAM_SIZE	0x38
 
 #define DS1307_RD_ADDR		0xD1
