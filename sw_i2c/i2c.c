@@ -17,16 +17,17 @@
 
 #include <avr/io.h>
 #include <compat/twi.h>
+#include <stdint.h>
 
 #include "i2c.h"
 
 void
-i2cInit(void)
+i2cInit(uint32_t i2c_clk)
 {
 	/* set prescaler to 0 */
 	TWSR = 0;
-	/* initialize I2C bus clock to 400kHz (fast mode) */
-	TWBR = ((F_CPU / I2C_CLOCK) - 16) / 2;
+	/* initialize I2C bus to given clock speed */
+	TWBR = ((F_CPU / i2c_clk) - 16) / 2;
 }
 
 void

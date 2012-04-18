@@ -32,8 +32,8 @@ main(void)
 {
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
-	/* initialize I2C */
-	i2cInit();
+	/* initialize I2C with Fast Mode (400 KHz) */
+	i2cInit(I2C_FAST_MODE);
 	/* global interrupt enable */
 	sei();
 
