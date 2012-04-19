@@ -19,17 +19,17 @@
 #define _DS1307_H_
 
 /*
- * DS1307 - Circuitry
+ * DS1307 - Circuitry (no battery back-up yet)
  *
  *     .--|[]|--.                      ^ 3V3
- *     |  32K7  |                      |
+ *     |  32k7  |                      |
  *     | .------'                      |
  *     | |    ,____  ____.             |
  *     | '-1--|X1  `' VCC|--8----------'
  *     '---2--|X2     SQW|--7--------------,---=220=--> 3V3
  *      ,--3--|Vbat   SCL|--6---=4k7=--,   |
  *      |  4.-|GND    SDA|--5---=4k7=--|   |
- *      |   | `----------'             |   '----->|---| GND
+ *      |   | `----------'             |   '----------| GND
  *      .___.                          |
  *          |                          v 3V3
  *          '---| GND
@@ -76,25 +76,28 @@
  * DS1307 - Register Map
  *
  *      ,----,--------------,-------------------.
- * 0x00 | CH | 10 SECONDS   |       SECONDS     |
+ * 0x00 | CH | 10 SECONDS   |       SECONDS     | 00-59
  *      |----+--------------+-------------------|
- * 0x01 | X  | 10 MINUTES   |       MINUTES     |
+ * 0x01 | X  | 10 MINUTES   |       MINUTES     | 00-59
  *      |----+----,----,----+-------------------|
  *      |    | 12 |A/P | 10 |                   |
- * 0x02 | X  |----+----+----|       HOURS       |
+ * 0x02 | X  |----+----+----|       HOURS       | 00-23
  *      |    | 24 |10HR| HR |                   |
  *      |----+----+----+----+----,--------------|
- * 0x03 | X  | X  | X  | X  | X  |  DAY OF WEEK |
+ * 0x03 | X  | X  | X  | X  | X  |  DAY OF WEEK | 1-7
  *      |----+----+---------+----'--------------|
- * 0x04 | X  | X  | 10 DATE |       DATE        |
+ * 0x04 | X  | X  | 10 DATE |       DAY (DATE)  | 01-31
  *      |----+----+---------+-------------------|
- * 0x05 | X  | X  | 10 MONTH|       MONTH       |
+ * 0x05 | X  | X  | 10 MONTH|       MONTH       | 01-12
  *      |----'----'---------+-------------------|
- * 0x06 |      10 YEAR      |       YEAR        |
+ * 0x06 |      10 YEAR      |       YEAR        | 00-99
  *      |----,----,----,----+----,----,----,----|
  * 0x07 | OUT|  X | X  |SQWE| X  | X  | X  | X  |
  *      `----'----'----'----'----'----'----'----'
  *      7                                       0
+ *
+ *
+ * struct holding the RTC Information
  */
 struct rtc_tm {
 	/* 0x00 */
@@ -126,6 +129,7 @@ struct rtc_tm {
 
 extern struct rtc_tm ds1307_tm;
 
+/* Function Prototypes */
 struct rtc_tm* ds1307GetTime(void);
 void ds1307Init(void);
 void ds1307SetTime(uint8_t, uint8_t, uint8_t);
