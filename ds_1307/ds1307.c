@@ -41,9 +41,19 @@ ds1307GetTime(void)
 	ds1307_tm.sec = bcd2dec(data & 0x7F);
 	data = i2cReadACK();
 	ds1307_tm.min = bcd2dec(data);
-	data = i2cReadNAK();
+	data = i2cReadACK();
 	ds1307_tm.hour = bcd2dec(data);
-	/* XXX Read the Rest of the Date/Time Information */
+
+	/* XXX: Dummy Read of Day of Week */
+	data = i2cReadACK();
+
+	data = i2cReadACK();
+	ds1307_tm.day = bcd2dec(data);
+	data = i2cReadACK();
+	ds1307_tm.month = bcd2dec(data);
+	data = i2cReadNAK();
+	ds1307_tm.year = bcd2dec(data);
+
 	i2cStop();
 
 	 return &ds1307_tm;
@@ -68,5 +78,17 @@ ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
 	i2cWrite(dec2bcd(secs));
 	i2cWrite(dec2bcd(mins));
 	i2cWrite(dec2bcd(hours));
+	i2cStop();
+}
+
+void
+ds1307SetDate(uint8_t day, uint8_t month, uint8_t year)
+{
+	/* Request Start Address to be 0x04 (DAY (DATE)) */
+	i2cStart(DS1307_WR_ADDR);
+	i2cWrite(DS1307_DAY_ADDR);
+	i2cWrite(dec2bcd(day));
+	i2cWrite(dec2bcd(month));
+	i2cWrite(dec2bcd(year));
 	i2cStop();
 }

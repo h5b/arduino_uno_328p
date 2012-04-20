@@ -33,7 +33,7 @@ main(void)
 {
 	static const char infostring[] PROGMEM = "RTC Demo - DS1307\r\n";
 	struct rtc_tm* rtc = NULL;
-	char buffer[16];
+	char buffer[32];
 
 	/* set User LED on Port B as output */
 	DDRB = LED_BIT;
@@ -51,9 +51,10 @@ main(void)
 
 	/* Enable DS1307 and SQW Output */
 	ds1307Init();
-
 	/* Initialize DS1307 with System Time */
 	ds1307SetTime(SYS_HOUR, SYS_MINS, SYS_SECS);
+	/* Initialize DS1307 with System Date */
+	ds1307SetDate(SYS_DAY, SYS_MONTH, SYS_YEAR);
 
 	/* output Startup Message on UART */
 	uartPutString_P(infostring);
@@ -61,8 +62,9 @@ main(void)
 	while (1) {
 		/* Read Current Time from DS1307 and output to UART */
 		rtc = ds1307GetTime();
-		sprintf(buffer, "RTC: [%02d:%02d:%02d]\r\n",
-		    rtc->hour, rtc->min, rtc->sec);
+		sprintf(buffer, "RTC: [%02d:%02d:%02d] - [%02d.%02d.%02d]\r\n",
+		    rtc->hour, rtc->min, rtc->sec, rtc->day, rtc->month,
+		    rtc->year);
 		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}

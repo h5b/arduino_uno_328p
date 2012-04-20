@@ -168,6 +168,7 @@ extern struct rtc_tm ds1307_tm;
 /* Function Prototypes */
 struct rtc_tm* ds1307GetTime(void);
 void ds1307Init(void);
+void ds1307SetDate(uint8_t, uint8_t, uint8_t);
 void ds1307SetTime(uint8_t, uint8_t, uint8_t);
 
 #endif /* _DS1307_H_ */
