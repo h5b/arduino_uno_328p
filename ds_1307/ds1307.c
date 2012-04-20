@@ -26,58 +26,53 @@ struct rtc_tm ds1307_tm;
 struct rtc_tm*
 ds1307GetTime(void)
 {
-	unsigned char data;
+	unsigned char rtcInfo[7];
+	uint8_t i;
 
 	/* Request Start Address to be 0x00 (SECONDS) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cStop();
 
-	/* Consecutive Read Seconds, Minutes, Hours,
-	 * Day of Month, Month, Year and Workday */
+	/* Request Read from DS1307 */
 	i2cStart(DS1307_RD_ADDR);
-	data = i2cReadACK();
-	/* 7th Bit is CLOCK HALT: ensure it is disabled */
-	ds1307_tm.sec = bcd2dec(data & 0x7F);
-	data = i2cReadACK();
-	ds1307_tm.min = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.hour = bcd2dec(data);
-
-	/* XXX: Dummy Read of Day of Week */
-	data = i2cReadACK();
-
-	data = i2cReadACK();
-	ds1307_tm.day = bcd2dec(data);
-	data = i2cReadACK();
-	ds1307_tm.month = bcd2dec(data);
-	data = i2cReadNAK();
-	ds1307_tm.year = bcd2dec(data);
-
+	/*
+	 * Consecutive Read Seven Bytes: Seconds, Minutes,
+	 * Hours, Workday, Day of Month, Month, Year
+	 */
+	for (i=0; i < (sizeof(rtcInfo) - 1); i++)
+	{
+		rtcInfo[i] = bcd2dec(i2cReadACK());
+	}
+	/* Last Read has to be NAK */
+	rtcInfo[sizeof(rtcInfo)] = bcd2dec(i2cReadNAK());
 	i2cStop();
 
-	 return &ds1307_tm;
-}
+	/* 7th Bit is CLOCK HALT: Mask Seconds to ensure it is Disabled */
+	rtcInfo[0] &= (0x7F);
 
-void ds1307Init(void)
-{
-	/* Request Start Address to be 0x07 (CONTROL Register)
-	 * and Enable SQW Output */
-	i2cStart(DS1307_WR_ADDR);
-	i2cWrite(DS1307_CTL_ADDR);
-	i2cWrite(DS1307_SQWE);
-	i2cStop();
+	/* Fill time structure of DS1307 with data */
+	ds1307_tm.sec = rtcInfo[0];
+	ds1307_tm.min = rtcInfo[1];
+	ds1307_tm.hour = rtcInfo[2];
+	ds1307_tm.dow = rtcInfo[3];
+	ds1307_tm.day = rtcInfo[4];
+	ds1307_tm.month = rtcInfo[5];
+	ds1307_tm.year = rtcInfo[6];
+
+	return &ds1307_tm;
 }
 
 void
-ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
+ds1307Init(void)
 {
-	/* Request Start Address to be 0x00 (SECONDS) */
+	/*
+	 * Request Start Address to be 0x07 (CONTROL Register)
+	 * and Enable SQW Output
+	 */
 	i2cStart(DS1307_WR_ADDR);
-	i2cWrite(DS1307_SEC_ADDR);
-	i2cWrite(dec2bcd(secs));
-	i2cWrite(dec2bcd(mins));
-	i2cWrite(dec2bcd(hours));
+	i2cWrite(DS1307_CTL_ADDR);
+	i2cWrite(DS1307_SQWE);
 	i2cStop();
 }
 
@@ -90,5 +85,17 @@ ds1307SetDate(uint8_t day, uint8_t month, uint8_t year)
 	i2cWrite(dec2bcd(day));
 	i2cWrite(dec2bcd(month));
 	i2cWrite(dec2bcd(year));
+	i2cStop();
+}
+
+void
+ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
+{
+	/* Request Start Address to be 0x00 (SECONDS) */
+	i2cStart(DS1307_WR_ADDR);
+	i2cWrite(DS1307_SEC_ADDR);
+	i2cWrite(dec2bcd(secs));
+	i2cWrite(dec2bcd(mins));
+	i2cWrite(dec2bcd(hours));
 	i2cStop();
 }
