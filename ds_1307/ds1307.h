@@ -72,6 +72,42 @@
  */
 #define DS1307_SQWE		0x10
 
+/* Retrieve Hour, Minute and Seconds from System Time */
+#define SYS_HOUR (((__TIME__[0]-'0')*10) + (__TIME__[1]-'0'))
+#define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
+#define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0'))
+
+/*
+ * Retrieve current Day from System. Value Range is 01-31
+ */
+#define SYS_DAY ((					\
+	(__DATE__[4]==' ' ? 0 : __DATE__[4]-'0')*10) +	\
+	(__DATE__[5]-'0'))
+
+/*
+ * Map the current Month as retrieved from System to
+ * it's nummeric value as expected by DS1307.
+ * Value Range is 01-12
+ */
+#define SYS_MONTH (						\
+	  __DATE__[2] == 'n' ? (__DATE__[1] == 'a' ? 1 : 6)	\
+	: __DATE__[2] == 'b' ? 2				\
+	: __DATE__[2] == 'r' ? (__DATE__[1] == 'p' ? 4 : 3)	\
+	: __DATE__[2] == 'y' ? 5				\
+	: __DATE__[2] == 'l' ? 7				\
+	: __DATE__[2] == 'g' ? 8				\
+	: __DATE__[2] == 'p' ? 9				\
+	: __DATE__[2] == 't' ? 10				\
+	: __DATE__[2] == 'v' ? 11 : 12)
+
+/*
+ * Retrieve current Year from System.
+ * Only consider last two digits of year due to the
+ * fact that the value range of DS1307 is 00-99
+ * for Year 2000 until 2099
+ */
+#define SYS_YEAR (((__DATE__[9]-'0')* 10) + (__DATE__[10]-'0'))
+
 /*
  * DS1307 - Register Map
  *

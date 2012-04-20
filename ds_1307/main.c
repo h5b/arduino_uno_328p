@@ -28,11 +28,6 @@
 #include "../sw_i2c/i2c.h"
 #include "../hw_uart/uart.h"
 
-/* Retrieve Hour, Minute and Seconds from System Time */
-#define SYS_HOUR (((__TIME__[0]-'0')*10) + (__TIME__[1]-'0'))
-#define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
-#define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0'))
-
 int
 main(void)
 {
