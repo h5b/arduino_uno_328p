@@ -37,15 +37,15 @@ ds1307GetTime(void)
 	/* Request Read from DS1307 */
 	i2cStart(DS1307_RD_ADDR);
 	/*
-	 * Consecutive Read Seven Bytes: Seconds, Minutes,
-	 * Hours, Workday, Day of Month, Month, Year
+	 * Consecutive Read the first Six Bytes: Seconds, Minutes,
+	 * Hours, Workday, Day of Month, Month
 	 */
-	for (i=0; i < (sizeof(rtcInfo) - 1); i++)
+	for (i=0; i < (sizeof(rtcInfo)-1); i++)
 	{
 		rtcInfo[i] = bcd2dec(i2cReadACK());
 	}
-	/* Last Read has to be NAK */
-	rtcInfo[sizeof(rtcInfo)] = bcd2dec(i2cReadNAK());
+	/* Last Read is Year (7th Byte) and needs to be Not AcKnowledged */
+	rtcInfo[sizeof(rtcInfo)-1] = bcd2dec(i2cReadNAK());
 	i2cStop();
 
 	/* 7th Bit is CLOCK HALT: Mask Seconds to ensure it is Disabled */
