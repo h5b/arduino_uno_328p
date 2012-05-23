@@ -22,6 +22,6 @@
 
 char bcd2dec(char);
 char dec2bcd(char);
-void uitoa(char*, char);
+void uitoa(char*, unsigned char);
 
 #endif /* _UTIL_H_ */

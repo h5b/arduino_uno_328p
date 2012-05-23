@@ -33,7 +33,7 @@ dec2bcd(char val)
 
 /* Convert unsigned integer to string */
 void
-uitoa(char* dest, char num)
+uitoa(char* dest, unsigned char num)
 {
 	char c, *p = dest;
 
