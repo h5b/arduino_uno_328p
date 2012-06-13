@@ -135,13 +135,64 @@ START_TEST(tc_uitoa)
 }
 END_TEST
 
+START_TEST(tc_slen)
+{
+	unsigned int i = 0;
+
+	/* Set of test data */
+	string_length_t result_map[] =
+	{
+		{27, "VAZGvbJTbHetVWMuTHURMNFSkEl"},
+		{31, "eNpZqyWXwdwaCgoZaVuiwNqaXyOpbvg"},
+		{8, "EathQhJP"},
+		{16, "iyfvxZGVWansyCwy"},
+		{22, "EHyCLEzcbuFaXTVSkZqBjR"},
+		{25, "ZKDVfompjOPyutODiMOGMfRcc"},
+		{32, "MytHHXOzNPLhvWWYKKCrCvkrgRuGTfgC"},
+		{21, "WGCYpXqLKHXAoMZxtepgF"},
+		{15, "nDtvwrAwZmOlcuT"},
+		{19, "ZfUBbTULzfJhGKRrgoG"},
+		{12, "SOBrIEeatlzH"},
+		{9, "suGKJxChE"},
+		{20, "bFQQCUIVoqZvTeKoSVsD"},
+		{4, "jgRu"},
+		{14, "DtlJFpWTrsGWVd"},
+		{7, "wUmbDCY"},
+		{6, "hXvcVU"},
+		{5, "mEIPE"},
+		{10, "UUfjgjXwsf"},
+		{13, "HfxFvoXJjZRTs"},
+		{24, "kLSzlVjNaOlaLBHlJJsuwrSm"},
+		{17, "cndzEaryUtVfUBsmD"},
+		{11, "TUJqCkIcmfy"},
+		{2, "SC"},
+		{28, "KWajFcDpDCdcdlldIrQIxMsdZjLX"},
+		{0, ""},
+		{23, "okWooyTJpkkkIPAXHUqRpFO"},
+		{1, "F"},
+		{3, "Imf"},
+		{29, "ezWajjnoqgyZtstWlTfssZHzzxSVQ"},
+		{30, "sHVWSDSUsmMEmIwXNMOzrZKUePJSOM"},
+		{18, "vQkYOjPggdmUfznemV"},
+		{26, "spXYlArEhVTEMrgdapYhFluYDj"},
+	};
+
+	for (i = 0; i < sizeof(result_map)/sizeof(int_string_mapping_t); i++) {
+		fail_if(result_map[i].len != slen(result_map[i].str),
+				"Got length of %d, expected %d",
+			    result_map[i].len, slen(result_map[i].str));
+	}
+}
+END_TEST
+
 Suite *
 test_utilSuite(void)
 {
 	Suite *s = suite_create("Util");
+	TCase *tc_core = tcase_create("util functions");
 
-	TCase *tc_core = tcase_create("uitoa()");
 	tcase_add_test(tc_core, tc_uitoa);
+	tcase_add_test(tc_core, tc_slen);
 	suite_add_tcase(s, tc_core);
 
 	return s;
