@@ -38,11 +38,13 @@ dec2bcd(char val)
 unsigned int
 slen(char* s)
 {
-	unsigned int len;
+	unsigned int i = 0;
 
-	for (len = 0; s[len] != '\0'; len++);
+	while (s[i] != '\0') {
+		i++;
+	};
 
-	return len;
+	return i;
 }
 
 /* Convert unsigned integer to string */
