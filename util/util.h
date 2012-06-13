@@ -22,6 +22,7 @@
 
 char bcd2dec(char);
 char dec2bcd(char);
+unsigned int slen(char*);
 void uitoa(char*, unsigned char);
 
 #endif /* _UTIL_H_ */

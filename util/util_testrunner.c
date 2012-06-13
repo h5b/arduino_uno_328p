@@ -8,6 +8,11 @@ typedef struct {
 	char* string_val;
 } int_string_mapping_t;
 
+typedef struct {
+	unsigned int len;
+	char* str;
+} string_length_t;
+
 START_TEST(tc_uitoa)
 {
 	unsigned int i = 0;

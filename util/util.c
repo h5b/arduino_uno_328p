@@ -31,6 +31,20 @@ dec2bcd(char val)
 	return ((val/10 * 16) + (val % 10));
 }
 
+/*
+ * Calculate length of string avoiding
+ * the huge memory footprint of standard library
+ */
+unsigned int
+slen(char* s)
+{
+	unsigned int len;
+
+	for (len = 0; s[len] != '\0'; len++);
+
+	return len;
+}
+
 /* Convert unsigned integer to string */
 void
 uitoa(char* dest, unsigned char num)
