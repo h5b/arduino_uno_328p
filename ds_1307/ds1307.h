@@ -77,16 +77,14 @@
 #define SYS_MINS (((__TIME__[3]-'0')*10) + (__TIME__[4]-'0'))
 #define SYS_SECS (((__TIME__[6]-'0')*10) + (__TIME__[7]-'0'))
 
-/*
- * Retrieve current Day from System. Value Range is 01-31
- */
+/* Retrieve current Day from System. Value Range is 01-31 */
 #define SYS_DAY ((					\
 	(__DATE__[4]==' ' ? 0 : __DATE__[4]-'0')*10) +	\
 	(__DATE__[5]-'0'))
 
 /*
  * Map the current Month as retrieved from System to
- * it's nummeric value as expected by DS1307.
+ * its nummeric value as expected by DS1307.
  * Value Range is 01-12
  */
 #define SYS_MONTH (						\

@@ -44,11 +44,11 @@ ds1307GetTime(void)
 	{
 		rtcInfo[i] = bcd2dec(i2cReadACK());
 	}
-	/* Last Read is Year (7th Byte) and needs to be Not AcKnowledged */
+	/* Last Read is Year (7th Byte) and needs to be NAK */
 	rtcInfo[sizeof(rtcInfo)-1] = bcd2dec(i2cReadNAK());
 	i2cStop();
 
-	/* 7th Bit is CLOCK HALT: Mask Seconds to ensure it is Disabled */
+	/* Mask 7th Bit of Seconds to ensure CLOCK HALT is disabled */
 	rtcInfo[0] &= (0x7F);
 
 	/* Fill time structure of DS1307 with data */
