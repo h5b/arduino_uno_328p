@@ -1,6 +1,8 @@
 This is a playground of the development of examples targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno)  
 to be used with the AVR-GCC toolchain.
 
+![Arduino Uno ATmega328P](http://basti.schleifi.com/Uno328p.jpg)
+
 ## Sources
 
 * __blink_led_hw__ shows an example in the veins of __blink_led_sw__ to let the User LED  
