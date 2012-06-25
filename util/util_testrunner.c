@@ -3,6 +3,8 @@
 
 #include "util.h"
 
+#define ARRAY_LENGTH(x)		(sizeof(x)/sizeof(x[0]))
+
 typedef struct {
 	unsigned int uint_val;
 	char* string_val;
@@ -21,7 +23,7 @@ START_TEST(tc_uitoa)
 	 * Set of test data
 	 * for i in `jot -r 99 1 99`; do echo "{$i, \"$i\"},"; done
 	 */
-	int_string_mapping_t result_map[] =
+	int_string_mapping_t expected_data[] =
 	{
 		{89, "89"},
 		{12, "12"},
@@ -124,13 +126,14 @@ START_TEST(tc_uitoa)
 		{48, "48"},
 	};
 
-	char result[sizeof(result_map)/sizeof(int_string_mapping_t)];
+	char result[ARRAY_LENGTH(expected_data)];
 
-	for (i = 0; i < sizeof(result_map)/sizeof(int_string_mapping_t); i++) {
-		uitoa(result, result_map[i].uint_val);
-		fail_if(strcmp(result, result_map[i].string_val) != 0,
+	/* compare known string representation of test data to uitoa() */
+	for (i = 0; i < ARRAY_LENGTH(expected_data); i++) {
+		uitoa(result, expected_data[i].uint_val);
+		fail_if(strcmp(result, expected_data[i].string_val) != 0,
 			"Got %s instead of %s", result,
-			    result_map[i].string_val);
+			    expected_data[i].string_val);
 	}
 }
 END_TEST
@@ -140,7 +143,7 @@ START_TEST(tc_slen)
 	unsigned int i = 0;
 
 	/* Set of test data */
-	string_length_t result_map[] =
+	string_length_t expected_data[] =
 	{
 		{27, "VAZGvbJTbHetVWMuTHURMNFSkEl"},
 		{31, "eNpZqyWXwdwaCgoZaVuiwNqaXyOpbvg"},
@@ -177,10 +180,13 @@ START_TEST(tc_slen)
 		{26, "spXYlArEhVTEMrgdapYhFluYDj"},
 	};
 
-	for (i = 0; i < sizeof(result_map)/sizeof(int_string_mapping_t); i++) {
-		fail_if(result_map[i].len != slen(result_map[i].str),
+	char result[ARRAY_LENGTH(expected_data)];
+
+	/* compare known string length of test data to slen() */
+	for (i = 0; i < ARRAY_LENGTH(expected_data); i++) {
+		fail_if(expected_data[i].len != slen(expected_data[i].str),
 				"Got length of %d, expected %d",
-			    result_map[i].len, slen(result_map[i].str));
+			    expected_data[i].len, slen(expected_data[i].str));
 	}
 }
 END_TEST
