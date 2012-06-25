@@ -1,6 +1,7 @@
 This is a playground of the development of examples targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno)  
 to be used with the AVR-GCC toolchain.
 
+## Board
 ![Arduino Uno ATmega328P](https://github.com/h5b/arduino_uno_328p/raw/master/doc/img/Uno328p.jpg)
 
 ## Sources
