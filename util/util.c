@@ -32,15 +32,15 @@ dec2bcd(char val)
 }
 
 /*
- * Calculate length of string avoiding
- * the huge memory footprint of standard library
+ * Calculate length of string avoiding the huge memory
+ * footprint of standard library
  */
 unsigned int
-slen(char* s)
+slen(char* str)
 {
 	unsigned int i = 0;
 
-	while (s[i] != '\0') {
+	while (str[i] != '\0') {
 		i++;
 	};
 

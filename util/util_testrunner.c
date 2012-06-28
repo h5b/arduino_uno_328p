@@ -3,7 +3,7 @@
 
 #include "util.h"
 
-#define ARRAY_LENGTH(x)		(sizeof(x)/sizeof(x[0]))
+#define ARRAY_LENGTH(x)		( sizeof(x) / sizeof(x[0]) )
 
 typedef struct {
 	unsigned int uint_val;
@@ -20,8 +20,7 @@ START_TEST(tc_uitoa)
 	unsigned int i = 0;
 
 	/*
-	 * Set of test data
-	 * for i in `jot -r 99 1 99`; do echo "{$i, \"$i\"},"; done
+	 * test data: for i in `jot -r 99 1 99`; do echo "{$i, \"$i\"},"; done
 	 */
 	int_string_mapping_t expected_data[] =
 	{
