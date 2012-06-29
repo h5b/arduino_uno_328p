@@ -45,15 +45,15 @@ to be used with the AVR-GCC toolchain.
 |                                                                       |
 |                                                                       |
 |                                                                       |
+|                                                            +-ISP-+    |
+|                                                           1| o o |6   |
+|                                                           2| o o |5   |
+|                                                           3| o o |4   |
+|                                                            +-----+    |
 |                                                                       |
 |                                                                       |
 |                                                                       |
 |                                                                       |
-|                                                            +-ICSP-+   |
-|                                                           1| o  o |6  |
-|                                                           2| o  o |5  |
-|                                                           3| o  o |4  |
-|                                                            +------+   |
 |                                                                       |
 |                             GND GND                          SDA SCL  |
 |                 [ ] [ ] [ ] [ ] [ ] [ ]          [ ] [ ] [ ] [ ] [ ]  |
