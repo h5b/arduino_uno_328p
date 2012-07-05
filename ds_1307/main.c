@@ -23,11 +23,12 @@
 
 #include <util/delay.h>
 
-#include "board.h"
 #include "ds1307.h"
-#include "../sw_i2c/i2c.h"
+#include "../board.h"
 #include "../hw_uart/uart.h"
+#include "../sw_i2c/i2c.h"
 
+#define SECOND	1000
 int
 main(void)
 {
@@ -36,7 +37,7 @@ main(void)
 	char buffer[32];
 
 	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
+	DDRB = LED;
 	/* initialize UART */
 	uartInit();
 	/*

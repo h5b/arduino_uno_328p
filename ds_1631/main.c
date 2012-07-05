@@ -23,25 +23,13 @@
 
 #include <util/delay.h>
 
-#include "board.h"
 #include "ds1631.h"
-#include "../sw_i2c/i2c.h"
+#include "../board.h"
 #include "../hw_uart/uart.h"
+#include "../sw_i2c/i2c.h"
 
 #define CHAR_BUFFER_SIZE	32
-
-#if 0
-/* output binary representation of integer to UART */
-void
-binrep(unsigned char val)
-{
-	int i = 0 ;
-
-	for (i = (sizeof(val)*8)-1; i >= 0; i--)
-		uartTransmitByte('0' + ((val >> i) & 1));
-	uartPutString(": ");
-}
-#endif
+#define SECOND			1000
 
 int
 main(void)
@@ -52,7 +40,7 @@ main(void)
 	unsigned char count;
 
 	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
+	DDRB = LED;
 	/* initialize UART */
 	uartInit();
 	/* initialize I2C Bus to Fast Mode (400Khz). */

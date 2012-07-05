@@ -26,8 +26,8 @@
 
 #include <util/delay.h>
 
-#include "board.h"
 #include "uart.h"
+#include "../board.h"
 
 void
 uartInit(void)
@@ -157,5 +157,5 @@ ISR(USART_UDRE_vect)
 ISR(USART_TX_vect)
 {
 	/* toggle User LED */
-	PORTB ^= (LED_BIT);
+	PORTB ^= (LED);
 }
