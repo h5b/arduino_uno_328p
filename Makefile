@@ -6,7 +6,6 @@ SUBDIRS = blink_led_hw \
 	  ds_1631 \
 	  hw_uart \
 	  sw_uart \
-	  sw_i2c \
 	  util
 
 all:
