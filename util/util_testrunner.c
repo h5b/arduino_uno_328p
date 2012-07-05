@@ -19,10 +19,8 @@ START_TEST(tc_uitoa)
 {
 	unsigned int i = 0;
 
-	/*
-	 * test data: for i in `jot -r 99 1 99`; do echo "{$i, \"$i\"},"; done
-	 */
-	int_string_mapping_t expected_data[] =
+	/* for i in `jot -r 99 1 99`; do echo "{$i, \"$i\"},"; done */
+	int_string_mapping_t expected[] =
 	{
 		{89, "89"},
 		{12, "12"},
@@ -125,24 +123,23 @@ START_TEST(tc_uitoa)
 		{48, "48"},
 	};
 
-	char result[ARRAY_LENGTH(expected_data)];
+	char result[ARRAY_LENGTH(expected)];
 
 	/* compare known string representation of test data to uitoa() */
-	for (i = 0; i < ARRAY_LENGTH(expected_data); i++) {
-		uitoa(result, expected_data[i].uint_val);
-		fail_if(strcmp(result, expected_data[i].string_val) != 0,
+	for (i = 0; i < ARRAY_LENGTH(expected); i++) {
+		uitoa(result, expected[i].uint_val);
+		fail_if(strcmp(result, expected[i].string_val) != 0,
 			"Got %s instead of %s", result,
-			    expected_data[i].string_val);
+			    expected[i].string_val);
 	}
 }
 END_TEST
 
-START_TEST(tc_slen)
+START_TEST(tc_strlength)
 {
 	unsigned int i = 0;
 
-	/* Set of test data */
-	string_length_t expected_data[] =
+	string_length_t expected[] =
 	{
 		{27, "VAZGvbJTbHetVWMuTHURMNFSkEl"},
 		{31, "eNpZqyWXwdwaCgoZaVuiwNqaXyOpbvg"},
@@ -179,13 +176,13 @@ START_TEST(tc_slen)
 		{26, "spXYlArEhVTEMrgdapYhFluYDj"},
 	};
 
-	char result[ARRAY_LENGTH(expected_data)];
+	char result[ARRAY_LENGTH(expected)];
 
-	/* compare known string length of test data to slen() */
-	for (i = 0; i < ARRAY_LENGTH(expected_data); i++) {
-		fail_if(expected_data[i].len != slen(expected_data[i].str),
+	/* compare known string length of test data to strlength() */
+	for (i = 0; i < ARRAY_LENGTH(expected); i++) {
+		fail_if(expected[i].len != strlength(expected[i].str),
 				"Got length of %d, expected %d",
-			    expected_data[i].len, slen(expected_data[i].str));
+			    expected[i].len, strlength(expected[i].str));
 	}
 }
 END_TEST
@@ -197,7 +194,7 @@ test_utilSuite(void)
 	TCase *tc_core = tcase_create("util functions");
 
 	tcase_add_test(tc_core, tc_uitoa);
-	tcase_add_test(tc_core, tc_slen);
+	tcase_add_test(tc_core, tc_strlength);
 	suite_add_tcase(s, tc_core);
 
 	return s;

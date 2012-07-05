@@ -17,26 +17,20 @@
 
 #include "util.h"
 
-/* Convert binary coded decimal to decimal */
 char
 bcd2dec(char val)
 {
 	 return ((val/16 * 10) + (val % 16));
 }
 
-/* Convert decimal to binary coded decimal */
 char
 dec2bcd(char val)
 {
 	return ((val/10 * 16) + (val % 10));
 }
 
-/*
- * Calculate length of string avoiding the huge memory
- * footprint of standard library
- */
 unsigned int
-slen(char* str)
+strlength(char* str)
 {
 	unsigned int i = 0;
 
@@ -47,7 +41,6 @@ slen(char* str)
 	return i;
 }
 
-/* Convert unsigned integer to string */
 void
 uitoa(char* dest, unsigned char num)
 {
