@@ -20,7 +20,7 @@ to be used with the AVR-GCC toolchain.
 
 * __ds_1631__ implements an interface to the Dallas Maxim __DS1631__ Temperature Sensor  
   using the Software TWI (I2C) Master Mode. The Temperature Sensor acts as Slave Device with  
-  the measured temperature being sent to UART  
+  the measured temperature being sent to UART.  
   For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)  
 
 * __hw_uart__ implements an interrupt controlled UART example using circular buffers as described  
