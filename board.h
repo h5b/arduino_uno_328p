@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -23,10 +23,7 @@
 #define F_CPU		16000000UL
 #endif
 
-/* User LED is located at PB5 (Arduino digital pin 13) */
-#define LED_BIT		(1 << PB5)
-
-/* delay in milliseconds */
-#define SECOND		1000
+/* LED is located at PB5 (Arduino digital pin 13) */
+#define LED		(1 << PB5)
 
 #endif /* _BOARD_H_ */

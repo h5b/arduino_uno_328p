@@ -18,8 +18,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define LED_BIT		(1 << PB5)
-#define SECOND		1000
+#include "../board.h"
+
+#define SECOND	1000
 
 int
 main(void)
@@ -29,7 +30,7 @@ main(void)
 
 	while (1) {
 		/* toggle LED */
-		PORTB ^= (LED_BIT);
+		PORTB ^= (LED);
 		_delay_ms(SECOND);
 	}
 

@@ -20,11 +20,10 @@
 
 #include <util/delay.h>
 
-#include "board.h"
 #include "uart.h"
+#include "../board.h"
 
-/* Delay in milliseconds used to display the UART heartbeat */
-#define DELAY		500
+#define HALF_SECOND	500
 
 int
 main(void)
@@ -32,7 +31,7 @@ main(void)
 	static const char infostring[] = "HW-UART Demo\r\n";
 
 	/* set User LED on Port B as output */
-	DDRB = LED_BIT;
+	DDRB = LED;
 	/* initialize UART */
 	uartInit();
 	/* global interrupt enable */
@@ -43,7 +42,7 @@ main(void)
 	while (1) {
 		/* output a heartbeat */
 		uartPutString(".. ");
-		_delay_ms(DELAY);
+		_delay_ms(HALF_SECOND);
 	}
 
 	/* never reached */

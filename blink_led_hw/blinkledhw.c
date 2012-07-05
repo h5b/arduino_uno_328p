@@ -18,7 +18,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-#define LED_BIT		(1 << PB5)
+#include "../board.h"
 
 int
 main(void)
@@ -56,5 +56,5 @@ main(void)
 ISR
 (TIMER1_COMPA_vect)
 {
-	PORTB ^= (LED_BIT);
+	PORTB ^= (LED);
 }
