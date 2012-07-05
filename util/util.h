@@ -18,11 +18,9 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-#define BUFFER_SIZE	16
-
 char bcd2dec(char);
 char dec2bcd(char);
-unsigned int slen(char*);
+unsigned int strlength(char*);
 void uitoa(char*, unsigned char);
 
 #endif /* _UTIL_H_ */
