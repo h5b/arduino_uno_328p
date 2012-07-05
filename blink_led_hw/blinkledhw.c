@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -18,9 +18,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-/*
- * User LED is located at PB5 (Arduino digital pin 13)
- */
 #define LED_BIT		(1 << PB5)
 
 int
@@ -30,8 +27,8 @@ main(void)
 	 * Initialize TIMER1 to generate compare match event once
 	 * per second.
 	 *
-	 * PRESCALER:				((1 << CS12) | (1 << CS10))
 	 * CTC MODE Enable:			(1 << WGM12)
+	 * PRESCALER:				((1 << CS12) | (1 << CS10))
 	 * Compare Match Interrupt Enable:	(1 << OCIE1A)
 	 * Timer Compare Value:			((F_CPU/PRESCALER) - 1)
 	 */
@@ -40,11 +37,11 @@ main(void)
 	TIMSK1 |= (1 << OCIE1A);
 	OCR1A = ((F_CPU / 1024) - 1);
 
-	/* global interrupt enable */
-	sei();
-
 	/* set whole Port B as output */
 	DDRB = 0xFF;
+
+	/* global interrupt enable */
+	sei();
 
 	while(1)
 	{
@@ -55,11 +52,9 @@ main(void)
 	return (0);
 }
 
-/*
- * TIMER1 compare match event ISR
- */
-ISR(TIMER1_COMPA_vect)
+/* TIMER1 compare match event ISR */
+ISR
+(TIMER1_COMPA_vect)
 {
-	/* toggle User LED */
 	PORTB ^= (LED_BIT);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -18,12 +18,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-/*
- * User LED is located at PB5 (Arduino digital pin 13)
- */
 #define LED_BIT		(1 << PB5)
-/* delay in milliseconds */
-#define MS_DELAY	1000
+#define SECOND		1000
 
 int
 main(void)
@@ -32,9 +28,9 @@ main(void)
 	DDRB = 0xFF;
 
 	while (1) {
-		/* toggle User LED */
+		/* toggle LED */
 		PORTB ^= (LED_BIT);
-		_delay_ms(MS_DELAY);
+		_delay_ms(SECOND);
 	}
 
 	/* never reached */
