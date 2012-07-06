@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -34,7 +34,6 @@ main(void)
 	DDRB = LED;
 	/* initialize UART */
 	uartInit();
-	/* global interrupt enable */
 	sei();
 
 	uartPutString(infostring);

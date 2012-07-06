@@ -39,8 +39,6 @@ main(void)
 
 	/* set whole Port B as output */
 	DDRB = 0xFF;
-
-	/* global interrupt enable */
 	sei();
 
 	while(1)

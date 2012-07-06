@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -40,8 +40,8 @@
  * `-------------------------------------'
  * 7                                     0
  */
-#define DS1631_RD_ADDR	0x91
-#define DS1631_WR_ADDR	0x90
+#define DS1631_RD_ADDR		0x91
+#define DS1631_WR_ADDR		0x90
 
 /*
  * DS1631 - Command Set
@@ -115,8 +115,9 @@
  *       R1: Resolution Bit 1
  *       R0: Resolution Bit 0
  *    1SHOT: Temperature Conversion Mode
- *
- *
+ */
+
+/*
  * DS1631 - Temperature Resolution Configuration
  *
  * ,----------------------------------------------,

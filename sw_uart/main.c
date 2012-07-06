@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -19,10 +19,9 @@
 #include <avr/pgmspace.h>
 #include <util/delay.h>
 
-#include <uart.h>
+#include "uart.h"
 
-/* Delay in milliseconds used to display the UART heartbeat */
-#define DELAY		500
+#define HALF_SECOND	500
 
 int
 main(void)
@@ -30,13 +29,11 @@ main(void)
 	static const char infostring[] = "SOFT-UART Demo\r\n";
 
 	uartInit();
-
 	uartPutString(infostring);
 
 	while (1) {
-		/* output a heartbeat */
 		uartPutString(".. ");
-		_delay_ms(DELAY);
+		_delay_ms(HALF_SECOND);
 	}
 
 	/* never reached */
