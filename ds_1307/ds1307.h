@@ -46,7 +46,6 @@
 #define DS1307_CTL_ADDR		0x07
 #define DS1307_SRAM_ADDR	0x08
 
-/* 56 bytes of NV SRAM */
 #define DS1307_SRAM_SIZE	0x38
 
 #define DS1307_RD_ADDR		0xD1
@@ -129,9 +128,6 @@
  * 0x07 | OUT|  X | X  |SQWE| X  | X  | X  | X  |
  *      `----'----'----'----'----'----'----'----'
  *      7                                       0
- *
- *
- * struct holding the RTC Information
  */
 struct rtc_tm {
 	/* 0x00 */
@@ -163,7 +159,6 @@ struct rtc_tm {
 
 extern struct rtc_tm ds1307_tm;
 
-/* Function Prototypes */
 struct rtc_tm* ds1307GetTime(void);
 void ds1307Init(void);
 void ds1307SetDate(uint8_t, uint8_t, uint8_t);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -23,7 +23,7 @@
 #include <util/delay.h>
 
 #define BAUDRATE 9600
-/* calculate the Baudrate Register Value based on F_CPU and BAUDRATE */
+/* Baudrate Register Value calculation based on F_CPU and BAUDRATE */
 #define UBRR_VAL ((F_CPU + BAUDRATE * 8L) / ((BAUDRATE * 16L) - 1))
 
 void uartInit(void);

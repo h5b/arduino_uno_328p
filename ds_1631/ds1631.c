@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -21,7 +21,8 @@
 #include "../sw_i2c/i2c.h"
 #include "../util/util.h"
 
-void ds1631Init(void)
+void
+ds1631Init(void)
 {
 	unsigned char cfgREG;
 
@@ -50,10 +51,10 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 void
 ds1631GetTemperature(unsigned char addr, char *result)
 {
+	unsigned char temperatureMSB, temperatureLSB;
+
 	/* DS1631 - Request Temperature Reading */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
-
-	unsigned char temperatureMSB, temperatureLSB;
 
 	i2cStart(addr);
 	temperatureMSB = i2cReadACK();

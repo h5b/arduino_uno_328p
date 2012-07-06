@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Sebastian Trahm
+ * Copyright (c) 2011-2012 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -35,30 +35,22 @@ int
 main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
-	char result[CHAR_BUFFER_SIZE];
+	char temperature[CHAR_BUFFER_SIZE];
 	char buffer[CHAR_BUFFER_SIZE];
-	unsigned char count;
+	unsigned char readCount;
 
-	/* set User LED on Port B as output */
 	DDRB = LED;
-	/* initialize UART */
 	uartInit();
-	/* initialize I2C Bus to Fast Mode (400Khz). */
 	i2cInit(I2C_FAST_MODE);
-	/* global interrupt enable */
 	sei();
-	/* initialize DS1631 */
 	ds1631Init();
-	/* output Startup Message on UART */
 	uartPutString_P(infostring);
 
 	while (1) {
-		/* Get Counter Register Value */
-		count = ds1631GetRegister(DS1631_READ_COUNT);
-		/* Get Temperature Reading */
-		ds1631GetTemperature(DS1631_RD_ADDR, result);
+		readCount = ds1631GetRegister(DS1631_READ_COUNT);
+		ds1631GetTemperature(DS1631_RD_ADDR, temperature);
 		sprintf(buffer, "TEMP: [COUNT REG: %02d] [TH: %s °C]\r\n",
-		    count, result);
+		    readCount, temperature);
 		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}

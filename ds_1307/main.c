@@ -29,6 +29,7 @@
 #include "../sw_i2c/i2c.h"
 
 #define SECOND	1000
+
 int
 main(void)
 {
@@ -47,7 +48,6 @@ main(void)
 	 * See section "I2C DATA BUS" on page 10 
 	 */
 	i2cInit(I2C_STD_MODE);
-	/* global interrupt enable */
 	sei();
 
 	/* Enable DS1307 and SQW Output */
