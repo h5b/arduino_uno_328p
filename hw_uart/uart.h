@@ -22,8 +22,8 @@
 /* calculate the Baudrate Register Value based on F_CPU and BAUDRATE */
 #define UBRR_VAL	((F_CPU + BAUDRATE * 8L) / ((BAUDRATE * 16L) - 1))
 
-#define BUFFER_SIZE	32
-#define BUFFER_MASK	(BUFFER_SIZE - 1)
+#define UART_BUFFER_SIZE	32
+#define UART_BUFFER_MASK	(UART_BUFFER_SIZE - 1)
 
 static volatile unsigned char rxHead;
 static volatile unsigned char rxTail;
@@ -36,10 +36,10 @@ static volatile unsigned char txTail;
  * +-----------v------- .. -------v-----+
  * | | | | | | | | | |  ..  | | | | | | |
  * +------------------- .. -------------+
- * 0                                    BUFFER_SIZE - 1
+ * 0                                    UART_BUFFER_SIZE - 1
  */
-static volatile unsigned char txBuffer[BUFFER_SIZE];
-static volatile unsigned char rxBuffer[BUFFER_SIZE];
+static volatile unsigned char txBuffer[UART_BUFFER_SIZE];
+static volatile unsigned char rxBuffer[UART_BUFFER_SIZE];
 
 void uartInit(void);
 void uartPutString(const char*);

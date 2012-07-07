@@ -36,15 +36,13 @@ uartInit(void)
 	UBRR0H = (unsigned int)(UBRR_VAL >> 8);
 	UBRR0L = (unsigned int)(UBRR_VAL);
 
-	/* enable Transmit and Receive */
+	/* enable Receive, Transmit and Complete Interrupt Enable */
 	UCSR0B |= (1<<RXEN0) | (1<<TXEN0);
-	/* enable Transmit and Receive Complete Interrupt Enable */
 	UCSR0B |= (1<<TXCIE0) | (1<<RXCIE0);
 
 	/* MODE: ASYNC 8N1 */
 	UCSR0C = (3<<UCSZ00);
 
-	/* start with empty buffer */
 	rxHead = 0;
 	rxTail = 0;
 	txHead = 0;
@@ -62,7 +60,7 @@ uartReceiveByte(void)
 		return (0);
 
 	/* calculate and save new buffer index */
-	tmptail = ((rxTail + 1) & BUFFER_MASK);
+	tmptail = ((rxTail + 1) & UART_BUFFER_MASK);
 	rxTail = tmptail;
 
 	/* return data from receive buffer */
@@ -79,7 +77,7 @@ uartTransmitByte(unsigned char data)
 {
 	unsigned char tmphead;
 
-	tmphead = ((txHead + 1) & BUFFER_MASK);
+	tmphead = ((txHead + 1) & UART_BUFFER_MASK);
 
 	/* wait until space in buffer is available */
 	while (tmphead == txTail) {
@@ -111,17 +109,16 @@ uartPutString_P(const char *addr)
 		uartTransmitByte(c);
 }
 
-/* USART Rx Complete */
-ISR(USART_RX_vect)
+ISR
+(USART_RX_vect)
 {
 	unsigned char data;
 	unsigned char tmphead;
 
-	/* read received Data from UDR0 */
 	data = UDR0;
 
 	/* calculate buffer index */
-	tmphead = ((rxHead + 1) & BUFFER_MASK);
+	tmphead = ((rxHead + 1) & UART_BUFFER_MASK);
 
 	/* buffer overflow detected */
 	if (tmphead == rxTail ) {
@@ -136,26 +133,25 @@ ISR(USART_RX_vect)
 	}
 }
 
-/* USART Data Register Empty */
-ISR(USART_UDRE_vect)
+ISR
+(USART_UDRE_vect)
 {
 	unsigned char tmptail;
 
 	if (txHead != txTail) {
 		/* calculate and Save buffer index */
-		tmptail = ((txTail + 1) & BUFFER_MASK);
+		tmptail = ((txTail + 1) & UART_BUFFER_MASK);
 		txTail = tmptail;
 		/* retrieve Byte from buffer and pass it to UART */
 		UDR0 = txBuffer[tmptail];
-	/* no data available, therefore disable UDRE interrupt */
 	} else {
+		/* no data available, therefore disable UDRE interrupt */
 		UCSR0B &= ~(1<<UDRIE0);
 	}
 }
 
-/* USART Tx Complete */
-ISR(USART_TX_vect)
+ISR
+(USART_TX_vect)
 {
-	/* toggle User LED */
 	PORTB ^= (LED);
 }

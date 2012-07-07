@@ -28,7 +28,7 @@
 #include "../hw_uart/uart.h"
 #include "../sw_i2c/i2c.h"
 
-#define BUFFER_LENGTH	48
+#define BUFFER_SIZE	48
 #define SECOND		1000
 
 int
@@ -36,7 +36,7 @@ main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
 	struct ds1631_temperature* temperature= NULL;
-	char buffer[BUFFER_LENGTH];
+	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
 
 	DDRB = LED;
