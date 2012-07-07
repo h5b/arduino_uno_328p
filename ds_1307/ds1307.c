@@ -29,12 +29,10 @@ ds1307GetTime(void)
 	unsigned char rtcInfo[7];
 	uint8_t i;
 
-	/* Request Start Address to be 0x00 (SECONDS) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cStop();
 
-	/* Request Read from DS1307 */
 	i2cStart(DS1307_RD_ADDR);
 	/*
 	 * Consecutive Read the first Six Bytes: Seconds, Minutes,
@@ -51,11 +49,10 @@ ds1307GetTime(void)
 	/* Mask 7th Bit of Seconds to ensure CLOCK HALT is disabled */
 	rtcInfo[0] &= (0x7F);
 
-	/* Fill time structure of DS1307 with data */
-	ds1307_tm.sec = rtcInfo[0];
-	ds1307_tm.min = rtcInfo[1];
-	ds1307_tm.hour = rtcInfo[2];
-	ds1307_tm.dow = rtcInfo[3];
+	ds1307_tm.seconds = rtcInfo[0];
+	ds1307_tm.minutes = rtcInfo[1];
+	ds1307_tm.hours = rtcInfo[2];
+	ds1307_tm.dayOfWeek = rtcInfo[3];
 	ds1307_tm.day = rtcInfo[4];
 	ds1307_tm.month = rtcInfo[5];
 	ds1307_tm.year = rtcInfo[6];
@@ -66,10 +63,6 @@ ds1307GetTime(void)
 void
 ds1307Init(void)
 {
-	/*
-	 * Request Start Address to be 0x07 (CONTROL Register)
-	 * and Enable SQW Output
-	 */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_CTL_ADDR);
 	i2cWrite(DS1307_SQWE);
@@ -79,7 +72,6 @@ ds1307Init(void)
 void
 ds1307SetDate(uint8_t day, uint8_t month, uint8_t year)
 {
-	/* Request Start Address to be 0x04 (DAY (DATE)) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_DAY_ADDR);
 	i2cWrite(dec2bcd(day));
@@ -91,7 +83,6 @@ ds1307SetDate(uint8_t day, uint8_t month, uint8_t year)
 void
 ds1307SetTime(uint8_t hours, uint8_t mins, uint8_t secs)
 {
-	/* Request Start Address to be 0x00 (SECONDS) */
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cWrite(dec2bcd(secs));

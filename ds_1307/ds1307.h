@@ -130,30 +130,21 @@
  *      7                                       0
  */
 struct rtc_tm {
-	/* 0x00 */
-	int sec : 7;
-	int ch : 1;
-	/* 0x01 */
-	int min : 7;
-	int minpad : 1;
-	/* 0x02 */
-	int hour : 6;
+	int seconds : 7;
+	int clockHalt : 1;
+	int minutes : 7;
+	int minutesPad : 1;
+	int hours : 6;
 	int ampm : 1;
-	int hourpad : 1;
-	/* 0x03 */
-	int dow : 3;
-	int dowpad : 5;
-	/* 0x04 */
+	int hoursPad : 1;
+	int dayOfWeek : 3;
+	int dayOfWeekPad: 5;
 	int day : 6;
-	int daypad : 2;
-	/* 0x05 */
+	int dayPad : 2;
 	int month : 5;
-	int monthpad : 3;
-	/* 0x06 */
+	int monthPad : 3;
 	int year;
-	/* 0x07 */
-	char ctl;
-	/* 0x08 - 0x3F */
+	char control;
 	char sram[56];
 };
 
