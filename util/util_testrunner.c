@@ -176,8 +176,6 @@ START_TEST(tc_strlength)
 		{26, "spXYlArEhVTEMrgdapYhFluYDj"},
 	};
 
-	char result[ARRAY_LENGTH(expected)];
-
 	/* compare known string length of test data to strlength() */
 	for (i = 0; i < ARRAY_LENGTH(expected); i++) {
 		fail_if(expected[i].len != strlength(expected[i].str),
