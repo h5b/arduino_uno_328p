@@ -21,6 +21,8 @@
 #include "../sw_i2c/i2c.h"
 #include "../util/util.h"
 
+struct ds1631_temperature ds1631_struct;
+
 void
 ds1631Init(void)
 {
@@ -34,9 +36,7 @@ ds1631Init(void)
 	i2cWrite(cfgREG);
 	i2cStop();
 
-	/* Enable Continuous Temperature Conversion */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
-	/* Start Temperature Conversion */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_START_CONV);
 }
 
@@ -48,12 +48,11 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 	i2cStop();
 }
 
-void
-ds1631GetTemperature(unsigned char addr, char *result)
+struct ds1631_temperature*
+ds1631GetTemperature(unsigned char addr)
 {
 	unsigned char temperatureMSB, temperatureLSB;
 
-	/* DS1631 - Request Temperature Reading */
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
 	i2cStart(addr);
@@ -61,7 +60,11 @@ ds1631GetTemperature(unsigned char addr, char *result)
 	temperatureLSB = i2cReadNAK();
 	i2cStop();
 
-	uitoa(result, temperatureMSB);
+	ds1631_struct.fraction = ((temperatureLSB*100)/256);
+	ds1631_struct.MSB = temperatureMSB;
+	ds1631_struct.LSB = temperatureLSB;
+
+	return &ds1631_struct;
 }
 
 unsigned char

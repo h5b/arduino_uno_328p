@@ -133,8 +133,16 @@
  * `----'----'------------'-----------------------'
  */
 
+struct ds1631_temperature {
+	unsigned char MSB;
+	unsigned char LSB;
+	unsigned char fraction;
+};
+
+extern struct ds1631_temperature ds1631_struct;
+
 unsigned char ds1631GetRegister(unsigned char);
-void ds1631GetTemperature(unsigned char, char *);
+struct ds1631_temperature* ds1631GetTemperature(unsigned char);
 void ds1631Init(void);
 void ds1631WriteConfig(unsigned char, unsigned char);
 
