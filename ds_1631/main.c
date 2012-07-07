@@ -28,29 +28,34 @@
 #include "../hw_uart/uart.h"
 #include "../sw_i2c/i2c.h"
 
-#define BUFFER_SIZE	32
+#define BUFFER_LENGTH	48
 #define SECOND		1000
 
 int
 main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
-	char temperature[BUFFER_SIZE];
-	char buffer[BUFFER_SIZE];
+	struct ds1631_temperature* temperature= NULL;
+	char buffer[BUFFER_LENGTH];
 	unsigned char readCount;
 
 	DDRB = LED;
 	uartInit();
 	i2cInit(I2C_FAST_MODE);
-	sei();
 	ds1631Init();
+	sei();
+
 	uartPutString_P(infostring);
 
 	while (1) {
 		readCount = ds1631GetRegister(DS1631_READ_COUNT);
-		ds1631GetTemperature(DS1631_RD_ADDR, temperature);
-		sprintf(buffer, "TEMP: [COUNT REG: %02d] [TH: %s °C]\r\n",
-		    readCount, temperature);
+		temperature= ds1631GetTemperature(DS1631_RD_ADDR);
+
+		sprintf(buffer,
+		    "[COUNTER: %02d] [TH: %03d] [TL: %03d] [%3d.%.2d °C]\r\n",
+		    readCount, temperature->MSB, temperature->LSB,
+		    temperature->MSB, temperature->fraction);
+
 		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}
