@@ -52,8 +52,8 @@ main(void)
 		/* Read Current Time from DS1307 and output to UART */
 		rtc = ds1307GetTime();
 		sprintf(buffer, "RTC: [%02d:%02d:%02d] - [%02d.%02d.%02d]\r\n",
-		    rtc->hour, rtc->min, rtc->sec, rtc->day, rtc->month,
-		    rtc->year);
+		    rtc->hours, rtc->minutes, rtc->seconds, rtc->day,
+		    rtc->month, rtc->year);
 		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}
