@@ -60,7 +60,7 @@ ds1631GetTemperature(unsigned char addr)
 	temperatureLSB = i2cReadNAK();
 	i2cStop();
 
-	ds1631_struct.fraction = ((temperatureLSB*100)/256);
+	ds1631_struct.fraction = DS1631_FRACTION(temperatureLSB);
 	ds1631_struct.MSB = temperatureMSB;
 	ds1631_struct.LSB = temperatureLSB;
 
