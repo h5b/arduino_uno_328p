@@ -13,10 +13,6 @@ OBJDUMP	= avr-objdump
 
 OPT	= s
 
-# CHECK unit testing
-CHECK_LIBS	= -lcheck
-CHECK_CC	= gcc
-
 CPPFLAGS+= -D__AVR_ATmega328P__
 CPPFLAGS+= -DF_CPU=${CLOCK}
 
