@@ -28,15 +28,15 @@
 #include "../hw_uart/uart.h"
 #include "../sw_i2c/i2c.h"
 
-#define CHAR_BUFFER_SIZE	32
-#define SECOND			1000
+#define BUFFER_SIZE	32
+#define SECOND		1000
 
 int
 main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
-	char temperature[CHAR_BUFFER_SIZE];
-	char buffer[CHAR_BUFFER_SIZE];
+	char temperature[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
 
 	DDRB = LED;
