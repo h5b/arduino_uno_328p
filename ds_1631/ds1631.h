@@ -61,6 +61,8 @@
 #define DS1631_START_CONV	0x51 /* Start temperature conversion */
 #define DS1631_STOP_CONV	0x22 /* Stop temperature conversion */
 
+#define DS1631_FRACTION(x)	( ((x) * 100) / 256 )
+
 /*
  * DS1631 - 12-Bit Temperature Th(MSB) and Tl(LSB) Register Format
  *
