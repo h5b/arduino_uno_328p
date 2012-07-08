@@ -7,7 +7,7 @@ SRCS=$(PROG).c \
      ../sw_i2c/i2c.c \
      ../util/util.c
 
-CLEANFILES=$(PROG).hex $(PROG).out $(CHECK_SUITE)
+CLEANFILES=$(PROG).hex $(PROG).out
 
 $(PROG).hex: $(PROG).out
 	$(OBJCOPY) -O ihex $(PROG).out $(PROG).hex
