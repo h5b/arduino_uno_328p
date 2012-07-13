@@ -14,6 +14,7 @@ $(PROG).hex: $(PROG).out
 
 $(PROG).out: $(SRCS) ../Makefile.inc
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I./ -o $(PROG).out $(SRCS)
+	$(SIZE) $@
 
 # enforce clean before programming to get current System Time
 burn: clean $(PROG).hex

@@ -14,6 +14,7 @@ $(PROG).hex: $(PROG).out
 
 $(PROG).out: $(SRCS) ../Makefile.inc
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I./ -o $(PROG).out $(SRCS)
+	$(SIZE) $@
 
 burn: $(PROG).hex
 	$(AVR_DUDE) $(AVR_FLAGS) -e -U flash:w:$(PROG).hex

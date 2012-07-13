@@ -10,6 +10,7 @@ CLOCK	= 16000000
 CC	= avr-gcc
 OBJCOPY	= avr-objcopy
 OBJDUMP	= avr-objdump
+SIZE	= avr-size -C --mcu=$(MCU)
 
 OPT	= s
 
