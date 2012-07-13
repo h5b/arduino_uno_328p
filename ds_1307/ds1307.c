@@ -26,8 +26,7 @@ struct rtc_tm ds1307_tm;
 struct rtc_tm*
 ds1307GetTime(void)
 {
-	unsigned char rtcInfo[7];
-	uint8_t i;
+	uint8_t i, rtcInfo[7];
 
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
