@@ -130,22 +130,22 @@
  *      7                                       0
  */
 struct rtc_tm {
-	int seconds : 7;
-	int clockHalt : 1;
-	int minutes : 7;
-	int minutesPad : 1;
-	int hours : 6;
-	int ampm : 1;
-	int hoursPad : 1;
-	int dayOfWeek : 3;
-	int dayOfWeekPad: 5;
-	int day : 6;
-	int dayPad : 2;
-	int month : 5;
-	int monthPad : 3;
-	int year;
-	char control;
-	char sram[56];
+	uint8_t seconds : 7;
+	uint8_t clockHalt : 1;
+	uint8_t minutes : 7;
+	uint8_t minutesPad : 1;
+	uint8_t hours : 6;
+	uint8_t ampm : 1;
+	uint8_t hoursPad : 1;
+	uint8_t dayOfWeek : 3;
+	uint8_t dayOfWeekPad: 5;
+	uint8_t day : 6;
+	uint8_t dayPad : 2;
+	uint8_t month : 5;
+	uint8_t monthPad : 3;
+	uint8_t year;
+	uint8_t control;
+	uint8_t sram[56];
 };
 
 extern struct rtc_tm ds1307_tm;
