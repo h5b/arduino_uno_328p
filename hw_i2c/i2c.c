@@ -22,6 +22,7 @@
  */
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <compat/twi.h>
 
 #include "i2c.h"
@@ -29,7 +30,18 @@
 void
 i2cInit(uint32_t i2c_clk)
 {
-	/* initialize I2C bus to given clock speed */
 	TWSR = 0;
 	TWBR = ((F_CPU / i2c_clk) - 16) / 2;
+}
+
+/* TODO: implement at least full Master Mode support */
+ISR
+(TWI_vect)
+{
+	switch (TW_STATUS)
+	{
+		case TW_START:
+		case TW_REP_START:
+			break;
+	}
 }
