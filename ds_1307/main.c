@@ -28,6 +28,7 @@
 #include "../hw_uart/uart.h"
 #include "../sw_i2c/i2c.h"
 
+#define BAUDRATE	38400
 #define BUFFER_SIZE	32
 #define SECOND		1000
 
@@ -39,7 +40,7 @@ main(void)
 	char buffer[BUFFER_SIZE];
 
 	DDRB = LED;
-	uartInit();
+	uartInit(BAUDRATE);
 	i2cInit(I2C_STD_MODE);
 	sei();
 

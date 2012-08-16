@@ -23,6 +23,7 @@
 #include "uart.h"
 #include "../board.h"
 
+#define BAUDRATE	38400
 #define HALF_SECOND	500
 
 int
@@ -32,8 +33,7 @@ main(void)
 
 	/* set User LED on Port B as output */
 	DDRB = LED;
-	/* initialize UART */
-	uartInit();
+	uartInit(BAUDRATE);
 	sei();
 
 	uartPutString(infostring);
