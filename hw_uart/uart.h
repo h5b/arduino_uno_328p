@@ -18,10 +18,6 @@
 #ifndef _UART_H_
 #define _UART_H_
 
-#define BAUDRATE	9600
-/* calculate the Baudrate Register Value based on F_CPU and BAUDRATE */
-#define UBRR_VAL	((F_CPU + BAUDRATE * 8L) / ((BAUDRATE * 16L) - 1))
-
 #define UART_BUFFER_SIZE	32
 #define UART_BUFFER_MASK	(UART_BUFFER_SIZE - 1)
 
@@ -41,7 +37,7 @@ static volatile unsigned char txTail;
 static volatile unsigned char txBuffer[UART_BUFFER_SIZE];
 static volatile unsigned char rxBuffer[UART_BUFFER_SIZE];
 
-void uartInit(void);
+void uartInit(uint32_t);
 void uartPutString(const char*);
 void uartPutString_P(const char*);
 void uartTransmitByte(unsigned char);

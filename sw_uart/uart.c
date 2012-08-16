@@ -22,11 +22,17 @@
 #include "uart.h"
 
 void
-uartInit(void)
+uartInit(uint32_t baudrate)
 {
+	/*
+	 * UBRR - Uart Baud Rate Register
+	 * UBRR = System Clock / Baud Rate * 16 - 1
+	 */
+	uint8_t ubrr = ((F_CPU + baudrate * 8L) / (baudrate * 16L) - 1);
+
 	/* set Baud Rate Register */
-	UBRR0H = (unsigned int)(UBRR_VAL >> 8);
-	UBRR0L = (unsigned int)(UBRR_VAL);
+	UBRR0H = (unsigned int)(ubrr >> 8);
+	UBRR0L = (unsigned int)(ubrr);
 	/* enable UART receive and transmit */
 	UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
 	/* MODE: ASYNC 8N1 */

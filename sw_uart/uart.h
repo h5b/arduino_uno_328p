@@ -22,11 +22,7 @@
 #include <avr/pgmspace.h>
 #include <util/delay.h>
 
-#define BAUDRATE 9600
-/* Baudrate Register Value calculation based on F_CPU and BAUDRATE */
-#define UBRR_VAL ((F_CPU + BAUDRATE * 8L) / ((BAUDRATE * 16L) - 1))
-
-void uartInit(void);
+void uartInit(uint32_t);
 unsigned char uartReceiveByte(void);
 void uartTransmitByte(unsigned char);
 void uartPutString(const char*);

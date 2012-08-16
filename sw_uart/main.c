@@ -21,6 +21,7 @@
 
 #include "uart.h"
 
+#define BAUDRATE	38400
 #define HALF_SECOND	500
 
 int
@@ -28,7 +29,7 @@ main(void)
 {
 	static const char infostring[] = "SOFT-UART Demo\r\n";
 
-	uartInit();
+	uartInit(BAUDRATE);
 	uartPutString(infostring);
 
 	while (1) {
