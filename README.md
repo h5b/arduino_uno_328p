@@ -26,7 +26,9 @@ to be used with the AVR-GCC toolchain.
 * __hw_uart__ implements an interrupt controlled UART example using circular buffers as described  
   by Atmel Application Note [AVR306: Using the AVR UART in C] (http://www.atmel.com/atmel/acrobat/doc1451.pdf)
 
-* __sw_i2c__ implements software TWI (I2C) Master Mode  
+* __sw_i2c__ implements software TWI (I2C) Master Mode.  
+
+* __sw_spi__ implements a minimalized software SPI Master Mode.  
 
 * __sw_uart__ is an example of polled UART for basic input and output operation.  
 
