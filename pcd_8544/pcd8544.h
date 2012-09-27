@@ -38,10 +38,11 @@
 #define PCD8544_TEMP_COEFF	0x04
 #define PCD8544_BIAS_MODE	0x16
 
-void pcd8544Init(void);
-void pcd8544SetContrast(unsigned char);
-void pcd8544SetXY(unsigned char, unsigned char);
+void pcd8544BigNumber(uint8_t, uint8_t, char);
 void pcd8544Clear(void);
+void pcd8544Init(void);
+void pcd8544SetContrast(uint8_t);
+void pcd8544SetXY(uint8_t, uint8_t);
 void pcd8544SmallChar(char);
 void pcd8544SmallStr(const char*);
 

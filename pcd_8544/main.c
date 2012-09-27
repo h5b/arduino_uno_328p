@@ -21,6 +21,7 @@
 #include "pcd8544.h"
 #include "../sw_spi/spi.h"
 
+#define DISPLAY_CONTRAST	26
 int
 main(void)
 {
@@ -28,7 +29,7 @@ main(void)
 
 	spiInit();
 	pcd8544Init();
-	pcd8544SetContrast(32);
+	pcd8544SetContrast(DISPLAY_CONTRAST);
 
 	pcd8544SetXY(6, 2);
 	pcd8544SmallStr(infoString);
