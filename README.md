@@ -29,7 +29,8 @@ to be used with the AVR-GCC toolchain.
   For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)  
 
 * __hw_uart__ implements an interrupt controlled UART example using  
-  circular buffers as described by Atmel Application Note [AVR306: Using the AVR UART in C] (http://www.atmel.com/atmel/acrobat/doc1451.pdf)
+  circular buffers as described by Atmel Application  
+  Note [AVR306: Using the AVR UART in C] (http://www.atmel.com/atmel/acrobat/doc1451.pdf)
 
 * __pcd_8544__ implements an interface to the PCD8544 Display Controller  
   used by Nokia's 3310 and 5110.
