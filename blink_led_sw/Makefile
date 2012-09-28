@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-PROG=blinkledsw
+PROG=main
 SRCS=$(PROG).c
 
 CLEANFILES=$(PROG).hex $(PROG).out
