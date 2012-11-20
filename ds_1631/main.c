@@ -23,10 +23,10 @@
 
 #include <util/delay.h>
 
+#include "board.h"
 #include "ds1631.h"
-#include "../board.h"
-#include "../hw_uart/uart.h"
-#include "../sw_i2c/i2c.h"
+#include "hw_uart/uart.h"
+#include "sw_i2c/i2c.h"
 
 #define BAUDRATE	38400
 #define BUFFER_SIZE	48

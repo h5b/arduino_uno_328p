@@ -18,9 +18,9 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+#include "board.h"
+#include "hw_uart/uart.h"
 #include "i2c.h"
-#include "../board.h"
-#include "../hw_uart/uart.h"
 
 #define BAUDRATE	38400
 

@@ -14,6 +14,11 @@ SIZE	= avr-size -C --mcu=$(MCU)
 
 OPT	= s
 
+# Common Include Paths
+TOP := $(dir $(lastword $(MAKEFILE_LIST)))
+EXTRAINCDIRS = -I$(TOP) -I.
+CPPFLAGS += $(EXTRAINCDIRS)
+
 CPPFLAGS+= -D__AVR_ATmega328P__
 CPPFLAGS+= -DF_CPU=${CLOCK}
 
