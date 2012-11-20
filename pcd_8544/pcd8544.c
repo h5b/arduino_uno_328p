@@ -15,9 +15,7 @@
  * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <avr/io.h>
 #include <avr/pgmspace.h>
-#include <util/delay.h>
 
 #include "../sw_spi/spi.h"
 #include "pcd8544.h"

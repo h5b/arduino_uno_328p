@@ -16,7 +16,6 @@
  */
 
 #include <avr/io.h>
-#include <util/delay.h>
 
 #include "pcd8544.h"
 #include "../sw_spi/spi.h"

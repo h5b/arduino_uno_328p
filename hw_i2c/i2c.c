@@ -21,7 +21,6 @@
  * devices".
  */
 
-#include <avr/io.h>
 #include <avr/interrupt.h>
 #include <compat/twi.h>
 

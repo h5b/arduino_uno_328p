@@ -22,13 +22,15 @@
 #include "../board.h"
 #include "../hw_uart/uart.h"
 
+#define BAUDRATE	38400
+
 int
 main(void)
 {
 	static const char infostring[] = "HW-I2C (TWI) Demo\r\n";
 
 	DDRB = LED;
-	uartInit();
+	uartInit(BAUDRATE);
 	sei();
 
 	uartPutString(infostring);
