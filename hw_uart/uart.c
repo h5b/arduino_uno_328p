@@ -20,11 +20,8 @@
  * by Atmel Application Note "AVR306: Using the AVR UART in C".
  */
 
-#include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
-
-#include <util/delay.h>
 
 #include "uart.h"
 #include "../board.h"

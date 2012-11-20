@@ -18,10 +18,6 @@
 #ifndef _UART_H_
 #define _UART_H_
 
-#include <avr/io.h>
-#include <avr/pgmspace.h>
-#include <util/delay.h>
-
 void uartInit(uint32_t);
 unsigned char uartReceiveByte(void);
 void uartTransmitByte(unsigned char);
