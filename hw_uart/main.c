@@ -20,8 +20,8 @@
 
 #include <util/delay.h>
 
+#include "board.h"
 #include "uart.h"
-#include "../board.h"
 
 #define BAUDRATE	38400
 #define HALF_SECOND	500

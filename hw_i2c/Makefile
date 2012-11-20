@@ -2,7 +2,7 @@ include ../Makefile.inc
 
 PROG=main
 SRCS=$(PROG).c \
-     ../hw_uart/uart.c \
+     $(TOP)hw_uart/uart.c \
      i2c.c
 
 CLEANFILES=$(PROG).hex $(PROG).out
@@ -10,8 +10,8 @@ CLEANFILES=$(PROG).hex $(PROG).out
 $(PROG).hex: $(PROG).out
 	$(OBJCOPY) -O ihex $(PROG).out $(PROG).hex
 
-$(PROG).out: $(SRCS) ../Makefile.inc
-	$(CC) $(CPPFLAGS) $(CFLAGS) -I./ -o $(PROG).out $(SRCS)
+$(PROG).out: $(SRCS) $(TOP)Makefile.inc
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $(PROG).out $(SRCS)
 	$(SIZE) $@
 
 burn: $(PROG).hex

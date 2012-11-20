@@ -18,8 +18,8 @@
 #include <avr/io.h>
 
 #include "ds1307.h"
-#include "../sw_i2c/i2c.h"
-#include "../util/util.h"
+#include "sw_i2c/i2c.h"
+#include "util/util.h"
 
 struct rtc_tm ds1307_tm;
 

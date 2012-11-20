@@ -23,8 +23,8 @@
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 
+#include "board.h"
 #include "uart.h"
-#include "../board.h"
 
 void
 uartInit(uint32_t baudrate)

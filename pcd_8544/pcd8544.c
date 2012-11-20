@@ -17,8 +17,8 @@
 
 #include <avr/pgmspace.h>
 
-#include "../sw_spi/spi.h"
 #include "pcd8544.h"
+#include "sw_spi/spi.h"
 
 #define SFONT_MAX_X	5
 

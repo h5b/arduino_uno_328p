@@ -18,7 +18,7 @@
 #include <avr/io.h>
 
 #include "pcd8544.h"
-#include "../sw_spi/spi.h"
+#include "sw_spi/spi.h"
 
 #define DISPLAY_CONTRAST	26
 int

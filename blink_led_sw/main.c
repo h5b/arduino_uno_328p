@@ -18,7 +18,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "../board.h"
+#include "board.h"
 
 #define SECOND	1000
 
