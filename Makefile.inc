@@ -2,7 +2,7 @@ AVR_DUDE = avrdude
 AVR_MMCU = m328p
 AVR_PROG = avrispmkII
 
-AVR_FLAGS =-c $(AVR_PROG) -P usb -p $(AVR_MMCU)
+AVR_FLAGS = -c $(AVR_PROG) -P usb -p $(AVR_MMCU)
 
 MCU	= atmega328p
 CLOCK	= 16000000
@@ -16,6 +16,7 @@ OPT	= s
 
 # Common Include Paths
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
+TOP := $(patsubst %/, %, $(TOP))
 EXTRAINCDIRS = -I$(TOP) -I.
 CPPFLAGS += $(EXTRAINCDIRS)
 
