@@ -99,7 +99,13 @@ main(void)
 		pitch = nunchukGetPitch(nunchuk);
 
 		sprintf(buffer,
-		    "x@%03d,y@%03d,Roll@%04d,Pitch@%04d,c@%d,z@%d\r\n",
+		    /* JSON data format */
+		    "{\"x\":\"%03d\","
+		    "\"y\":\"%03d\","
+		    "\"r\":\"%04d\","
+		    "\"p\":\"%04d\","
+		    "\"c\":\"%d\","
+		    "\"z\":\"%d\"}\r\n",
 		    nunchuk->joystickX,
 		    nunchuk->joystickY,
 		    roll,
