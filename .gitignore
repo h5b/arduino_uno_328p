@@ -1,3 +1,4 @@
 *.hex
 *.out
 util_testrunner
+/.vagrant
