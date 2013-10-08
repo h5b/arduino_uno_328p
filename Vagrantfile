@@ -15,23 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "chef_solo" do |chef|
-    #chef.add_recipe "proxy"
+    chef.add_recipe "proxy"
     chef.add_recipe "avr"
-
-    #chef.json = {
-    #  :proxy => {
-    #    :http_proxy => "$HOST:$PORT",
-    #  },
-    #}
-
-    # Provide udev Rule to match AVRISP-MKII
-    chef.json = {
-      :udev_avr => {
-        :udev_subsys => 'SUBSYSTEM!="usb_device", ACTION!="add", GOTO="avrisp_end"',
-        :udev_attrib => 'ATTR{idVendor}=="03eb", ATTR{idProduct}=="2104", MODE="660", GROUP="dialout"',
-        :udev_label => 'LABEL="avrisp_end"',
-      },
-    }
   end
 
 end

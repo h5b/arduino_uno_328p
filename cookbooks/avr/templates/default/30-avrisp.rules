@@ -1,0 +1,4 @@
+# Provide Access for Group "dialout" to AVRISP-MKII Programmer
+SUBSYSTEM!="usb_device", ACTION!="add", GOTO="avrisp_end"
+ATTR{idVendor}=="03eb", ATTR{idProduct}=="2104", MODE="660", GROUP="dialout"
+LABEL="avrisp_end"
