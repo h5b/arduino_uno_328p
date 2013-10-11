@@ -41,11 +41,11 @@ group *dialup* and udev configuration supplied to support the *AVRISP-MKII*.
 
 * __ds_1307__ implements an interface to the Dallas Maxim __DS1307__ Real-time Clock (RTC)  
   using the Software TWI (I2C) Master Mode. The Real-time Clock acts as Slave Device with  
-  the clock information being sent to UART. For details regarding the DS1307 see [DS1307 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1307.pdf).
+  the clock information being sent to UART. For details see the [DS1307 Datasheet](http://datasheets.maxim-ic.com/en/ds/DS1307.pdf).
 
 * __ds_1631__ implements an interface to the Dallas Maxim __DS1631__ Temperature Sensor using the  
-  Software TWI (I2C) Master Mode. The Temperature Sensor acts as Slave Device with the measured temperature being sent to UART.  
-  For details regarding the DS1631 see [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf)  
+  Software TWI (I2C) Master Mode. The Temperature Sensor acts as Slave Device with the measured temperature being sent to UART.
+  For details see the [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf).
 
 ### Timer
 
