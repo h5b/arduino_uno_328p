@@ -7,16 +7,18 @@ to be used with the AVR-GCC toolchain.
 
 In order to ease the pain of setting up the development machine a Vagrantfile
 is supplied. Make sure your machine has [VirtualBox](http://www.virtualbox.org)
-and the VirtualBox Extension Pack installed (needed to support USB
+and the [VirtualBox Extension Pack](http://download.virtualbox.org/virtualbox/4.2.18/) installed (to support USB
 Programmers).
 
 ### Building your virtual environment
 
 To bootstrap the virtual development machine you run the following commands:
 
-`git clone git@github.com:h5b/arduino_uno_328p.git`
-`cd arduino_uno_328p`
-`vagrant up`
+```shell
+git clone git@github.com:h5b/arduino_uno_328p.git
+cd arduino_uno_328p
+vagrant up
+```
 
 This sets up a virtual development machine host *avr-dev* based on Ubuntu
 12.04. which you can login to by running:
