@@ -1,11 +1,11 @@
 # arduino_uno_328p
 
-This is a collection of code targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno) to
+This collection of code is targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno) to
 be used with the AVR-GCC toolchain.
 
 ## Requirements and Installation
 
-In order to ease the pain of setting up the development machine a Vagrantfile
+In order to ease the pain of setting up a development machine a Vagrantfile
 is supplied.
 If you are not aquainted to Vagrant then head to the
 [Vagrant Docs](http://docs.vagrantup.com/v2/getting-started/index.html) for a start.
@@ -41,16 +41,13 @@ If you are behind a proxy, there is a file already in place for apt(8):
 
 To customise the proxy to your needs modify the template file in:
 
-`cookbooks/proxy/templates/default/apt-proxy.config` by replacing the
-__$HOST__ and __$PORT__ accordingly and running
+`cookbooks/proxy/templates/default/apt-proxy.config`
+
+by setting __$HOST__ and __$PORT__ accordingly and running
 
 `vagrant reload`
 
 to apply your changes.
-
-
-## Board
-![Arduino Uno ATmega328P](https://github.com/h5b/arduino_uno_328p/raw/master/doc/img/Uno328p.jpg)
 
 ## Sources
 
@@ -88,9 +85,12 @@ to apply your changes.
 
 * __sw_spi__ implements a minimalized software SPI Master Mode.  
 
+## Board
+![Arduino Uno ATmega328P](https://github.com/h5b/arduino_uno_328p/raw/master/doc/img/Uno328p.jpg)
+
 ## Serial
-A simple and cheap way to hookup the serial of the Arduino Uno Board to your Computer  
-is to use a USB to Serial cable like the Nokia CA-42.  
+A simple and cheap way to hookup the serial of the Arduino Uno Board to your
+Computer is to use a USB to Serial cable like the Nokia CA-42.
 It's based on Prolific's PL-2303 chip and already provides a TTL converter.
 
 <pre>
