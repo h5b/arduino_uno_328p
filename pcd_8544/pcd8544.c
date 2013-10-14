@@ -247,7 +247,7 @@ pcd8544Clear(void)
 }
 
 void
-pcd8544BigNumber(unsigned char x, unsigned char y, char data)
+pcd8544BigNumber(uint8_t x, uint8_t y, char data)
 {
 	uint8_t i, j;
 	unsigned char val;
