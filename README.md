@@ -1,16 +1,19 @@
 # arduino_uno_328p
 
-This is a collection of code targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno)  
-to be used with the AVR-GCC toolchain.
+This is a collection of code targeted at the [Arduino Uno (ATmega328P)] (http://www.arduino.cc/en/Main/arduinoBoardUno) to
+be used with the AVR-GCC toolchain.
 
-## Installation and Requirements
+## Requirements and Installation
 
 In order to ease the pain of setting up the development machine a Vagrantfile
-is supplied. Make sure your machine has [VirtualBox](http://www.virtualbox.org)
-and the [VirtualBox Extension Pack](http://download.virtualbox.org/virtualbox/4.2.18/) installed (to support USB
-Programmers).
+is supplied.
+If you are not aquainted to Vagrant then head to the
+[Vagrant Docs](http://docs.vagrantup.com/v2/getting-started/index.html) for a start.
+Make sure your machine has [VirtualBox](http://www.virtualbox.org) and the
+[VirtualBox Extension Pack](http://download.virtualbox.org/virtualbox/4.2.18/)
+(to support USB Programmers) installed.
 
-### Building your virtual environment
+### Building your virtual development machine
 
 To bootstrap the virtual development machine you run the following commands:
 
@@ -20,13 +23,31 @@ cd arduino_uno_328p
 vagrant up
 ```
 
-This sets up a virtual development machine host *avr-dev* based on Ubuntu
-12.04. which you can login to by running:
+This sets up a virtual development machine host __avr-dev__ based on Ubuntu
+12.04. with the AVR-GCC toolchain already being installed which you can
+login to by running:
 
 `vagrant ssh`
 
-The repository code lives in */vagrant* with user *vagrant* configured to be in
-group *dialup* and udev configuration supplied to support the *AVRISP-MKII*.
+The repository code lives in __/vagrant__ with user __vagrant__ being part of
+group __dialup__ (no need to run sudo(8)) and udev configuration supplied as well
+to support the __AVRISP-MKII__ Programmer.
+
+### Customising the virtual machine
+
+If you are behind a proxy, there is a file already in place for apt(8):
+
+`/etc/apt/apt.conf.d/01proxy`
+
+To customise the proxy to your needs modify the template file in:
+
+`cookbooks/proxy/templates/default/apt-proxy.config` by replacing the
+__$HOST__ and __$PORT__ accordingly and running
+
+`vagrant reload`
+
+to apply your changes.
+
 
 ## Board
 ![Arduino Uno ATmega328P](https://github.com/h5b/arduino_uno_328p/raw/master/doc/img/Uno328p.jpg)
