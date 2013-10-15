@@ -51,7 +51,7 @@ to apply your changes.
 
 ## Sources
 The various source code files are located under __src/<module name>__.
-The following steps show how to an example:
+The following steps show how to run an example:
 
 `cd src/blink_led_hw`
 `make burn`
