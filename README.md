@@ -50,6 +50,11 @@ by setting __$HOST__ and __$PORT__ accordingly and running
 to apply your changes.
 
 ## Sources
+The various source code files are located under __src/<module name>__.
+The following steps show how to an example:
+
+`cd src/blink_led_hw`
+`make burn`
 
 ### Displays
 
