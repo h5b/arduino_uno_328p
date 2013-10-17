@@ -1,8 +1,12 @@
+# Run upgrade before adding any package at all
+execute "apt-get upgrade -y"
+
 Chef::Log.info("[Adding Basic Development Packages]")
 [
   "build-essential",
   "gcc",
   "git-core",
+  "vim",
 ].each do |p|
   package p
 end
