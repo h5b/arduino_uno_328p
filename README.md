@@ -43,7 +43,7 @@ To customise the proxy to your needs modify the template file in:
 
 `cookbooks/proxy/templates/default/apt-proxy.config`
 
-by setting __$HOST__ and __$PORT__ accordingly and running
+by uncommenting as well as setting __$HOST__ and __$PORT__ accordingly and running
 
 `vagrant reload`
 
