@@ -14,6 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'AVRISP mkII', '--vendorid', '0x03eb']
   end
 
+  config.ssh.forward_agent = true
+
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "proxy"
     chef.add_recipe "apt"
