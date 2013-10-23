@@ -20,6 +20,8 @@ To bootstrap the virtual development machine you run the following commands:
 ```shell
 git clone git@github.com:h5b/arduino_uno_328p.git
 cd arduino_uno_328p
+git submodule init
+git submodule update
 vagrant up
 ```
 
@@ -71,6 +73,12 @@ make burn
 * __ds_1631__ implements an interface to the Dallas Maxim __DS1631__ Temperature Sensor using the  
   Software TWI (I2C) Master Mode. The Temperature Sensor acts as Slave Device with the measured temperature being sent to UART.
   For details see the [DS1631 Datasheet] (http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf).
+
+* __nto_nunchuk__ implements an interface to the Nunchuk Controller by Nintendo using Software TWI (I2C) Master Mode.  
+  The sensor values are used to calculate the Pitch and Roll Angle with a very simple low-pass filter to smooth the output.
+  Angles, the X- and Y-Axis of the joystick and the state of the two buttons being sent to UART as JSON string.
+  As the Nunchuk expects 3V3 Level on I2C Bus a Bi-directional Logic Level Converter is used to connect with Atmega328P's 5V.
+  For details see the header file which contains the schematic.
 
 ### Timer
 
