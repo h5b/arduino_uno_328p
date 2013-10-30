@@ -96,4 +96,3 @@ vagrant ssh
 cd /vagrant/src/blink_led_hw
 make burn
 ```
-</pre>
