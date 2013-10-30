@@ -92,7 +92,8 @@ The following steps show how to run the
 example:
 
 ```
-cd src/blink_led_hw
+vagrant ssh
+cd /vagrant/src/blink_led_hw
 make burn
 ```
 </pre>
