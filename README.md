@@ -25,15 +25,10 @@ vagrant up
 
 This sets up a virtual development machine host __avr-dev__ based on Ubuntu
 12.04. with the AVR-GCC toolchain already being installed.
-
 The setup takes a couple of minutes. After the installation has finished you
-can can login to the machine by running:
-
-`vagrant ssh`
+can can login to the machine by running: `vagrant ssh`
 
 ## Code Examples
-
-The various code example files are located under __src/<module name>__.
 
 * [pcd_8544](https://github.com/h5b/arduino_uno_328p/tree/master/src/pcd_8544)
   implements an interface to the PCD8544 Display Controller used by Nokia's
