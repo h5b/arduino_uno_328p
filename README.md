@@ -26,7 +26,7 @@ vagrant up
 This sets up a virtual development machine host __avr-dev__ based on Ubuntu
 12.04. with the AVR-GCC toolchain already being installed.
 The setup takes a couple of minutes. After the installation has finished you
-can can login to the machine by running: `vagrant ssh`
+can login to the machine by running: `vagrant ssh`
 
 ## Code Examples
 
