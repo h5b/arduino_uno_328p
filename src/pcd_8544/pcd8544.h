@@ -50,7 +50,6 @@
  *     `------------------------ LED (h) <-- PWM
  */
 
-
 #define PCD8544_WIDTH		84
 #define PCD8544_HEIGHT		48
 
@@ -72,6 +71,7 @@
 #define PCD8544_BIAS_MODE	0x16
 
 void pcd8544BigNumber(uint8_t, uint8_t, char);
+void pcd8544Bitmap(const char*);
 void pcd8544Clear(void);
 void pcd8544Init(void);
 void pcd8544SetContrast(uint8_t);
