@@ -292,7 +292,7 @@ pcd8544SmallStr(const char *str)
 void
 pcd8544Bitmap(const char *data)
 {
-	unsigned int i;
+	uint16_t i;
 	for (i = 0; i < ((PCD8544_WIDTH * PCD8544_HEIGHT) / 8); i++)
 		spiSendByte(data[i]);
 }
