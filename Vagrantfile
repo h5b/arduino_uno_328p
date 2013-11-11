@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ['modifyvm', :id, '--usb', 'on']
     v.customize ['modifyvm', :id, '--usbehci', 'on']
     v.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'AVRISP mkII', '--vendorid', '0x03eb']
+    v.customize ['usbfilter', 'add', '1', '--target', :id, '--name', 'Arduino Serial', '--vendorid', '0x2341']
   end
 
   config.ssh.forward_agent = true

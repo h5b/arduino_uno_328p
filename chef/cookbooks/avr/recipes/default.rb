@@ -16,6 +16,7 @@ Chef::Log.info("[Adding AVR Development Packages]")
   "binutils-avr",
   "build-essential",
   "check",
+  "cu",
   "gcc-avr",
   "gdb-avr",
 ].each do |p|
