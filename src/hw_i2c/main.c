@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Sebastian Trahm
+ * Copyright (c) 2012-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -19,7 +19,7 @@
 #include <avr/interrupt.h>
 
 #include "board.h"
-#include "hw_uart/uart.h"
+#include "uart.h"
 #include "i2c.h"
 
 #define BAUDRATE	38400

@@ -1,4 +1,4 @@
-include ../Makefile.inc
+include ${CURDIR}/../Makefile.inc
 
 PROG=main
 SRCS=$(PROG).c \

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Sebastian Trahm
+ * Copyright (c) 2012-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -25,8 +25,8 @@
 
 #include "board.h"
 #include "ds1307.h"
-#include "hw_uart/uart.h"
-#include "sw_i2c/i2c.h"
+#include "i2c.h"
+#include "uart.h"
 
 #define BAUDRATE	38400
 #define BUFFER_SIZE	32

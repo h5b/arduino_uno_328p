@@ -1,10 +1,16 @@
-include ../Makefile.inc
+include ${CURDIR}/../Makefile.inc
 
 PROG=main
+
+I2C=	$(TOP)/sw_i2c
+UART=	$(TOP)/hw_uart
+
 SRCS=$(PROG).c \
-     nunchuk.c \
-     $(TOP)/hw_uart/uart.c \
-     $(TOP)/sw_i2c/i2c.c
+     $(I2C)/i2c.c \
+     $(UART)/uart.c \
+     nunchuk.c
+
+CFLAGS+= -I${I2C} -I${UART}
 
 CLEANFILES=$(PROG).hex $(PROG).out
 
