@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012 Sebastian Trahm
+ * Copyright (c) 2011-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any

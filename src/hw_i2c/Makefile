@@ -1,9 +1,13 @@
-include ../Makefile.inc
+include ${CURDIR}/../Makefile.inc
 
 PROG=main
+UART=	$(TOP)/hw_uart
+
 SRCS=$(PROG).c \
-     $(TOP)/hw_uart/uart.c \
-     i2c.c
+     i2c.c \
+     $(UART)/uart.c
+
+CFLAGS+= -I${UART}
 
 CLEANFILES=$(PROG).hex $(PROG).out
 

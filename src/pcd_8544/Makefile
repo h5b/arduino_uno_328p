@@ -1,9 +1,14 @@
-include ../Makefile.inc
+include ${CURDIR}/../Makefile.inc
 
 PROG=main
+
+SPI=	$(TOP)/sw_spi
+
 SRCS=$(PROG).c \
      pcd8544.c \
-     $(TOP)/sw_spi/spi.c
+     $(SPI)/spi.c
+
+CFLAGS+= -I${SPI}
 
 CLEANFILES=$(PROG).hex $(PROG).out
 
