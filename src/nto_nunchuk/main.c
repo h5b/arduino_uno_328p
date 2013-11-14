@@ -23,9 +23,9 @@
 
 #include <util/delay.h>
 
-#include "hw_uart/uart.h"
-#include "sw_i2c/i2c.h"
+#include "i2c.h"
 #include "nunchuk.h"
+#include "uart.h"
 
 #define BUFFER_SIZE	80
 #define BAUDRATE	115200

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012 Sebastian Trahm
+ * Copyright (c) 2011-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -18,8 +18,8 @@
 #include <avr/io.h>
 
 #include "ds1631.h"
-#include "sw_i2c/i2c.h"
-#include "util/util.h"
+#include "i2c.h"
+#include "util.h"
 
 struct ds1631_temperature ds1631_struct;
 
