@@ -1,4 +1,4 @@
-Chef::Log.info("[Adding Basic Development Packages]")
+Chef::Log.info("[Adding: Basic Development Packages]")
 [
   "build-essential",
   "gcc",
@@ -8,7 +8,7 @@ Chef::Log.info("[Adding Basic Development Packages]")
   package p
 end
 
-Chef::Log.info("[Adding AVR Development Packages]")
+Chef::Log.info("[Adding: AVR Development Packages]")
 [
   "avr-libc",
   "avrdude",
@@ -23,7 +23,7 @@ Chef::Log.info("[Adding AVR Development Packages]")
   package p
 end
 
-Chef::Log.info("[Adding User 'vagrant' to group 'dialout']")
+Chef::Log.info("[Adding: User 'vagrant' to group 'dialout']")
 group "dialout" do
   action :modify
   members "vagrant"
