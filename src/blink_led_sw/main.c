@@ -25,12 +25,12 @@
 int
 main(void)
 {
-	/* set whole Port B as output */
-	DDRB = 0xFF;
+	/* set Port of User LED as output */
+	DDRB = USER_LED;
 
 	while (1) {
-		/* toggle LED */
-		PORTB ^= (LED);
+		/* toggle User LED */
+		PORTB ^= (USER_LED);
 		_delay_ms(SECOND);
 	}
 

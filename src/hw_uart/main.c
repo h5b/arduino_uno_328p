@@ -32,7 +32,7 @@ main(void)
 	static const char infostring[] = "HW-UART Demo\r\n";
 
 	/* set User LED on Port B as output */
-	DDRB = LED;
+	DDRB = USER_LED;
 	uartInit(BAUDRATE);
 	sei();
 

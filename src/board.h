@@ -23,7 +23,7 @@
 #define F_CPU		16000000UL
 #endif
 
-/* LED is located at PB5 (Arduino digital pin 13) */
-#define LED		(1 << PB5)
+/* User LED is located at PB5 (Arduino digital pin 13) */
+#define USER_LED	(1 << PB5)
 
 #endif /* _BOARD_H_ */

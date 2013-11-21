@@ -37,8 +37,8 @@ main(void)
 	TIMSK1 |= (1 << OCIE1A);
 	OCR1A = ((F_CPU / 1024) - 1);
 
-	/* set whole Port B as output */
-	DDRB = 0xFF;
+	/* set Port of User LED as output */
+	DDRB = USER_LED;
 	sei();
 
 	while(1)
@@ -54,5 +54,5 @@ main(void)
 ISR
 (TIMER1_COMPA_vect)
 {
-	PORTB ^= (LED);
+	PORTB ^= (USER_LED);
 }

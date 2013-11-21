@@ -40,7 +40,7 @@ main(void)
 	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
 
-	DDRB = LED;
+	DDRB = USER_LED;
 	uartInit(BAUDRATE);
 	i2cInit(I2C_FAST_MODE);
 	ds1631Init();
