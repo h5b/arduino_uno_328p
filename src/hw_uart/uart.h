@@ -27,11 +27,11 @@ static volatile unsigned char txHead;
 static volatile unsigned char txTail;
 
 /*
- * --- Head ---+     --- Tail ----+
- *             |                  |
- * +-----------v------- .. -------v-----+
+ * --- Head --,     --- Tail ----,
+ *            |                  |
+ * ,__________v________    ______v______,
  * | | | | | | | | | |  ..  | | | | | | |
- * +------------------- .. -------------+
+ * `-------------------    -------------'
  * 0                                    UART_BUFFER_SIZE - 1
  */
 static volatile unsigned char txBuffer[UART_BUFFER_SIZE];
