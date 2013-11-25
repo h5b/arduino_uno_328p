@@ -2,3 +2,5 @@
 *.out
 util_testrunner
 /.vagrant
+doc/AppNotes
+doc/DataSheets
