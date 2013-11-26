@@ -16,7 +16,7 @@ a development environment with VirtualBox and Vagrant.
 ### Bootstrapping the Virtual Development Machine
 
 ```
-git clone git@github.com:h5b/arduino_uno_328p.git
+git clone https://github.com/h5b/arduino_uno_328p.git
 cd arduino_uno_328p
 git submodule init
 git submodule update
