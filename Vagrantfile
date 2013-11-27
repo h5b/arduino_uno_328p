@@ -9,10 +9,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "avr-dev"
     # Enable USB Support with EHCI and Device Filtering to support AVRISP-MKII
+    # and Arduino UNO's/Duemilanove's USB-to-Serial Port
     v.customize ['modifyvm', :id, '--usb', 'on']
     v.customize ['modifyvm', :id, '--usbehci', 'on']
     v.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'AVRISP mkII', '--vendorid', '0x03eb']
-    v.customize ['usbfilter', 'add', '1', '--target', :id, '--name', 'Arduino Serial', '--vendorid', '0x2341']
+    v.customize ['usbfilter', 'add', '1', '--target', :id, '--name', 'Uno Serial', '--vendorid', '0x2341']
+    v.customize ['usbfilter', 'add', '2', '--target', :id, '--name', 'Duemilanove Serial', '--vendorid', '0x0403']
   end
 
   config.ssh.forward_agent = true
