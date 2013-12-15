@@ -46,6 +46,9 @@
 /*
  * DS1631 - Command Set
  */
+#define DS1631_RES_9BIT	0x00 /*  9 Bit Temperature Resolution */
+#define DS1631_RES_10BIT	0x04 /* 10 Bit Temperature Resolution */
+#define DS1631_RES_11BIT	0x08 /* 11 Bit Temperature Resolution */
 #define DS1631_RES_12BIT	0x0C /* 12 Bit Temperature Resolution */
 
 #define DS1631_ACCESS_CFG	0xAC /* Access the configuration register */
@@ -60,6 +63,9 @@
 #define DS1631_READ_TEMP	0xAA /* Read temperature register */
 #define DS1631_START_CONV	0x51 /* Start temperature conversion */
 #define DS1631_STOP_CONV	0x22 /* Stop temperature conversion */
+
+#define DS1631_CTRL_DONE	0x80 /* Temperature Conversion DONE */
+#define DS1631_CTRL_ONESHOT	0x01 /* 1SHOT Conversion Mode Bit */
 
 #define DS1631_FRACTION(x)	( ((x) * 100) / 256 )
 
