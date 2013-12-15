@@ -38,7 +38,6 @@ main(void)
 	struct rtc_tm* rtc = NULL;
 	char buffer[BUFFER_SIZE];
 
-	DDRB = USER_LED;
 	uartInit(BAUDRATE);
 	i2cInit(I2C_STD_MODE);
 	sei();

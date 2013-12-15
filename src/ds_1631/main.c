@@ -35,11 +35,10 @@ int
 main(void)
 {
 	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
-	struct ds1631_temperature* temperature= NULL;
+	struct ds1631_temperature* temperature = NULL;
 	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
 
-	DDRB = USER_LED;
 	uartInit(BAUDRATE);
 	i2cInit(I2C_FAST_MODE);
 	ds1631Init();
