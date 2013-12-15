@@ -18,9 +18,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+#include "board.h"
 #include "uart.h"
 
-#define BAUDRATE	38400
 #define HALF_SECOND	500
 
 int

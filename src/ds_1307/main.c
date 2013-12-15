@@ -28,7 +28,6 @@
 #include "i2c.h"
 #include "uart.h"
 
-#define BAUDRATE	38400
 #define BUFFER_SIZE	32
 #define SECOND		1000
 

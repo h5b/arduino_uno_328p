@@ -23,12 +23,12 @@
 
 #include <util/delay.h>
 
+#include "board.h"
 #include "i2c.h"
 #include "nunchuk.h"
 #include "uart.h"
 
 #define BUFFER_SIZE	80
-#define BAUDRATE	115200
 
 #define ACCEL_CALIB_X	500
 #define ACCEL_CALIB_Y	500

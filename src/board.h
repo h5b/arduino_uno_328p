@@ -23,6 +23,11 @@
 #define F_CPU		16000000UL
 #endif
 
+/* default to UART Speed 115200 */
+#ifndef BAUDRATE
+#define BAUDRATE	115200
+#endif
+
 /* User LED is located at PB5 (Arduino digital pin 13) */
 #define USER_LED	(1 << PB5)
 
