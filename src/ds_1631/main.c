@@ -35,7 +35,7 @@ int
 main(void)
 {
 	static const char infostring[] PROGMEM = "Demo - DS1631 Thermometer\r\n";
-	struct ds1631_temperature* temperature = NULL;
+	struct ds1631_t* ds1631_sensor = NULL;
 	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
 
@@ -48,11 +48,11 @@ main(void)
 
 	while (1) {
 		readCount = ds1631GetRegister(DS1631_READ_COUNT);
-		temperature= ds1631GetTemperature(DS1631_RD_ADDR);
+		ds1631_sensor = ds1631GetTemperature(DS1631_RD_ADDR);
 
 		sprintf(buffer,
 		    "[COUNT: %02d] [TH: %03d] [TL: %03d]\r\n",
-		    readCount, temperature->msb, temperature->lsb);
+		    readCount, ds1631_sensor->msb, ds1631_sensor->lsb);
 
 		uartPutString(buffer);
 		_delay_ms(SECOND);

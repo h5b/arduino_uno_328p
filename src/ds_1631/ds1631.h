@@ -141,15 +141,13 @@
  * `----'----'------------'-----------------------'
  */
 
-struct ds1631_temperature {
+struct ds1631_t {
 	unsigned char msb;
 	unsigned char lsb;
 };
 
-extern struct ds1631_temperature ds1631_struct;
-
 unsigned char ds1631GetRegister(unsigned char);
-struct ds1631_temperature* ds1631GetTemperature(unsigned char);
+struct ds1631_t* ds1631GetTemperature(unsigned char);
 void ds1631Init(void);
 void ds1631WriteConfig(unsigned char, unsigned char);
 

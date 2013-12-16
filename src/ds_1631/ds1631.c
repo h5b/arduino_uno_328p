@@ -21,7 +21,7 @@
 #include "i2c.h"
 #include "util.h"
 
-struct ds1631_temperature ds1631_struct;
+struct ds1631_t ds1631_sensor;
 
 void
 ds1631Init(void)
@@ -48,17 +48,17 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 	i2cStop();
 }
 
-struct ds1631_temperature*
+struct ds1631_t*
 ds1631GetTemperature(unsigned char addr)
 {
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
 	i2cStart(addr);
-	ds1631_struct.msb = i2cReadACK();
-	ds1631_struct.lsb = i2cReadNAK();
+	ds1631_sensor.msb = i2cReadACK();
+	ds1631_sensor.lsb = i2cReadNAK();
 	i2cStop();
 
-	return &ds1631_struct;
+	return &ds1631_sensor;
 }
 
 unsigned char
