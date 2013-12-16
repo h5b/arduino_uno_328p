@@ -34,7 +34,7 @@
 int
 main(void)
 {
-	static const char infostring[] PROGMEM = "SW-I2C Demo - DS1631\r\n";
+	static const char infostring[] PROGMEM = "Demo - DS1631 Thermometer\r\n";
 	struct ds1631_temperature* temperature = NULL;
 	char buffer[BUFFER_SIZE];
 	unsigned char readCount;
@@ -51,9 +51,8 @@ main(void)
 		temperature= ds1631GetTemperature(DS1631_RD_ADDR);
 
 		sprintf(buffer,
-		    "[COUNTER: %02d] [TH: %03d] [TL: %03d] [%3d.%.2d °C]\r\n",
-		    readCount, temperature->MSB, temperature->LSB,
-		    temperature->MSB, temperature->fraction);
+		    "[COUNT: %02d] [TH: %03d] [TL: %03d]\r\n",
+		    readCount, temperature->msb, temperature->lsb);
 
 		uartPutString(buffer);
 		_delay_ms(SECOND);

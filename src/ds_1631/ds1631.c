@@ -51,18 +51,12 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 struct ds1631_temperature*
 ds1631GetTemperature(unsigned char addr)
 {
-	unsigned char temperatureMSB, temperatureLSB;
-
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
 	i2cStart(addr);
-	temperatureMSB = i2cReadACK();
-	temperatureLSB = i2cReadNAK();
+	ds1631_struct.msb = i2cReadACK();
+	ds1631_struct.lsb = i2cReadNAK();
 	i2cStop();
-
-	ds1631_struct.fraction = DS1631_FRACTION(temperatureLSB);
-	ds1631_struct.MSB = temperatureMSB;
-	ds1631_struct.LSB = temperatureLSB;
 
 	return &ds1631_struct;
 }

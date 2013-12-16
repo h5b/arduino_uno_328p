@@ -142,9 +142,8 @@
  */
 
 struct ds1631_temperature {
-	unsigned char MSB;
-	unsigned char LSB;
-	unsigned char fraction;
+	unsigned char msb;
+	unsigned char lsb;
 };
 
 extern struct ds1631_temperature ds1631_struct;
