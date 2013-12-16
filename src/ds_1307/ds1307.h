@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Sebastian Trahm
+ * Copyright (c) 2012-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -47,6 +47,8 @@
 #define DS1307_SRAM_ADDR	0x08
 
 #define DS1307_SRAM_SIZE	0x38
+
+#define DS1307_CLOCK_HALT	0x7F
 
 #define DS1307_RD_ADDR		0xD1
 #define DS1307_WR_ADDR		0xD0

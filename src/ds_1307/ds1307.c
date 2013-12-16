@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Sebastian Trahm
+ * Copyright (c) 2012-2013 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -37,7 +37,7 @@ ds1307GetTime(void)
 	 * Consecutive Read the first Six Bytes: Seconds, Minutes,
 	 * Hours, Workday, Day of Month, Month
 	 */
-	for (i=0; i < (sizeof(rtcInfo)-1); i++)
+	for (i = 0; i < (sizeof(rtcInfo)-1); i++)
 	{
 		rtcInfo[i] = bcd2dec(i2cReadACK());
 	}
@@ -45,8 +45,8 @@ ds1307GetTime(void)
 	rtcInfo[sizeof(rtcInfo)-1] = bcd2dec(i2cReadNAK());
 	i2cStop();
 
-	/* Mask 7th Bit of Seconds to ensure CLOCK HALT is disabled */
-	rtcInfo[0] &= (0x7F);
+	/* Clear 7th Bit of Seconds to ensure CLOCK HALT is disabled */
+	rtcInfo[0] &= DS1307_CLOCK_HALT;
 
 	ds1307_tm.seconds = rtcInfo[0];
 	ds1307_tm.minutes = rtcInfo[1];
