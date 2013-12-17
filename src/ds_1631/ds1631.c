@@ -21,15 +21,13 @@
 #include "i2c.h"
 #include "util.h"
 
-struct ds1631_t ds1631_sensor;
-
 void
 ds1631Init(void)
 {
 	unsigned char cfgREG;
 
 	/* Read Config Register and Set 12 Bit Conversion */
-	cfgREG = ds1631GetRegister(DS1631_ACCESS_CFG);
+	cfgREG = ds1631ReadRegister(DS1631_ACCESS_CFG);
 	cfgREG |= DS1631_RES_12BIT;
 	i2cStart(DS1631_WR_ADDR);
 	i2cWrite(DS1631_ACCESS_CFG);
@@ -48,21 +46,19 @@ ds1631WriteConfig(unsigned char addr, unsigned char data)
 	i2cStop();
 }
 
-struct ds1631_t*
-ds1631GetTemperature(unsigned char addr)
+void
+ds1631ReadSensor(struct ds1631_t* ds, unsigned char addr)
 {
 	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
 
 	i2cStart(addr);
-	ds1631_sensor.msb = i2cReadACK();
-	ds1631_sensor.lsb = i2cReadNAK();
+	ds->msb = i2cReadACK();
+	ds->lsb = i2cReadNAK();
 	i2cStop();
-
-	return &ds1631_sensor;
 }
 
 unsigned char
-ds1631GetRegister(unsigned char cmd)
+ds1631ReadRegister(unsigned char cmd)
 {
 	unsigned char result;
 

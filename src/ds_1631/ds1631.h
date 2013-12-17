@@ -146,8 +146,8 @@ struct ds1631_t {
 	unsigned char lsb;
 };
 
-unsigned char ds1631GetRegister(unsigned char);
-struct ds1631_t* ds1631GetTemperature(unsigned char);
+unsigned char ds1631ReadRegister(unsigned char);
+void ds1631ReadSensor(struct ds1631_t*, unsigned char addr);
 void ds1631Init(void);
 void ds1631WriteConfig(unsigned char, unsigned char);
 
