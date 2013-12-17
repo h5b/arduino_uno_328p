@@ -34,10 +34,10 @@
 int
 main(void)
 {
-	static const char infostring[] PROGMEM = "Demo - DS1631 Thermometer\r\n";
 	struct ds1631_t ds1631_sensor;
+
+	static const char infostring[] PROGMEM = "Demo - DS1631 Thermometer\r\n";
 	char buffer[BUFFER_SIZE];
-	unsigned char readCount;
 
 	uartInit(BAUDRATE);
 	i2cInit(I2C_FAST_MODE);
@@ -47,12 +47,11 @@ main(void)
 	uartPutString_P(infostring);
 
 	while (1) {
-		readCount = ds1631ReadRegister(DS1631_READ_COUNT);
 		ds1631ReadSensor(&ds1631_sensor, DS1631_RD_ADDR);
 
 		sprintf(buffer,
-		    "[COUNT: %02d] [TH: %03d] [TL: %03d]\r\n",
-		    readCount, ds1631_sensor.msb, ds1631_sensor.lsb);
+		    "[TEMP: %03d] [TH: %03d] [TL: %03d]\r\n",
+		    ds1631_sensor.val, ds1631_sensor.msb, ds1631_sensor.lsb);
 
 		uartPutString(buffer);
 		_delay_ms(SECOND);

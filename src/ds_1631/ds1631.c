@@ -55,6 +55,17 @@ ds1631ReadSensor(struct ds1631_t* ds, unsigned char addr)
 	ds->msb = i2cReadACK();
 	ds->lsb = i2cReadNAK();
 	i2cStop();
+
+	/*
+	 * The temperature reading of less than 0 degree Celsius is
+	 * obtained by calculating the two's complement of the data.
+	 * We only consider the Most Significant Byte for now.
+	 */
+	if (ds->msb & 0x80) {
+		ds->val = (int16_t)(ds->msb & 0x7F) - ((ds->msb & 0x80) ? 128 : 0);
+	} else {
+		ds->val = (int16_t)(ds->msb);
+	}
 }
 
 unsigned char

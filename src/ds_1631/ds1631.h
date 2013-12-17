@@ -142,8 +142,9 @@
  */
 
 struct ds1631_t {
-	unsigned char msb;
-	unsigned char lsb;
+	uint8_t msb;
+	uint8_t lsb;
+	int16_t val;
 };
 
 unsigned char ds1631ReadRegister(unsigned char);
