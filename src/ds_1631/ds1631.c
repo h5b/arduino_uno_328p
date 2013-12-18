@@ -22,36 +22,36 @@
 #include "util.h"
 
 void
-ds1631Init(void)
+ds1631Init(struct ds1631_t* ds)
 {
-	unsigned char cfgREG;
+	unsigned char config;
 
 	/* Read Config Register and Set 12 Bit Conversion */
-	cfgREG = ds1631ReadRegister(DS1631_ACCESS_CFG);
-	cfgREG |= DS1631_RES_12BIT;
-	i2cStart(DS1631_WR_ADDR);
+	config = ds1631ReadRegister(ds, DS1631_ACCESS_CFG);
+	config |= DS1631_RES_12BIT;
+	i2cStart((ds->addr & 0xFE));
 	i2cWrite(DS1631_ACCESS_CFG);
-	i2cWrite(cfgREG);
+	i2cWrite(config);
 	i2cStop();
 
-	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_CONT_CONV);
-	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_START_CONV);
+	ds1631WriteConfig(ds, DS1631_CONT_CONV);
+	ds1631WriteConfig(ds, DS1631_START_CONV);
 }
 
 void
-ds1631WriteConfig(unsigned char addr, unsigned char data)
+ds1631WriteConfig(struct ds1631_t* ds, unsigned char data)
 {
-	i2cStart(addr);
+	i2cStart((ds->addr & 0xFE));
 	i2cWrite(data);
 	i2cStop();
 }
 
 void
-ds1631ReadSensor(struct ds1631_t* ds, unsigned char addr)
+ds1631ReadSensor(struct ds1631_t* ds)
 {
-	ds1631WriteConfig(DS1631_WR_ADDR, DS1631_READ_TEMP);
+	ds1631WriteConfig(ds, DS1631_READ_TEMP);
 
-	i2cStart(addr);
+	i2cStart(ds->addr);
 	ds->msb = i2cReadACK();
 	ds->lsb = i2cReadNAK();
 	i2cStop();
@@ -69,15 +69,15 @@ ds1631ReadSensor(struct ds1631_t* ds, unsigned char addr)
 }
 
 unsigned char
-ds1631ReadRegister(unsigned char cmd)
+ds1631ReadRegister(struct ds1631_t* ds, unsigned char cmd)
 {
 	unsigned char result;
 
-	i2cStart(DS1631_WR_ADDR);
+	i2cStart((ds->addr & 0xFE));
 	i2cWrite(cmd);
 	i2cStop();
 
-	i2cStart(DS1631_RD_ADDR);
+	i2cStart(ds->addr);
 	result = i2cReadNAK();
 	i2cStop();
 

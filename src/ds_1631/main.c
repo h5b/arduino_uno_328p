@@ -28,29 +28,37 @@
 #include "i2c.h"
 #include "uart.h"
 
-#define BUFFER_SIZE	48
+#define BUFFER_SIZE	36
 #define SECOND		1000
+
+/*
+ * The DS1631 provides three configurable address pins which allow
+ * up to eight addresses and therefore devices on the same bus.
+ * In this example all address bits are connected to ground
+ * (see schematic in header file) leading to Base Address 0x91.
+ */
+#define THERMO_ADDR	0x91
 
 int
 main(void)
 {
 	struct ds1631_t ds1631_sensor;
+	ds1631_sensor.addr = THERMO_ADDR;
 
 	static const char infostring[] PROGMEM = "Demo - DS1631 Thermometer\r\n";
 	char buffer[BUFFER_SIZE];
 
 	uartInit(BAUDRATE);
 	i2cInit(I2C_FAST_MODE);
-	ds1631Init();
+	ds1631Init(&ds1631_sensor);
 	sei();
 
 	uartPutString_P(infostring);
 
 	while (1) {
-		ds1631ReadSensor(&ds1631_sensor, DS1631_RD_ADDR);
+		ds1631ReadSensor(&ds1631_sensor);
 
-		sprintf(buffer,
-		    "[TEMP: %03d] [TH: %03d] [TL: %03d]\r\n",
+		sprintf(buffer, "[TEMP: %03d] [TH: %03d] [TL: %03d]\r\n",
 		    ds1631_sensor.val, ds1631_sensor.msb, ds1631_sensor.lsb);
 
 		uartPutString(buffer);

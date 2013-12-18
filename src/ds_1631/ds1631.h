@@ -21,18 +21,19 @@
 /*
  * DS1631 - Circuitry
  *
- * .--------------=4k7=-----------.
- * | .------------=4k7=---------. |
+ * .--------------=4k7=-----------,
+ * | .------------=4k7=---------, |
  * | |                          | |
  * | |    ,____  ____.          | |
  * | '-1--|SDA `' VCC|--8-------`-`--> 3V3
- * '---2--|SCL     A0|--7----.
- *     3--|Tout    A1|--6----|
- *     4.-|GND     A2|--5----|
- *      | `----------'       |
- *      `--------------------`--| GND
+ * '---2--|SCL     A0|--7
+ *     3--|Tout    A1|--6
+ *     4.-|GND     A2|--5
+ *      | `----------'       
+ *      |
+ *      `----------------------------| GND
  */
-
+ 
 /*
  * DS1631 - Control Byte
  * ,-------------------------------------.
@@ -40,12 +41,8 @@
  * `-------------------------------------'
  * 7                                     0
  */
-#define DS1631_RD_ADDR		0x91
-#define DS1631_WR_ADDR		0x90
 
-/*
- * DS1631 - Command Set
- */
+/* DS1631 - Command Set */
 #define DS1631_RES_9BIT	0x00 /*  9 Bit Temperature Resolution */
 #define DS1631_RES_10BIT	0x04 /* 10 Bit Temperature Resolution */
 #define DS1631_RES_11BIT	0x08 /* 11 Bit Temperature Resolution */
@@ -142,14 +139,15 @@
  */
 
 struct ds1631_t {
+	uint8_t addr;
 	uint8_t msb;
 	uint8_t lsb;
 	int16_t val;
 };
 
-unsigned char ds1631ReadRegister(unsigned char);
-void ds1631ReadSensor(struct ds1631_t*, unsigned char addr);
-void ds1631Init(void);
-void ds1631WriteConfig(unsigned char, unsigned char);
+unsigned char ds1631ReadRegister(struct ds1631_t*, unsigned char);
+void ds1631ReadSensor(struct ds1631_t*);
+void ds1631Init(struct ds1631_t*);
+void ds1631WriteConfig(struct ds1631_t*, unsigned char);
 
 #endif /* _DS1631_H_ */
