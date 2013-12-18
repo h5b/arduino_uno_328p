@@ -24,10 +24,17 @@ CPPFLAGS+= -D__AVR_ATmega328P__
 CPPFLAGS+= -DF_CPU=${CLOCK}
 
 CFLAGS += -mmcu=$(MCU) -O$(OPT)
-CFLAGS += -Werror -Wextra
-CFLAGS += -Wall -Wcast-align -Wimplicit
-CFLAGS += -Wpointer-arith -Wswitch
-CFLAGS += -Wredundant-decls -Wreturn-type -Wshadow -Wunused
-CFLAGS += -funsigned-char
-CFLAGS += -funsigned-bitfields
 CFLAGS += -fpack-struct
+CFLAGS += -funsigned-bitfields
+CFLAGS += -funsigned-char
+CFLAGS += -Wall
+CFLAGS += -Wcast-align
+CFLAGS += -Werror
+CFLAGS += -Wextra
+CFLAGS += -Wimplicit
+CFLAGS += -Wpointer-arith
+CFLAGS += -Wredundant-decls
+CFLAGS += -Wreturn-type
+CFLAGS += -Wshadow
+CFLAGS += -Wswitch
+CFLAGS += -Wunused
