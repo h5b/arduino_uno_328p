@@ -17,6 +17,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
 
 #include <util/delay.h>
 
@@ -28,14 +29,14 @@
 int
 main(void)
 {
-	static const char infostring[] = "HW-UART Demo\r\n";
+	static const char infostring[] PROGMEM = "Demo - HW-UART\r\n";
 
 	/* set User LED on Port B as output */
 	DDRB = USER_LED;
 	uartInit(BAUDRATE);
 	sei();
 
-	uartPutString(infostring);
+	uartPutString_P(infostring);
 
 	while (1) {
 		/* output a heartbeat */

@@ -34,7 +34,7 @@
 int
 main(void)
 {
-	static const char infostring[] PROGMEM = "RTC Demo - DS1307\r\n";
+	static const char infostring[] PROGMEM = "Demo - DS1307 RTC\r\n";
 	struct rtc_tm* rtc = NULL;
 	char buffer[BUFFER_SIZE];
 
@@ -45,6 +45,7 @@ main(void)
 	ds1307Init();
 	ds1307SetTime(SYS_HOUR, SYS_MINS, SYS_SECS);
 	ds1307SetDate(SYS_DAY, SYS_MONTH, SYS_YEAR);
+
 	uartPutString_P(infostring);
 
 	while (1) {

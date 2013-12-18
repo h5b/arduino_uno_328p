@@ -17,6 +17,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/pgmspace.h>
 
 #include "board.h"
 #include "uart.h"
@@ -26,10 +27,10 @@
 int
 main(void)
 {
-	static const char infostring[] = "SOFT-UART Demo\r\n";
+	static const char infostring[] PROGMEM = "Demo - SW-UART\r\n";
 
 	uartInit(BAUDRATE);
-	uartPutString(infostring);
+	uartPutString_P(infostring);
 
 	while (1) {
 		uartPutString(".. ");
