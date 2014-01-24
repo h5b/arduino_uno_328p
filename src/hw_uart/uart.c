@@ -32,8 +32,9 @@ uartInit(uint32_t baudrate)
 	/*
 	 * UBRR - Uart Baud Rate Register
 	 * UBRR = System Clock / Baud Rate * 16 - 1
+	 * UBRR is 12 bit long. Bit 12-15 are currently unused
 	 */
-	uint8_t ubrr = ((F_CPU + baudrate * 8L) / (baudrate * 16L) - 1);
+	uint16_t ubrr = ((F_CPU + baudrate * 8L) / (baudrate * 16L) - 1);
 
 	/* set Baud Rate Register */
 	UBRR0H = (unsigned int)(ubrr >> 8);
