@@ -4,7 +4,6 @@ template "/etc/motd.tail" do
   mode "0644"
   owner "root"
   group "root"
-  action :create_if_missing
 end
 
 Chef::Log.info("[Adding: udev Rule for AVRISP-MKII Programmer]")
