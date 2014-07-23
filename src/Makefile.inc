@@ -43,6 +43,9 @@ CLEANFILES=$(PROG).hex $(PROG).out
 
 $(PROG).out: $(SRCS)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -o $(PROG).out $(SRCS)
+	@echo "___ [SIZE] _____________________________________________"
+	$(SIZE) $@
+	@echo "___ [SIZE] _____________________________________________"
 
 $(PROG).hex: $(PROG).out
 	$(OBJCOPY) -O ihex $(PROG).out $(PROG).hex
