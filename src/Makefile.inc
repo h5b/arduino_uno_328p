@@ -38,3 +38,17 @@ CFLAGS += -Wreturn-type
 CFLAGS += -Wshadow
 CFLAGS += -Wswitch
 CFLAGS += -Wunused
+
+CLEANFILES=$(PROG).hex $(PROG).out
+
+$(PROG).out: $(SRCS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $(PROG).out $(SRCS)
+
+$(PROG).hex: $(PROG).out
+	$(OBJCOPY) -O ihex $(PROG).out $(PROG).hex
+
+burn: clean $(PROG).hex
+	$(AVR_DUDE) $(AVR_FLAGS) -e -U flash:w:$(PROG).hex
+
+clean:
+	rm -f $(CLEANFILES)
