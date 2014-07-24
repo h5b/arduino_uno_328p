@@ -1,7 +1,7 @@
-PROG=main
-SRCS=$(PROG).c \
-     ${CURDIR}/pcd8544.c \
-     $(SPI)/spi.c
+PROG=	main
+SRCS=	$(PROG).c \
+	${CURDIR}/pcd8544.c \
+	$(SPI)/spi.c
 
 SPI=	$(TOP)/sw_spi
 

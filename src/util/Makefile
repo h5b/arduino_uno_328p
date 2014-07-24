@@ -1,20 +1,20 @@
-CHECK_SUITE=util_testrunner
-CHECK_SRCS=$(CHECK_SUITE).c \
-	   util.c
+CHECK_SUITE=	util_testrunner
+CHECK_SRCS=	$(CHECK_SUITE).c \
+		util.c
 
-CLEANFILES=$(CHECK_SUITE)
+CLEANFILES=	$(CHECK_SUITE)
 
-CHECK_LIBS	= -lcheck
-CHECK_CC	= gcc
+CHECK_LIBS=	-lcheck
+CHECK_CC=	gcc
 
-CHECK_CFLAGS += -Werror -Wextra
-CHECK_CFLAGS += -Wall -Wcast-align -Wimplicit
-CHECK_CFLAGS += -Wpointer-arith -Wswitch
-CHECK_CFLAGS += -Wredundant-decls -Wreturn-type -Wshadow -Wunused
-CHECK_CFLAGS += -fno-builtin
-CHECK_CFLAGS += -funsigned-char
-CHECK_CFLAGS += -funsigned-bitfields
-CHECK_CFLAGS += -fpack-struct
+CHECK_CFLAGS+= -Werror -Wextra
+CHECK_CFLAGS+= -Wall -Wcast-align -Wimplicit
+CHECK_CFLAGS+= -Wpointer-arith -Wswitch
+CHECK_CFLAGS+= -Wredundant-decls -Wreturn-type -Wshadow -Wunused
+CHECK_CFLAGS+= -fno-builtin
+CHECK_CFLAGS+= -funsigned-char
+CHECK_CFLAGS+= -funsigned-bitfields
+CHECK_CFLAGS+= -fpack-struct
 
 check: $(CHECK_SUITE)
 	@echo ",---------------------."

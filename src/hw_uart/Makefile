@@ -1,5 +1,5 @@
-PROG=main
-SRCS=$(PROG).c \
-     ${CURDIR}/uart.c
+PROG=	main
+SRCS=	$(PROG).c \
+	${CURDIR}/uart.c
 
 include ${CURDIR}/../Makefile.inc
