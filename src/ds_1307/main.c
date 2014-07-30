@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2013 Sebastian Trahm
+ * Copyright (c) 2012-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -34,8 +34,9 @@
 int
 main(void)
 {
+	struct ds1307_t rtc_tm;
+
 	static const char infostring[] PROGMEM = "Demo - DS1307 RTC\r\n";
-	struct rtc_tm* rtc = NULL;
 	char buffer[BUFFER_SIZE];
 
 	uartInit(BAUDRATE);
@@ -50,10 +51,10 @@ main(void)
 
 	while (1) {
 		/* Read Current Time from DS1307 and output to UART */
-		rtc = ds1307GetTime();
+		ds1307GetTime(&rtc_tm);
 		sprintf(buffer, "RTC: [%02d:%02d:%02d] - [%02d.%02d.%02d]\r\n",
-		    rtc->hours, rtc->minutes, rtc->seconds, rtc->day,
-		    rtc->month, rtc->year);
+		    rtc_tm.hours, rtc_tm.minutes, rtc_tm.seconds, rtc_tm.day,
+		    rtc_tm.month, rtc_tm.year);
 		uartPutString(buffer);
 		_delay_ms(SECOND);
 	}

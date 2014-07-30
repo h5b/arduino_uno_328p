@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2013 Sebastian Trahm
+ * Copyright (c) 2012-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -131,7 +131,7 @@
  *      `----'----'----'----'----'----'----'----'
  *      7                                       0
  */
-struct rtc_tm {
+struct ds1307_t {
 	uint8_t seconds : 7;
 	uint8_t clockHalt : 1;
 	uint8_t minutes : 7;
@@ -150,9 +150,7 @@ struct rtc_tm {
 	uint8_t sram[56];
 };
 
-extern struct rtc_tm ds1307_tm;
-
-struct rtc_tm* ds1307GetTime(void);
+void ds1307GetTime(struct ds1307_t*);
 void ds1307Init(void);
 void ds1307SetDate(uint8_t, uint8_t, uint8_t);
 void ds1307SetTime(uint8_t, uint8_t, uint8_t);

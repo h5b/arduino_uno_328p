@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2013 Sebastian Trahm
+ * Copyright (c) 2012-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -21,10 +21,8 @@
 #include "i2c.h"
 #include "util.h"
 
-struct rtc_tm ds1307_tm;
-
-struct rtc_tm*
-ds1307GetTime(void)
+void
+ds1307GetTime(struct ds1307_t* rtc)
 {
 	uint8_t i, rtcInfo[7];
 
@@ -48,15 +46,13 @@ ds1307GetTime(void)
 	/* Clear 7th Bit of Seconds to ensure CLOCK HALT is disabled */
 	rtcInfo[0] &= DS1307_CLOCK_HALT;
 
-	ds1307_tm.seconds = rtcInfo[0];
-	ds1307_tm.minutes = rtcInfo[1];
-	ds1307_tm.hours = rtcInfo[2];
-	ds1307_tm.dayOfWeek = rtcInfo[3];
-	ds1307_tm.day = rtcInfo[4];
-	ds1307_tm.month = rtcInfo[5];
-	ds1307_tm.year = rtcInfo[6];
-
-	return &ds1307_tm;
+	rtc->seconds = rtcInfo[0];
+	rtc->minutes = rtcInfo[1];
+	rtc->hours = rtcInfo[2];
+	rtc->dayOfWeek = rtcInfo[3];
+	rtc->day = rtcInfo[4];
+	rtc->month = rtcInfo[5];
+	rtc->year = rtcInfo[6];
 }
 
 void
