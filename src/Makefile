@@ -5,8 +5,7 @@ SUBDIRS=	blink_led_hw \
 		hw_uart \
 		nto_nunchuk \
 		pcd_8544 \
-		sw_uart \
-		util
+		sw_uart
 
 all:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d; done

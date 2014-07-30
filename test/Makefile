@@ -1,11 +1,13 @@
 CHECK_SUITE=	util_testrunner
 CHECK_SRCS=	$(CHECK_SUITE).c \
-		util.c
+		${CURDIR}/../src/util/util.c
 
 CLEANFILES=	$(CHECK_SUITE)
 
 CHECK_LIBS=	-lcheck
 CHECK_CC=	gcc
+
+INCDIR+=	-I${CURDIR}/../src/util
 
 CHECK_CFLAGS+= -Werror -Wextra
 CHECK_CFLAGS+= -Wall -Wcast-align -Wimplicit
@@ -24,7 +26,7 @@ check: $(CHECK_SUITE)
 	@echo ""
 
 $(CHECK_SUITE): $(CHECK_SRCS)
-	$(CHECK_CC) $(CHECK_SRCS) $(CHECK_CFLAGS) $(CHECK_LIBS) -o $@
+	$(CHECK_CC) $(CHECK_SRCS) $(INCDIR) $(CHECK_CFLAGS) $(CHECK_LIBS) -o $@
 
 clean:
 	rm -f $(CLEANFILES)
