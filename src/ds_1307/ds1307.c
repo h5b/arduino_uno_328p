@@ -25,34 +25,24 @@ void
 ds1307GetTime(struct ds1307_t* rtc)
 {
 	uint8_t i, rtcInfo[7];
+	char *rtc_p = (char*)rtc;
 
 	i2cStart(DS1307_WR_ADDR);
 	i2cWrite(DS1307_SEC_ADDR);
 	i2cStop();
 
 	i2cStart(DS1307_RD_ADDR);
-	/*
-	 * Consecutive Read the first Six Bytes: Seconds, Minutes,
-	 * Hours, Workday, Day of Month, Month
-	 */
-	for (i = 0; i < (sizeof(rtcInfo)-1); i++)
-	{
+	/* Retrieve Seconds, Minutes, Hours, Workday, Day of Month, Month */
+	for (i = 0; i < (sizeof(rtcInfo) - 1); i++)
 		rtcInfo[i] = bcd2dec(i2cReadACK());
-	}
-	/* Last Read is Year (7th Byte) and needs to be NAK */
-	rtcInfo[sizeof(rtcInfo)-1] = bcd2dec(i2cReadNAK());
+
+	/* Last Read is Year (7th byte) and needs to be NAK */
+	rtcInfo[sizeof(rtcInfo) - 1] = bcd2dec(i2cReadNAK());
 	i2cStop();
 
-	/* Clear 7th Bit of Seconds to ensure CLOCK HALT is disabled */
-	rtcInfo[0] &= DS1307_CLOCK_HALT;
-
-	rtc->seconds = rtcInfo[0];
-	rtc->minutes = rtcInfo[1];
-	rtc->hours = rtcInfo[2];
-	rtc->dayOfWeek = rtcInfo[3];
-	rtc->day = rtcInfo[4];
-	rtc->month = rtcInfo[5];
-	rtc->year = rtcInfo[6];
+	/* Fill passed rtc struct with received data */
+	for (i = 0; i < sizeof(rtcInfo); i++)
+		*rtc_p++ = rtcInfo[i];
 }
 
 void
