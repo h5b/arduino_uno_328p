@@ -14,7 +14,6 @@ Chef::Log.info("[Adding: AVR Development Packages]")
   "avrdude",
   "avrdude-doc",
   "binutils-avr",
-  "build-essential",
   "check",
   "cu",
   "gcc-avr",
