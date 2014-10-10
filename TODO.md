@@ -1,2 +1,2 @@
 # TODO
-- mention debug output for the programmer in README.md
+- update virtual environment to a more recent version

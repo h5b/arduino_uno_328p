@@ -87,6 +87,18 @@ can login to the machine by running: `vagrant ssh`
 
 ### Running Code Examples
 
+Ensure that your programmer has been picked up by the OS.
+The best approach here is to plug in the programmer not
+before `vagrant up` has finished. If you encounter any
+problems have a look at the output of running `lsusb`
+which should in case for the AVR mkII result in:
+
+```
+vagrant@avr-dev:~$ lsusb
+[..]
+Bus 002 Device 002: ID 03eb:2104 Atmel Corp. AVR ISP mkII
+```
+
 The following steps show how to run the
 [blink_led_hw](https://github.com/h5b/arduino_uno_328p/tree/master/src/blink_led_hw)
 example:
