@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Sebastian Trahm
+ * Copyright (c) 2013-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -40,9 +40,8 @@ volatile int old_ax = 0;
 volatile int old_ay = 0;
 volatile int old_az = 0;
 
-/* angles */
 static inline int
-nunchukGetRoll(struct nunchuk_tm* v)
+nunchukGetRoll(struct nunchuk_t* v)
 {
 	int ax = v->accelX - ACCEL_CALIB_X;
 	int az = v->accelZ - ACCEL_CALIB_Z;
@@ -58,7 +57,7 @@ nunchukGetRoll(struct nunchuk_tm* v)
 }
 
 static inline int
-nunchukGetPitch(struct nunchuk_tm* v)
+nunchukGetPitch(struct nunchuk_t* v)
 {
 	int ay = v->accelY - ACCEL_CALIB_Y;
 	int az = v->accelZ - ACCEL_CALIB_Z;
@@ -75,7 +74,7 @@ nunchukGetPitch(struct nunchuk_tm* v)
 int
 main(void)
 {
-	struct nunchuk_tm* nunchuk = NULL;
+	struct nunchuk_t nunchuk_sensor;
 	char buffer[BUFFER_SIZE];
 	int roll = 0;
 	int pitch = 0;
@@ -87,16 +86,16 @@ main(void)
 	nunchukInit();
 
 	/* initial read */
-	nunchuk = nunchukGetData();
-	old_ax = nunchuk->accelX;
-	old_ay = nunchuk->accelY;
-	old_az = nunchuk->accelZ;
+	nunchukGetData(&nunchuk_sensor);
+	old_ax = nunchuk_sensor.accelX;
+	old_ay = nunchuk_sensor.accelY;
+	old_az = nunchuk_sensor.accelZ;
 
 
 	while (1) {
-		nunchuk = nunchukGetData();
-		roll = nunchukGetRoll(nunchuk);
-		pitch = nunchukGetPitch(nunchuk);
+		nunchukGetData(&nunchuk_sensor);
+		roll = nunchukGetRoll(&nunchuk_sensor);
+		pitch = nunchukGetPitch(&nunchuk_sensor);
 
 		sprintf(buffer,
 		    /* JSON data format */
@@ -106,12 +105,12 @@ main(void)
 		    "\"p\":\"%04d\","
 		    "\"c\":\"%d\","
 		    "\"z\":\"%d\"}\r\n",
-		    nunchuk->joystickX,
-		    nunchuk->joystickY,
+		    nunchuk_sensor.joystickX,
+		    nunchuk_sensor.joystickY,
 		    roll,
 		    pitch,
-		    nunchuk->buttonC,
-		    nunchuk->buttonZ
+		    nunchuk_sensor.buttonC,
+		    nunchuk_sensor.buttonZ
 		);
 		uartPutString(buffer);
 		_delay_ms(200);

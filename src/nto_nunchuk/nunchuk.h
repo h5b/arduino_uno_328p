@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Sebastian Trahm
+ * Copyright (c) 2013-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -73,7 +73,7 @@
 #define NUNCHUK_WR_ADDR		0xA4
 
 /* Normalized Nunchuk Sensor Data */
-struct nunchuk_tm {
+struct nunchuk_t {
 	uint8_t joystickX;
 	uint8_t joystickY;
 	uint16_t accelX; /* MSB and LSB of 5th Byte */
@@ -83,9 +83,7 @@ struct nunchuk_tm {
 	uint8_t buttonC;
 };
 
-extern struct nunchuk_tm nunchukData;
-
-struct nunchuk_tm* nunchukGetData(void);
+void nunchukGetData(struct nunchuk_t*);
 void nunchukInit(void);
 
 #endif /* _NUNCHUK_H_ */

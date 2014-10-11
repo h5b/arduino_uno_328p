@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Sebastian Trahm
+ * Copyright (c) 2013-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -22,8 +22,6 @@
 #include "i2c.h"
 #include "nunchuk.h"
 
-struct nunchuk_tm nunchukData;
-
 static inline uint8_t
 nunchukDecodeByte(uint8_t val)
 {
@@ -39,8 +37,8 @@ nunchukSetReadPointer(void)
 	_delay_ms(NUNCHUK_I2C_MSDELAY);
 }
 
-struct nunchuk_tm*
-nunchukGetData(void)
+void
+nunchukGetData(struct nunchuk_t* nunchuk_sensor)
 {
 	uint8_t i = 0;
 	uint8_t regs[NUNCHUK_REG_SIZE];
@@ -59,17 +57,14 @@ nunchukGetData(void)
 		regs[i] = nunchukDecodeByte(regs[i]);
 	}
 
-	nunchukData.joystickX = regs[0];
-	nunchukData.joystickY = regs[1];
-	nunchukData.buttonZ = !(regs[5] & NUNCHUK_BTN_Z_FLAG);
-	nunchukData.buttonC = !(regs[5] & NUNCHUK_BTN_C_FLAG);
+	nunchuk_sensor->joystickX = regs[0];
+	nunchuk_sensor->joystickY = regs[1];
+	nunchuk_sensor->buttonZ = !(regs[5] & NUNCHUK_BTN_Z_FLAG);
+	nunchuk_sensor->buttonC = !(regs[5] & NUNCHUK_BTN_C_FLAG);
 	/* MSB and extracted LSB Bit of accelerometer */
-	nunchukData.accelX = ((regs[2] << 2) | ((regs[5] >> 2) & 0x03));
-	nunchukData.accelY = ((regs[3] << 2) | ((regs[5] >> 4) & 0x03));
-	nunchukData.accelZ = ((regs[4] << 2) | ((regs[5] >> 6) & 0x03));
-
-
-	return &nunchukData;
+	nunchuk_sensor->accelX = ((regs[2] << 2) | ((regs[5] >> 2) & 0x03));
+	nunchuk_sensor->accelY = ((regs[3] << 2) | ((regs[5] >> 4) & 0x03));
+	nunchuk_sensor->accelZ = ((regs[4] << 2) | ((regs[5] >> 6) & 0x03));
 }
 
 void
