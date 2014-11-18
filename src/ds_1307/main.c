@@ -29,7 +29,6 @@
 #include "uart.h"
 
 #define BUFFER_SIZE	32
-#define SECOND		1000
 
 int
 main(void)
@@ -56,7 +55,7 @@ main(void)
 		    rtc_tm.hours, rtc_tm.minutes, rtc_tm.seconds, rtc_tm.day,
 		    rtc_tm.month, rtc_tm.year);
 		uartPutString(buffer);
-		_delay_ms(SECOND);
+		_delay_ms(1000);
 	}
 
 	/* never reached */

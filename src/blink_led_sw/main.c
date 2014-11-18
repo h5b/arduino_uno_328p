@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012 Sebastian Trahm
+ * Copyright (c) 2011-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -20,8 +20,6 @@
 
 #include "board.h"
 
-#define SECOND	1000
-
 int
 main(void)
 {
@@ -31,7 +29,7 @@ main(void)
 	while (1) {
 		/* toggle User LED */
 		PORTB ^= (USER_LED);
-		_delay_ms(SECOND);
+		_delay_ms(1000);
 	}
 
 	/* never reached */

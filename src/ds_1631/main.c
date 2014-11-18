@@ -29,7 +29,6 @@
 #include "uart.h"
 
 #define BUFFER_SIZE	36
-#define SECOND		1000
 
 /*
  * The DS1631 provides three configurable address pins which allow
@@ -62,7 +61,7 @@ main(void)
 		    ds1631_sensor.val, ds1631_sensor.msb, ds1631_sensor.lsb);
 
 		uartPutString(buffer);
-		_delay_ms(SECOND);
+		_delay_ms(1000);
 	}
 
 	/* never reached */

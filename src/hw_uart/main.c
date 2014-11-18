@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012 Sebastian Trahm
+ * Copyright (c) 2011-2014 Sebastian Trahm
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -24,8 +24,6 @@
 #include "board.h"
 #include "uart.h"
 
-#define HALF_SECOND	500
-
 int
 main(void)
 {
@@ -41,7 +39,7 @@ main(void)
 	while (1) {
 		/* output a heartbeat */
 		uartPutString(".. ");
-		_delay_ms(HALF_SECOND);
+		_delay_ms(500);
 	}
 
 	/* never reached */
