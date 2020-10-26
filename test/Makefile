@@ -5,6 +5,11 @@ CHECK_SRCS=	$(CHECK_SUITE).c \
 CLEANFILES=	$(CHECK_SUITE)
 
 CHECK_LIBS=	-lcheck
+CHECK_LIBS+=	-lm
+CHECK_LIBS+=	-lpthread
+CHECK_LIBS+=	-lrt
+CHECK_LIBS+=	-lsubunit
+
 CHECK_CC=	gcc
 
 INCDIR+=	-I${CURDIR}/../src/util

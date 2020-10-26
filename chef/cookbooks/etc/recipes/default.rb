@@ -1,7 +1,7 @@
 Chef::Log.info("[Customising: /etc/motd]")
-template "/etc/motd.tail" do
-  source "motd.tail"
-  mode "0644"
+template "/etc/update-motd.d/99-banner" do
+  source "motd.ascii.banner"
+  mode "0755"
   owner "root"
   group "root"
 end

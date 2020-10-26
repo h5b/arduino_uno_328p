@@ -2,8 +2,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "hashicorp/bionic64"
 
   config.vm.hostname = "avr-dev"
   config.vm.provider "virtualbox" do |v|
@@ -27,6 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "vim"
     chef.add_recipe "etc"
+    chef.arguments = '--chef-license accept'
   end
 
 end
